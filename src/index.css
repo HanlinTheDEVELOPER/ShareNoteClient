@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
+body {
+  width: 80vw;
+  margin: auto;
+}
+
+.btn {
+  @apply border border-teal-600 rounded-xl;
+}
