@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import MainLayout, { StatusLoader } from "./layouts/MainLayout";
+import MainLayout from "./layouts/MainLayout";
 
 import Index from "./pages/Index";
 import Create from "./pages/Create";
@@ -13,7 +13,6 @@ const App = () => {
     {
       path: "/",
       element: <MainLayout />,
-      loader: StatusLoader,
       children: [
         {
           index: true,
