@@ -15,7 +15,7 @@ const Nav = () => {
           logout
         </button>
       ) : (
-        <a href="http://localhost:5173/api/v1/auth/google">gmail</a>
+        <a href={`${import.meta.env.VITE_API_URL}/api/v1/auth/google`}>gmail</a>
       )}
     </nav>
   );
