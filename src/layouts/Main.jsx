@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 import Nav from "../components/Nav";
 
 import { useAuthStore } from "../store/authStore";
@@ -14,7 +14,7 @@ export const StatusLoader = async () => {
   });
   const status = await res.json();
   if (status.message === "Refresh Token Success") {
-    setAuth(status.data);
+    await setAuth(status.data);
   } else if (status.statusCode == 401) {
     setAuth(null);
   }
@@ -22,9 +22,12 @@ export const StatusLoader = async () => {
 };
 
 const Main = () => {
+  const data = useLoaderData();
+
   return (
     <section>
       <Nav />
+      {JSON.stringify(data)}
       <Outlet />
     </section>
   );
