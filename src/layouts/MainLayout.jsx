@@ -14,14 +14,14 @@ export const StatusLoader = async () => {
   });
   const status = await res.json();
   if (status.message === "Refresh Token Success") {
-    await setAuth(status.data);
+    setAuth(status.data);
   } else if (status.statusCode == 401) {
     setAuth(null);
   }
   return status;
 };
 
-const Main = () => {
+const MainLayout = () => {
   const data = useLoaderData();
 
   return (
@@ -33,4 +33,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default MainLayout;

@@ -13,12 +13,12 @@ const Loggin = () => {
   useEffect(() => {
     const fetchFn = async () => {
       const res = await fetch(
-        `http://localhost:5173/api/v1/auth/login?user=${user}`,
+        `${import.meta.env.VITE_API_URL}/api/v1/auth/login?user=${user}`,
         { credentials: "include" }
       );
       const logginUser = await res.json();
-      navigate("/");
       setAuth(logginUser.data);
+      return navigate("/");
     };
     fetchFn();
     // eslint-disable-next-line react-hooks/exhaustive-deps

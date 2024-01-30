@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Main, { StatusLoader } from "./layouts/Main";
+import MainLayout, { StatusLoader } from "./layouts/MainLayout";
 
 import Index from "./pages/Index";
 import Create from "./pages/Create";
@@ -12,7 +12,7 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Main />,
+      element: <MainLayout />,
       loader: StatusLoader,
       children: [
         {
