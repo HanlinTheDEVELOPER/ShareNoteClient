@@ -11,9 +11,29 @@ const Nav = () => {
         Share Notes
       </h1>
       {auth ? (
-        <button className="btn" onClick={logOut}>
-          logout
-        </button>
+        <>
+          <button className="btn" onClick={logOut}>
+            logout
+          </button>
+          <button
+            className="btn"
+            onClick={async () => {
+              const me = await fetch(
+                `${import.meta.env.VITE_API_URL}/api/v1/users/me`,
+                {
+                  credentials: "include",
+                  headers: {
+                    Authentication: auth?.token,
+                  },
+                }
+              );
+              const res = await me.json();
+              console.log(res);
+            }}
+          >
+            Me
+          </button>
+        </>
       ) : (
         <a href={`${import.meta.env.VITE_API_URL}/api/v1/auth/google`}>gmail</a>
       )}
