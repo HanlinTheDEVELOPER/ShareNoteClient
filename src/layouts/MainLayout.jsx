@@ -13,17 +13,10 @@ const MainLayout = () => {
         `${import.meta.env.VITE_API_URL}/api/v1/auth/status`,
         {
           credentials: "include",
-          headers: {
-            Authentication: auth?.token,
-          },
         }
       );
       const status = await res.json();
-      if (status.message === "Refresh Token Success") {
-        setAuth(status.data);
-      } else if (status.statusCode == 401) {
-        setAuth(null);
-      }
+      console.log(status);
     };
     fetchFn();
   }, [setAuth, auth]);
