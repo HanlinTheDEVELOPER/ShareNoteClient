@@ -1,14 +1,14 @@
 import { create } from "zustand";
+import { devtools } from "zustand/middleware";
+import axiosInstance from "../lib/axiosInstance";
 
-const noteStore = (set) => ({
+export const noteStore = (set) => ({
   notes: [],
-  addNote: (note) => {
-    set((state) => {
-      return {
-        notes: [...state.notes, note],
-      };
-    });
+  getNotes: async () => {
+    const fetchRes = await axiosInstance.get("/api/v1/notes");
+    const notes = fetchRes.data;
+    set({ notes: notes.data });
   },
 });
 
-export const useNoteStore = create(noteStore);
+export const useNoteStore = create(devtools(noteStore));

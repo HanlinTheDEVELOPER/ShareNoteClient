@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   TrashIcon,
   PencilSquareIcon,
@@ -5,13 +6,12 @@ import {
 } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
-const Note = () => {
+const Note = ({ note }) => {
   return (
     <div className=" w-full border-t-4 border-t-teal-600 shadow-lg p-3">
-      <h3 className="text-xl font-medium">Lorem ipsum, dolor sit amet.</h3>
+      <h3 className="text-xl font-medium">{note.title}</h3>
       <p className="text-sm text-gray-700 mt-1">
-        lorem ipsum dolor sit amet consectetur adipisicing elit. Aut sapiente
-        necessitatibus molestiae
+        {note.content.substr(0, 100)} ...
       </p>
       <div className="mt-2 flex items-center justify-end gap-4">
         <TrashIcon width={20} className=" text-red-600" />

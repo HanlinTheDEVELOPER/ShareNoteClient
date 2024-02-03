@@ -16,7 +16,9 @@ const MainLayout = () => {
         }
       );
       const status = await res.json();
-      console.log(status);
+      if (status.statusCode === 403) {
+        setAuth(null);
+      }
     };
     fetchFn();
   }, [setAuth, auth]);

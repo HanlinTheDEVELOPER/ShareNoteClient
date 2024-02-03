@@ -12,12 +12,7 @@ const Loggin = () => {
 
   useEffect(() => {
     const fetchFn = async () => {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/v1/auth/login?user=${user}`,
-        { credentials: "include" }
-      );
-      const logginUser = await res.json();
-      setAuth(logginUser.data);
+      setAuth(user);
       return navigate("/");
     };
     fetchFn();
