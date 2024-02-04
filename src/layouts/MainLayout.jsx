@@ -16,7 +16,7 @@ const MainLayout = () => {
         }
       );
       const status = await res.json();
-      if (status.statusCode === 403) {
+      if (status.statusCode === 403 || status.statusCode === 401) {
         setAuth(null);
       }
     };

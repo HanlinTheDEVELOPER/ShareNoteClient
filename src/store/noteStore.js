@@ -8,6 +8,7 @@ export const noteStore = (set) => ({
     const fetchRes = await axiosInstance.get("/api/v1/notes");
     const notes = fetchRes.data;
     set({ notes: notes.data });
+    return notes;
   },
 });
 

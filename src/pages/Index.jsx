@@ -1,6 +1,5 @@
-/* eslint-disable react-refresh/only-export-components */
+import { useQuery } from "@tanstack/react-query";
 
-import { useEffect } from "react";
 import Note from "../components/Note";
 import { useNoteStore } from "../store/noteStore";
 
@@ -10,9 +9,12 @@ const Index = () => {
     state.getNotes,
   ]);
 
-  useEffect(() => {
-    getNotes();
-  }, []);
+  const query = useQuery({
+    queryKey: ["notes"],
+    queryFn: getNotes,
+  });
+
+  console.log(query);
   return (
     <section className="grid grid-cols-3 gap-6 mt-10 px-10">
       {notes?.map((note) => (

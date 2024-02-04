@@ -10,9 +10,12 @@ const authStore = (set) => ({
       `/api/v1/auth/login?user=${userIdLink}`
     );
     const auth = fetchRes.data;
-    set((state) => (state.auth = auth.data));
+    set((state) => (state = { auth: auth.data }));
   },
-  logOut: () => set((state) => (state = { auth: null })),
+  logOut: async () => {
+    const fetchRes = await axiosInstance.get("/api/v1/auth/logout");
+    set((state) => (state = { auth: null }));
+  },
 });
 
 export const useAuthStore = create(

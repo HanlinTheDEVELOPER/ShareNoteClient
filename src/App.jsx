@@ -7,8 +7,21 @@ import Create from "./pages/Create";
 import Edit from "./pages/Edit";
 import Details from "./pages/Details";
 import Loggin from "./pages/Loggin";
+import { useUserStore } from "./store/userStore";
+import { queryClient } from "./main";
+import { useEffect } from "react";
+import { useAuthStore } from "./store/authStore";
 
 const App = () => {
+  const setUser = useUserStore((state) => state.setUser);
+  const auth = useAuthStore((state) => state.auth);
+  useEffect(() => {
+    queryClient.prefetchQuery({
+      queryKey: ["user"],
+      queryFn: setUser,
+    });
+  }, [auth, setUser]);
+
   const router = createBrowserRouter([
     {
       path: "/",
