@@ -18,7 +18,7 @@ const Note = ({ note }) => {
             <h3 className="text-xl font-medium">{note.title}</h3>
             <h5 className="text-xs text-gray-500">{note.sender.name}</h5>
           </div>
-          {note.sender._id === user._id && <p>Edit</p>}
+          {note.sender._id === user?._id && <p>Edit</p>}
         </div>
         <p className="text-sm text-gray-700 mt-1">
           {note.slug.substr(0, 100)} ...
