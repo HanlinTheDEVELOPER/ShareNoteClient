@@ -16,7 +16,7 @@ const Index = () => {
 
   console.log(query);
   return (
-    <section className="grid grid-cols-3 gap-6 mt-10 px-10">
+    <section className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-6 mt-10 px-10">
       {notes?.map((note) => (
         <Note key={note._id} note={note} />
       ))}
