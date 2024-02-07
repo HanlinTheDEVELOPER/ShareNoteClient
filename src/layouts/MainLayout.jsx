@@ -2,10 +2,15 @@ import { Outlet } from "react-router-dom";
 import Nav from "../components/Nav";
 
 import { useAuthStore } from "../store/authStore";
+import { useUserStore } from "../store/userStore";
 import { useEffect } from "react";
 
 const MainLayout = () => {
-  const [auth, setAuth] = useAuthStore((state) => [state.auth, state.setAuth]);
+  const [auth, clearAuth] = useAuthStore((state) => [
+    state.auth,
+    state.clearAuth,
+  ]);
+  const clearUser = useUserStore((state) => state.clearUser);
 
   useEffect(() => {
     const fetchFn = async () => {
@@ -17,11 +22,12 @@ const MainLayout = () => {
       );
       const status = await res.json();
       if (status.statusCode === 403 || status.statusCode === 401) {
-        setAuth(null);
+        clearAuth();
+        clearUser();
       }
     };
     fetchFn();
-  }, [setAuth, auth]);
+  }, [clearAuth, auth, clearUser]);
 
   return (
     <section>

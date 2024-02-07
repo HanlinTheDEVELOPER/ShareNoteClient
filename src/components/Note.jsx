@@ -3,10 +3,10 @@
 import { Link } from "react-router-dom";
 import { useUserStore } from "../store/userStore";
 
-const Note = ({ note }) => {
+const Note = ({ note, lastElRef }) => {
   const user = useUserStore((state) => state.user);
   return (
-    <Link to={"/notes/1"}>
+    <Link to={"/notes/1"} ref={lastElRef}>
       <div className=" w-full border-t-4 border-t-teal-600 shadow-lg p-3">
         <div className="flex items-center justify-start gap-4">
           <img

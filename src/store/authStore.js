@@ -12,6 +12,7 @@ const authStore = (set) => ({
     const auth = fetchRes.data;
     set((state) => (state = { auth: auth.data }));
   },
+  clearAuth: () => set((state) => (state = { auth: null })),
   logOut: async () => {
     const fetchRes = await axiosInstance.get("/api/v1/auth/logout");
     set((state) => (state = { auth: null }));
