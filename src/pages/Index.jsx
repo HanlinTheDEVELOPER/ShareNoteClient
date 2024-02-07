@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useIsFetching } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
@@ -9,6 +9,7 @@ import loading from "../assets/Bean Eater-1s-200px.gif";
 
 const Index = () => {
   const { ref, inView } = useInView();
+  const isFetching = useIsFetching({ queryKey: ["notes"] });
   const [notes, getNotes] = useNoteStore((state) => [
     state.notes,
     state.getNotes,
@@ -51,12 +52,12 @@ const Index = () => {
           )
         )}
       </section>
-      {status === "pending" ||
-        (isFetchingNextPage && (
-          <div className=" w-full text-xl opacity-80 flex justify-center font-bold mt-4 ">
-            <img alt="loading" src={loading} width={"50"} height={"50"} />
-          </div>
-        ))}
+
+      {isFetching && (
+        <div className=" w-full text-xl opacity-80 flex justify-center font-bold mt-4 ">
+          <img alt="loading" src={loading} width={"50"} height={"50"} />
+        </div>
+      )}
     </>
   );
 };
