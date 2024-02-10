@@ -22,3 +22,8 @@ const authStore = (set) => ({
 export const useAuthStore = create(
   devtools(persist(authStore, { name: "auth" }))
 );
+//  {
+// statusCode : 200,
+// message : "aef",
+// data : [{}]
+// }
