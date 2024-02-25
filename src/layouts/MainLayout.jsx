@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Nav from "../components/Nav";
-
+import { Container } from "@chakra-ui/react";
 import { useAuthStore } from "../store/authStore";
 import { useUserStore } from "../store/userStore";
 import { useEffect } from "react";
@@ -30,10 +30,10 @@ const MainLayout = () => {
   }, [clearAuth, auth, clearUser]);
 
   return (
-    <section>
+    <Container maxW={{ base: "100%", sm: "90vw", md: "80vw" }}>
       <Nav />
       <Outlet />
-    </section>
+    </Container>
   );
 };
 

@@ -7,12 +7,3 @@
 * {
   font-family: "Montserrat Alternates", sans-serif;
 }
-
-body {
-  width: 80vw;
-  margin: auto;
-}
-
-.btn {
-  @apply border border-teal-600 rounded-xl;
-}

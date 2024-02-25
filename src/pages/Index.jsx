@@ -53,10 +53,12 @@ const Index = () => {
         )}
       </section>
 
-      {isFetching && (
+      {isFetching ? (
         <div className=" w-full text-xl opacity-80 flex justify-center font-bold mt-4 ">
-          <img alt="loading" src={loading} width={"50"} height={"50"} />
+          <img alt="loading" src={loading} />
         </div>
+      ) : (
+        ""
       )}
     </>
   );
