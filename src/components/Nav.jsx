@@ -1,42 +1,40 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
+import { Button, Flex, Text, Link, Image } from "@chakra-ui/react";
 import logo from "../assets/logo.svg";
 import { useAuthStore } from "../store/authStore";
-import { useUserStore } from "../store/userStore";
+import NavMenu from "./NavMenu";
+// import Google from "../assets/google-logo-9824.png";
 
 const Nav = () => {
-  const [auth, logOut] = useAuthStore((state) => [state.auth, state.logOut]);
-  const [setUser] = useUserStore((state) => [state.setUser]);
+  const [auth] = useAuthStore((state) => [state.auth]);
 
   return (
     <Flex w="100%" justify="space-between" py="16px">
-      <Flex>
-        <img src={logo} alt="logo" className="w-10" />
-        <Text color="brand.900" fontSize="4xl" fontWeight="700">
+      <Flex alignItems={"center"} spacing={16}>
+        <Image src={logo} alt="logo" w={{ base: 0, sm: 8, md: 10 }} />
+        <Text
+          color="brand.900"
+          fontSize={{ base: "2xl", sm: "2xl", md: "4xl" }}
+          fontWeight="700"
+        >
           Share Notes
         </Text>
       </Flex>
       {auth ? (
         <>
-          <Button
-            bgColor="brand.900"
-            color="white"
-            _hover={{ bg: "brand.900" }}
-            onClick={logOut}
-          >
-            logout
-          </Button>
-
-          <Button
-            bgColor="brand.900"
-            color="white"
-            _hover={{ bg: "brand.900" }}
-            onClick={setUser}
-          >
-            Me
-          </Button>
+          <NavMenu />
         </>
       ) : (
-        <a href={`${import.meta.env.VITE_API_URL}/api/v1/auth/google`}>gmail</a>
+        <Button
+          as={Link}
+          bg="brand.900"
+          color="white"
+          p={4}
+          _hover={{ bg: "brand.900" }}
+          href={`${import.meta.env.VITE_API_URL}/api/v1/auth/google`}
+        >
+          {/* <Avatar size={"sm"} src={Google} bg={"transparent"} /> */}
+          Login
+        </Button>
       )}
     </Flex>
   );

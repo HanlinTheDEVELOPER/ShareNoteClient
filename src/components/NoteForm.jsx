@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+import { IconArrowRightFromArc } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
@@ -34,7 +34,7 @@ const NoteForm = ({ isCreate }) => {
           {isCreate ? "Create a new note." : "Edit your note."}
         </h1>
         <Link to={"/"}>
-          <ArrowLeftIcon width={22} />
+          <IconArrowRightFromArc />
         </Link>
       </div>
       <Formik

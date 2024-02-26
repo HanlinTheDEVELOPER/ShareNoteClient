@@ -1,19 +1,15 @@
 /* eslint-disable no-unused-vars */
 import { useInfiniteQuery, useIsFetching } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-
+import { SimpleGrid } from "@chakra-ui/react";
 import Note from "../components/Note";
-import { useNoteStore } from "../store/noteStore";
 import loading from "../assets/Bean Eater-1s-200px.gif";
+import { getNotes } from "../lib/noteApi";
 
 const Index = () => {
   const { ref, inView } = useInView();
   const isFetching = useIsFetching({ queryKey: ["notes"] });
-  const [notes, getNotes] = useNoteStore((state) => [
-    state.notes,
-    state.getNotes,
-  ]);
 
   const {
     data: fecthNotes,
@@ -33,8 +29,8 @@ const Index = () => {
           : undefined;
       return nextPage;
     },
+    refetchOnMount: false,
   });
-
   useEffect(() => {
     if (inView && hasNextPage) {
       fetchNextPage();
@@ -43,19 +39,24 @@ const Index = () => {
 
   return (
     <>
-      <section className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-6 mt-10 px-10">
-        {notes?.map((note, i) =>
-          notes.length === i + 1 ? (
-            <Note key={note._id} lastElRef={ref} note={note} />
-          ) : (
-            <Note key={note._id} note={note} />
+      <SimpleGrid
+        columns={{ base: 1, sm: 2, md: 3 }}
+        spacing={{ base: 4, sm: 6, md: 8 }}
+      >
+        {fecthNotes?.pages?.map((page) =>
+          page.data?.notes.map((note, i) =>
+            page.data?.notes.length === i + 1 ? (
+              <Note key={note._id + i} lastElRef={ref} note={note} />
+            ) : (
+              <Note key={note._id + i} note={note} />
+            )
           )
         )}
-      </section>
+      </SimpleGrid>
 
       {isFetching ? (
         <div className=" w-full text-xl opacity-80 flex justify-center font-bold mt-4 ">
-          <img alt="loading" src={loading} />
+          <img alt="loading" src={loading} width={"50"} height={"50"} />
         </div>
       ) : (
         ""
