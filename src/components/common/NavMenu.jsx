@@ -8,12 +8,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import { useUserStore } from "../store/userStore";
-import { useAuthStore } from "../store/authStore";
+import { useUserStore } from "../../store/userStore";
+import { useAuthStore } from "../../store/authStore";
 import { Link } from "react-router-dom";
 
 const NavMenu = () => {
-  const [user, setUser] = useUserStore((state) => [state.user, state.setUser]);
+  const [user] = useUserStore((state) => [state.user, state.setUser]);
   const [logOut] = useAuthStore((state) => [state.logOut]);
   return (
     <Menu>
@@ -23,11 +23,15 @@ const NavMenu = () => {
       <MenuList>
         <Link to="profile">
           <MenuItem>
-            <Text>Profile</Text>
+            <Text textAlign={"center"} w="100%">
+              Profile
+            </Text>
           </MenuItem>
         </Link>
         <MenuItem onClick={logOut}>
-          <Text>Logout</Text>
+          <Text textAlign={"center"} w="100%">
+            Logout
+          </Text>
         </MenuItem>
       </MenuList>
     </Menu>

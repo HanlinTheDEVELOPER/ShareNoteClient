@@ -7,8 +7,6 @@ import App from "./App.jsx";
 import "./index.css";
 
 const config = {
-  initialColorMode: "dark",
-  useSystemColorMode: true,
   colors: {
     brand: {
       900: "#46962A",
@@ -17,6 +15,13 @@ const config = {
     },
     back: {
       600: "#e9ebee",
+    },
+  },
+  styles: {
+    global: {
+      body: {
+        bg: "back.600",
+      },
     },
   },
 };

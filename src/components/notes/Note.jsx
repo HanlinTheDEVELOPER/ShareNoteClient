@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 
 import { Link } from "react-router-dom";
-import { useUserStore } from "../store/userStore";
+import { useUserStore } from "../../store/userStore";
 import { Flex, Stack, Text } from "@chakra-ui/react";
-import { formatDate } from "../lib/formatDateString";
+import { formatDate } from "../../lib/formatDateString";
 import { IconHearts } from "@tabler/icons-react";
 import NoteMenu from "./NoteMenu";
 

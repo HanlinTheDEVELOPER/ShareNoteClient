@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 import { useInfiniteQuery, useIsFetching } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { SimpleGrid } from "@chakra-ui/react";
-import Note from "../components/Note";
-import loading from "../assets/Bean Eater-1s-200px.gif";
-import { getNotes } from "../lib/noteApi";
+import Note from "../../components/notes/Note";
+import loading from "../../assets/Bean Eater-1s-200px.gif";
+import { getNotes } from "../../lib/noteApi";
 
 const Index = () => {
   const { ref, inView } = useInView();
@@ -42,6 +42,7 @@ const Index = () => {
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 3 }}
         spacing={{ base: 4, sm: 6, md: 8 }}
+        pt="16"
       >
         {fecthNotes?.pages?.map((page) =>
           page.data?.notes.map((note, i) =>

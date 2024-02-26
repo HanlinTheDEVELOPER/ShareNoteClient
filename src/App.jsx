@@ -2,10 +2,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout";
 
-import Index from "./pages/Index";
-import Create from "./pages/Create";
-import Edit from "./pages/Edit";
-import Details from "./pages/Details";
+import Index from "./pages/notes/Index";
+import Create from "./pages/notes/Create";
+import Edit from "./pages/notes/Edit";
+import Details from "./pages/notes/Details";
 import Loggin from "./pages/Loggin";
 import { useUserStore } from "./store/userStore";
 import { queryClient } from "./main";

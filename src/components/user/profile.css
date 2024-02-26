@@ -1,0 +1,7 @@
+.profile_image_container .profile_image_input {
+  display: none;
+}
+
+.profile_image_container:hover .profile_image_input {
+  display: flex;
+}

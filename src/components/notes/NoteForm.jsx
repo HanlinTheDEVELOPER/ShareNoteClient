@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-import StyledErrorMessage from "./StyledErrorMessage";
+import StyledErrorMessage from "../common/StyledErrorMessage";
 
 const NoteForm = ({ isCreate }) => {
   const initialValues = {

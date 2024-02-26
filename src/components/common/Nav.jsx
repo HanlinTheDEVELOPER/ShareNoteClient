@@ -1,6 +1,6 @@
 import { Button, Flex, Text, Link, Image } from "@chakra-ui/react";
-import logo from "../assets/logo.svg";
-import { useAuthStore } from "../store/authStore";
+import logo from "../../assets/logo.svg";
+import { useAuthStore } from "../../store/authStore";
 import NavMenu from "./NavMenu";
 // import Google from "../assets/google-logo-9824.png";
 
@@ -8,7 +8,15 @@ const Nav = () => {
   const [auth] = useAuthStore((state) => [state.auth]);
 
   return (
-    <Flex w="100%" justify="space-between" py="16px">
+    <Flex
+      w="100%"
+      justify="space-between"
+      position="sticky"
+      top={0}
+      zIndex={100}
+      bg="back.600"
+      py="16px"
+    >
       <Flex alignItems={"center"} spacing={16}>
         <Image src={logo} alt="logo" w={{ base: 0, sm: 8, md: 10 }} />
         <Text

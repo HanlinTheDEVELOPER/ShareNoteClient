@@ -7,6 +7,7 @@ const NoteMenu = () => {
       <MenuButton
         border="1px solid"
         borderColor="brand.900"
+        bg="transparent"
         borderRadius="23"
         opacity={0.7}
       >

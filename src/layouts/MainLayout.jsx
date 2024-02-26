@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Nav from "../components/Nav";
+import Nav from "../components/common/Nav";
 import { Container } from "@chakra-ui/react";
 import { useAuthStore } from "../store/authStore";
 import { useUserStore } from "../store/userStore";
