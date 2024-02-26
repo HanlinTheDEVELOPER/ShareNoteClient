@@ -11,6 +11,7 @@ import { useUserStore } from "./store/userStore";
 import { queryClient } from "./main";
 import { useEffect } from "react";
 import { useAuthStore } from "./store/authStore";
+import Profile from "./pages/user/Profile";
 
 const App = () => {
   const setUser = useUserStore((state) => state.setUser);
@@ -31,6 +32,7 @@ const App = () => {
           index: true,
           element: <Index />,
         },
+        { path: "/profile", element: <Profile /> },
         {
           path: "/create",
           element: <Create />,

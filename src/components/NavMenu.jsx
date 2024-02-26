@@ -10,6 +10,7 @@ import {
 
 import { useUserStore } from "../store/userStore";
 import { useAuthStore } from "../store/authStore";
+import { Link } from "react-router-dom";
 
 const NavMenu = () => {
   const [user, setUser] = useUserStore((state) => [state.user, state.setUser]);
@@ -20,11 +21,13 @@ const NavMenu = () => {
         <Avatar size={{ base: "sm", sm: "md" }} src={user?.avatar} />
       </MenuButton>
       <MenuList>
-        <MenuItem>
-          <Text onClick={setUser}>Profile</Text>
-        </MenuItem>
-        <MenuItem>
-          <Text onClick={logOut}>Logout</Text>
+        <Link to="profile">
+          <MenuItem>
+            <Text>Profile</Text>
+          </MenuItem>
+        </Link>
+        <MenuItem onClick={logOut}>
+          <Text>Logout</Text>
         </MenuItem>
       </MenuList>
     </Menu>
