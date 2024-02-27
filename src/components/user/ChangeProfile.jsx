@@ -48,11 +48,7 @@ const ChangeProfile = () => {
   };
 
   return (
-    <form
-      className="profile_image_container"
-      onSubmit={onSaveImage}
-      encType="multipart/form-data"
-    >
+    <form className="" onSubmit={onSaveImage} encType="multipart/form-data">
       {inputFile ? (
         <Box className="absolute top-0 left-0 w-full h-full rounded-full  flex justify-center items-center">
           <img className="w-full h-full rounded-full" src={inputFile} />
@@ -72,17 +68,19 @@ const ChangeProfile = () => {
           </Flex>
         </Box>
       ) : (
-        <Box className="profile_image_input absolute top-0 left-0 w-full h-full rounded-full flex justify-center items-center backdrop-blur">
-          <Button type="button">
-            Upload Image
-            <IconPhotoUp />
-          </Button>
+        <Box className=" absolute w-4 h-4 bottom-[13%] right-[13%] rounded-full flex justify-center items-center">
+          <IconButton
+            borderBlock="solid"
+            borderWidth="1px"
+            borderColor="brand.900"
+            icon={<IconPhotoUp />}
+          />
           <input
             ref={(el) => (inputRef.current = el)}
             type="file"
             accept="image/*"
             name="profile_image_input"
-            className="w-full h-full absolute z-10 rounded-full opacity-0"
+            className="absolute h-full w-full z-10 top-0 opacity-0"
             onChange={onImageChange}
           />
         </Box>

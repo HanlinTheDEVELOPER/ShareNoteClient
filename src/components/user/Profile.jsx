@@ -10,12 +10,13 @@ const ProfileSection = () => {
       mt={{ base: 4, sm: 8, md: 12 }}
       height="400px"
       justifyContent="space-around"
+      direction={{ base: "column", sm: "row" }}
       gap={12}
       userSelect="none"
     >
       <Box
         display={"flex"}
-        w="40%"
+        w={{ base: "100%", sm: "40%" }}
         justifyContent={"center"}
         alignItems="center"
       >
