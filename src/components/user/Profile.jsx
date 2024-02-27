@@ -1,6 +1,6 @@
 import { Flex, Image, Box } from "@chakra-ui/react";
 import { useUserStore } from "../../store/userStore";
-import "./profile.css";
+
 import ChangeProfile from "./ChangeProfile";
 const ProfileSection = () => {
   const user = useUserStore((state) => state.user);

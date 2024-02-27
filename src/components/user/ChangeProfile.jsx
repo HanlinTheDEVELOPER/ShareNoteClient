@@ -1,5 +1,5 @@
 import { IconCheck, IconPhotoUp, IconX } from "@tabler/icons-react";
-import { Button, IconButton, Box, Flex } from "@chakra-ui/react";
+import { IconButton, Box, Flex } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { changeProfileImage } from "../../lib/userApi";
@@ -44,6 +44,8 @@ const ChangeProfile = () => {
       });
     } catch (error) {
       console.log(error);
+      setFile(null);
+      setInputFile(null);
     }
   };
 
