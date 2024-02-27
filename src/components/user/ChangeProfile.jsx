@@ -5,12 +5,16 @@ import { useMutation } from "@tanstack/react-query";
 import { changeProfileImage } from "../../lib/userApi";
 import { queryClient } from "../../main";
 import { useUserStore } from "../../store/userStore";
+import { useToast } from "@chakra-ui/react";
+import useLogout from "../../hooks/useLogout";
 
 const ChangeProfile = () => {
   const inputRef = useRef(null);
   const [inputFile, setInputFile] = useState(null);
   const [file, setFile] = useState(null);
   const setUser = useUserStore((state) => state.setUser);
+  const toast = useToast();
+  const [logout] = useLogout();
 
   const { mutateAsync, isError, isPending, isSuccess } = useMutation({
     mutationKey: ["user"],
@@ -42,18 +46,38 @@ const ChangeProfile = () => {
         queryKey: ["user"],
         queryFn: setUser,
       });
+      toast({
+        description: "Update Profile Picture Success!",
+        status: "success",
+        isClosable: true,
+      });
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.statusCode);
+      if (
+        error.response.data.statusCode === 401 ||
+        error.response.data.statusCode === 403
+      ) {
+        logout();
+      }
+      toast({
+        description: "Update Profile Picture Failed!",
+        status: "error",
+        isClosable: true,
+      });
       setFile(null);
       setInputFile(null);
     }
   };
 
   return (
-    <form className="" onSubmit={onSaveImage} encType="multipart/form-data">
+    <form
+      className="relative"
+      onSubmit={onSaveImage}
+      encType="multipart/form-data"
+    >
       {inputFile ? (
-        <Box className="absolute top-0 left-0 w-full h-full rounded-full  flex justify-center items-center">
-          <img className="w-full h-full rounded-full" src={inputFile} />
+        <Box className="absolute top-0 left-0 w-full h-full rounded-4  flex justify-center items-center">
+          <img className="w-full h-full rounded-[12px]" src={inputFile} />
           <Flex gap={2} position="absolute">
             <IconButton
               icon={<IconCheck />}
@@ -70,7 +94,7 @@ const ChangeProfile = () => {
           </Flex>
         </Box>
       ) : (
-        <Box className=" absolute w-4 h-4 bottom-[13%] right-[13%] rounded-full flex justify-center items-center">
+        <Box className=" absolute w-4 h-4 bottom-[13%] right-[0%] rounded-full flex justify-center items-center">
           <IconButton
             borderBlock="solid"
             borderWidth="1px"

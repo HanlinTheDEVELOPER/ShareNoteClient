@@ -30,7 +30,7 @@ const MainLayout = () => {
   }, [clearAuth, auth, clearUser]);
 
   return (
-    <Container maxW={{ base: "100%", sm: "90vw", md: "80vw" }}>
+    <Container p={0} maxW={{ base: "100%", sm: "90vw", md: "80vw" }}>
       <Nav />
       <Outlet />
     </Container>

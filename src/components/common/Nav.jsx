@@ -16,6 +16,7 @@ const Nav = () => {
       zIndex={100}
       bg="back.600"
       py="16px"
+      p={{ base: 4 }}
     >
       <Flex alignItems={"center"} spacing={16}>
         <Image src={logo} alt="logo" w={{ base: 0, sm: 8, md: 10 }} />
