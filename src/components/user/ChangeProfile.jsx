@@ -3,16 +3,20 @@ import { Button, IconButton, Box, Flex } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { changeProfileImage } from "../../lib/userApi";
+import { queryClient } from "../../main";
+import { useUserStore } from "../../store/userStore";
 
 const ChangeProfile = () => {
   const inputRef = useRef(null);
   const [inputFile, setInputFile] = useState(null);
   const [file, setFile] = useState(null);
+  const setUser = useUserStore((state) => state.setUser);
 
-  const { mutate, isError, isPending, isSuccess } = useMutation({
+  const { mutateAsync, isError, isPending, isSuccess } = useMutation({
     mutationKey: ["user"],
     mutationFn: (data) => changeProfileImage(data),
   });
+  console.log(isError, isPending, isSuccess);
 
   const onImageChange = () => {
     if (inputRef?.current?.files && inputRef?.current?.files[0]) {
@@ -26,11 +30,21 @@ const ChangeProfile = () => {
     setFile(null);
   };
 
-  const onSaveImage = (e) => {
+  const onSaveImage = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("image", file);
-    mutate(formData);
+    formData.append("avatar", file);
+    try {
+      await mutateAsync(formData);
+      setFile(null);
+      setInputFile(null);
+      queryClient.prefetchQuery({
+        queryKey: ["user"],
+        queryFn: setUser,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -45,7 +59,7 @@ const ChangeProfile = () => {
           <Flex gap={2} position="absolute">
             <IconButton
               icon={<IconCheck />}
-              isLoading={false}
+              isLoading={isPending}
               onClick={onSaveImage}
               type="submit"
             />
@@ -53,7 +67,7 @@ const ChangeProfile = () => {
               type="button"
               onClick={onCancelChange}
               icon={<IconX />}
-              isDisabled={false}
+              isDisabled={isPending}
             />
           </Flex>
         </Box>

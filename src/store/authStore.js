@@ -10,7 +10,9 @@ const authStore = (set) => ({
       `/api/v1/auth/login?user=${userIdLink}`
     );
     const auth = fetchRes.data;
+    console.log(auth);
     set((state) => (state = { auth: auth.data }));
+    return auth;
   },
   clearAuth: () => set((state) => (state = { auth: null })),
   logOut: async () => {

@@ -22,6 +22,7 @@ const ProfileSection = () => {
         <Box className="profile_image_container" w="90%" position="relative">
           <Image
             w="100%"
+            aspectRatio={"1/1"}
             src={user?.avatar}
             rounded="full"
             shadow=" 0px 0px 10px 0px #46962A "
