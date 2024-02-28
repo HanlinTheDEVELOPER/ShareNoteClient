@@ -71,7 +71,7 @@ const ChangeProfile = () => {
 
   return (
     <form
-      className="relative"
+      className="absolute top-0 w-full h-full"
       onSubmit={onSaveImage}
       encType="multipart/form-data"
     >
@@ -94,7 +94,7 @@ const ChangeProfile = () => {
           </Flex>
         </Box>
       ) : (
-        <Box className=" absolute w-4 h-4 bottom-[13%] right-[0%] rounded-full flex justify-center items-center">
+        <Box className=" absolute w-4 h-4 bottom-[0%] right-[0%] rounded-full flex justify-center items-center">
           <IconButton
             borderBlock="solid"
             borderWidth="1px"

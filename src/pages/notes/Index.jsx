@@ -42,7 +42,8 @@ const Index = () => {
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 3 }}
         spacing={{ base: 4, sm: 6, md: 8 }}
-        pt="16"
+        pt={{ base: 4, sm: "16" }}
+        p={{ base: 4 }}
       >
         {fecthNotes?.pages?.map((page) =>
           page.data?.notes.map((note, i) =>

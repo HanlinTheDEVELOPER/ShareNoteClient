@@ -11,7 +11,7 @@ const Loggin = () => {
   const [setAuth] = useAuthStore((state) => [state.setAuth]);
 
   useEffect(() => {
-    const fetchFn = async () => {
+    const fetchFn = () => {
       setAuth(user);
       return navigate("/");
     };
