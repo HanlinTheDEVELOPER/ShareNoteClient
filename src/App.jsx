@@ -6,7 +6,7 @@ import Index from "./pages/notes/Index";
 import Create from "./pages/notes/Create";
 import Edit from "./pages/notes/Edit";
 import Details from "./pages/notes/Details";
-import Loggin from "./pages/Loggin";
+import Loggin from "./pages/auth/Loggin";
 import { useUserStore } from "./store/userStore";
 import { queryClient } from "./main";
 import { useEffect } from "react";
