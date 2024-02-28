@@ -17,17 +17,17 @@ const Note = ({ note, lastElRef }) => {
           <h3 className="text-xl font-medium font-wrap">{note.slug}</h3>
         </Link>
         <div className="absolute right-0">
-          {note.sender._id === user?._id && <NoteMenu />}
+          {note.user._id === user?._id && <NoteMenu />}
         </div>
       </div>
       <Flex mt={4} gap={4} w={"100%"} alignItems="center">
         <img
-          src={note.sender.avatar}
+          src={note.user.avatar}
           alt="avatar"
           className="w-10 h-10 rounded-full"
         />
         <Stack fontSize="small" spacing={0}>
-          <Text size="sm">{note.sender.name}</Text>
+          <Text size="sm">{note.user.name}</Text>
           <Text as="i">{formatDate(note.createdAt)}</Text>
         </Stack>
         <Flex gap={2} alignItems="center" ml="auto">
