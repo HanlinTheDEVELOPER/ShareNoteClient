@@ -9,12 +9,13 @@ import {
 } from "@chakra-ui/react";
 
 import { useUserStore } from "../../store/userStore";
-import { useAuthStore } from "../../store/authStore";
+
 import { Link } from "react-router-dom";
+import useLogout from "../../hooks/useLogout";
 
 const NavMenu = () => {
   const [user] = useUserStore((state) => [state.user, state.setUser]);
-  const [logOut] = useAuthStore((state) => [state.logOut]);
+  const [logout] = useLogout();
   return (
     <Menu>
       <MenuButton>
@@ -28,7 +29,7 @@ const NavMenu = () => {
             </Text>
           </MenuItem>
         </Link>
-        <MenuItem onClick={logOut}>
+        <MenuItem onClick={logout}>
           <Text textAlign={"center"} w="100%">
             Logout
           </Text>
