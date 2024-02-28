@@ -8,12 +8,12 @@ const Loggin = () => {
   const user = searchParams.get("user");
   const navigate = useNavigate();
 
-  const [setAuth] = useAuthStore((state) => [state.setAuth]);
+  const [auth, setAuth] = useAuthStore((state) => [state.auth, state.setAuth]);
 
   useEffect(() => {
     const fetchFn = () => {
       setAuth(user);
-      return navigate("/");
+      auth?.tags?.length > 0 ? navigate("/") : navigate("/setup");
     };
     fetchFn();
     // eslint-disable-next-line react-hooks/exhaustive-deps

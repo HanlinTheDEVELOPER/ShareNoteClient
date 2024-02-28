@@ -5,9 +5,9 @@ const useLogout = () => {
   const logOut = useAuthStore((state) => state.logOut);
   const clearUser = useUserStore((state) => state.clearUser);
 
-  const logout = () => {
+  const logout = async () => {
     logOut();
-    clearUser();
+    await clearUser();
   };
 
   return [logout];
