@@ -2,6 +2,7 @@ import { Button, Flex, Text, Link, Image } from "@chakra-ui/react";
 import logo from "../../assets/logo.svg";
 import { useAuthStore } from "../../store/authStore";
 import NavMenu from "./NavMenu";
+
 // import Google from "../assets/google-logo-9824.png";
 
 const Nav = () => {
@@ -35,13 +36,10 @@ const Nav = () => {
       ) : (
         <Button
           as={Link}
-          bg="brand.900"
-          color="white"
-          p={4}
+          bg={{ base: "transparent", sm: "brand.900" }}
           _hover={{ bg: "brand.900" }}
           href={`${import.meta.env.VITE_API_URL}/api/v1/auth/google`}
         >
-          {/* <Avatar size={"sm"} src={Google} bg={"transparent"} /> */}
           Login
         </Button>
       )}

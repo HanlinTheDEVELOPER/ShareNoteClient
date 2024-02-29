@@ -7,3 +7,7 @@
 * {
   font-family: "Montserrat Alternates", sans-serif;
 }
+
+.cui-steps__step-icon-container {
+  background-color: #46962a90 !important;
+}
