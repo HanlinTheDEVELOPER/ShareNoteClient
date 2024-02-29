@@ -1,24 +1,22 @@
+/* eslint-disable react/prop-types */
 import { Box } from "@chakra-ui/layout";
 import { Button, Flex } from "@chakra-ui/react";
 import { Step, Steps, useSteps } from "chakra-ui-steps";
-import UsernameInput from "./UsernameInput";
 import UserInterestInput from "./UserInterestInput";
-import { IconNumber1, IconNumber2 } from "@tabler/icons-react";
+import UsernameInput from "./UsernameInput";
 
-const steps = [
-  {
-    label: "Choose a username to display!",
-    content: <UsernameInput />,
-    icon: <IconNumber1 />,
-  },
-  {
-    label: "Which fields are you interest in?",
-    content: <UserInterestInput />,
-    icon: <IconNumber2 />,
-  },
-];
+const Stepper = ({ body, setBody }) => {
+  const steps = [
+    {
+      label: "Choose a username to display!",
+      content: <UsernameInput name={body.name} setBody={setBody} />,
+    },
+    {
+      label: "Which fields are you interest in?",
+      content: <UserInterestInput tags={body.tags} setBody={setBody} />,
+    },
+  ];
 
-const Stepper = () => {
   const { nextStep, prevStep, reset, activeStep } = useSteps({
     initialStep: 0,
   });
@@ -39,18 +37,28 @@ const Stepper = () => {
       >
         {steps.map(({ label, content }) => (
           <Step bg="brand.900" label={label} key={label}>
-            <Box sx={{ p: 8, mt: 4, rounded: "md" }}>{content}</Box>
+            <Box
+              sx={{
+                p: { base: 0, sm: 8 },
+                pr: { base: 4, sm: 0 },
+                m: { base: 2, sm: 4 },
+                rounded: "md",
+              }}
+            >
+              {content}
+            </Box>
           </Step>
         ))}
       </Steps>
       <Flex justify=" center" gap={4}>
         {hasCompletedAllSteps ? (
-          <Button size="sm" onClick={reset}>
+          <Button type="button" size="sm" onClick={reset}>
             Reset
           </Button>
         ) : (
           <>
             <Button
+              type="button"
               isDisabled={activeStep === 0}
               onClick={prevStep}
               size="sm"
@@ -58,9 +66,26 @@ const Stepper = () => {
             >
               Prev
             </Button>
-            <Button size="sm" onClick={nextStep} bg="brand.900">
-              {isLastStep ? "Finish" : "Next"}
-            </Button>
+            {isLastStep ? (
+              <Button
+                isDisabled={body?.tags?.length !== 3}
+                size="sm"
+                type="submit"
+                bg="brand.900"
+              >
+                Save
+              </Button>
+            ) : (
+              <Button
+                type="button"
+                isDisabled={body.name.length < 2}
+                size="sm"
+                onClick={nextStep}
+                bg="brand.900"
+              >
+                Next
+              </Button>
+            )}
           </>
         )}
       </Flex>

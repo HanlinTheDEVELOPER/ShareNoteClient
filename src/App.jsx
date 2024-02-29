@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { useAuthStore } from "./store/authStore";
 import Profile from "./pages/user/Profile";
 import SetupAcc from "./pages/auth/SetupAcc";
+import Test from "./pages/Test";
 
 const App = () => {
   const setUser = useUserStore((state) => state.setUser);
@@ -34,6 +35,7 @@ const App = () => {
           element: <Index />,
         },
         { path: "/setup", element: <SetupAcc /> },
+        { path: "test", element: <Test /> },
         { path: "/profile", element: <Profile /> },
         {
           path: "/create",

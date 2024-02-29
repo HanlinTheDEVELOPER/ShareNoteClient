@@ -4,6 +4,7 @@ import { Container } from "@chakra-ui/react";
 import { useAuthStore } from "../store/authStore";
 import { useUserStore } from "../store/userStore";
 import { useEffect } from "react";
+import LoginModal from "../pages/auth/LoginModal";
 
 const MainLayout = () => {
   const [auth, clearAuth] = useAuthStore((state) => [
@@ -33,6 +34,7 @@ const MainLayout = () => {
     <Container p={0} maxW={{ base: "100%", sm: "90vw", md: "80vw" }}>
       <Nav />
       <Outlet />
+      <LoginModal />
     </Container>
   );
 };
