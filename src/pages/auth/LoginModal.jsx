@@ -5,7 +5,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  useDisclosure,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import { useModalStore } from "../../store/modalStore";
 
@@ -16,11 +16,16 @@ function LoginModal() {
   ]);
   return (
     <>
-      <Modal isOpen={isLoginModalOpen} isCentered motionPreset="slideInBottom">
+      <Modal
+        isOpen={isLoginModalOpen}
+        isCentered
+        motionPreset="slideInBottom"
+        onClose={setIsLoginModalOpen}
+      >
         <ModalOverlay onClick={() => console.log("he")} />
         <ModalContent>
           <ModalHeader textAlign="center">Please Login first</ModalHeader>
-
+          <ModalCloseButton />
           <ModalBody textAlign="center">
             <Button colorScheme="blue" mr={3} onClick={setIsLoginModalOpen}>
               Close

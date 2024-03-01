@@ -2,17 +2,12 @@ import { Button, Flex, Text, Link, Image } from "@chakra-ui/react";
 import logo from "../../assets/logo.svg";
 import { useAuthStore } from "../../store/authStore";
 import NavMenu from "./NavMenu";
-import { useDisclosure } from "@chakra-ui/react";
-import { useModalStore } from "../../store/modalStore";
+
 // import Google from "../assets/google-logo-9824.png";
 
 const Nav = () => {
   const [auth] = useAuthStore((state) => [state.auth]);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useModalStore((state) => [
-    state.isLoginModalOpen,
-    state.setIsLoginModalOpen,
-  ]);
-  console.log(isLoginModalOpen);
+
   return (
     <Flex
       w="100%"
@@ -20,7 +15,7 @@ const Nav = () => {
       position="sticky"
       top={0}
       zIndex={100}
-      bg="back.600"
+      bg="back"
       px={{ base: 4, sm: 0 }}
       py="16px"
     >
@@ -34,7 +29,7 @@ const Nav = () => {
           Share Notes
         </Text>
       </Flex>
-      <Button onClick={setIsLoginModalOpen}>ads</Button>
+
       {auth ? (
         <>
           <NavMenu />

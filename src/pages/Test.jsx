@@ -1,13 +1,11 @@
-import { useDisclosure } from "@chakra-ui/react";
-import { useEffect } from "react";
-import { useModalStore } from "../store/modalStore";
+import ProtectedButton from "../components/common/ProtectedButton";
 
 const Test = () => {
-  const setIsLoginModalOpen = useModalStore(
-    (state) => state.setIsLoginModalOpen
+  return (
+    <div>
+      <ProtectedButton fn={() => alert("ok")}>Hello</ProtectedButton>
+    </div>
   );
-
-  return <div>Test</div>;
 };
 
 export default Test;

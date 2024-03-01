@@ -44,13 +44,7 @@ const config = {
   components: { Steps },
 };
 
-const theme = extendTheme(
-  config,
-  withDefaultColorScheme({
-    colorScheme: "brand",
-    components: ["Step"],
-  })
-);
+const theme = extendTheme(config);
 
 export const queryClient = new QueryClient({
   defaultOptions: {

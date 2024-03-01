@@ -77,7 +77,7 @@ const Stepper = ({ body, setBody }) => {
               </Button>
             ) : (
               <Button
-                type="button"
+                as={Box}
                 isDisabled={body.name.length < 2}
                 size="sm"
                 onClick={nextStep}

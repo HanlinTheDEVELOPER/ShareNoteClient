@@ -1,21 +1,26 @@
 import { useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
+import { useUserStore } from "../../store/userStore";
 
 const Loggin = () => {
   // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
-  const user = searchParams.get("user");
+  const userId = searchParams.get("user");
   const navigate = useNavigate();
 
-  const [auth, setAuth] = useAuthStore((state) => [state.auth, state.setAuth]);
-
+  const setAuth = useAuthStore((state) => state.setAuth);
+  const user = useUserStore((state) => state.user);
   useEffect(() => {
+    let isFirst = true;
     const fetchFn = () => {
-      setAuth(user);
-      auth?.tags?.length > 0 ? navigate("/") : navigate("/setup");
+      setAuth(userId);
+      user?.tags?.length > 0 ? navigate("/") : navigate("/setup");
     };
-    fetchFn();
+    isFirst && fetchFn();
+    return () => {
+      isFirst = false;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
