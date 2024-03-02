@@ -7,7 +7,7 @@ const userStore = (set) => ({
   user: null,
   setUser: async () => {
     const res = await axiosInstance.get("/api/v1/users/me");
-    set((state) => (state = { user: res.data.data }));
+    await set((state) => (state = { user: res.data.data }));
     return res?.data?.data;
   },
   clearUser: () => set((state) => (state = { user: null })),

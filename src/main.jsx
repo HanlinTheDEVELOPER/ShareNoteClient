@@ -1,9 +1,4 @@
-import {
-  ChakraProvider,
-  ColorModeScript,
-  extendTheme,
-  withDefaultColorScheme,
-} from "@chakra-ui/react";
+import { ChakraProvider, ColorModeScript, extendTheme } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { StepsTheme as Steps } from "chakra-ui-steps";

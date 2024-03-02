@@ -5,15 +5,7 @@ import axiosInstance from "../lib/axiosInstance";
 
 const authStore = (set) => ({
   auth: null,
-  setAuth: async (userIdLink) => {
-    const fetchRes = await axiosInstance.get(
-      `/api/v1/auth/login?user=${userIdLink}`
-    );
-    const auth = fetchRes.data;
-    await set((state) => (state = { auth: auth.data }));
-    return auth;
-  },
-  clearAuth: () => set((state) => (state = { auth: null })),
+  setAuth: (data) => set((state) => (state = { auth: data })),
   logOut: async () => {
     const fetchRes = await axiosInstance.get("/api/v1/auth/logout");
     set((state) => (state = { auth: null }));

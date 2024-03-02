@@ -1,6 +1,7 @@
-import { Button, Flex, Text, Link, Image } from "@chakra-ui/react";
+import { Flex, Image, Text } from "@chakra-ui/react";
 import logo from "../../assets/logo.svg";
 import { useAuthStore } from "../../store/authStore";
+import LoginButton from "./LoginButton";
 import NavMenu from "./NavMenu";
 
 // import Google from "../assets/google-logo-9824.png";
@@ -35,14 +36,7 @@ const Nav = () => {
           <NavMenu />
         </>
       ) : (
-        <Button
-          as={Link}
-          bg={{ base: "transparent", sm: "brand.900" }}
-          _hover={{ bg: "brand.900" }}
-          href={`${import.meta.env.VITE_API_URL}/api/v1/auth/google`}
-        >
-          Login
-        </Button>
+        <LoginButton />
       )}
     </Flex>
   );

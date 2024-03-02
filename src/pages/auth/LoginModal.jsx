@@ -1,12 +1,12 @@
 import {
-  Button,
   Modal,
   ModalBody,
+  ModalCloseButton,
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  ModalCloseButton,
 } from "@chakra-ui/react";
+import LoginButton from "../../components/common/LoginButton";
 import { useModalStore } from "../../store/modalStore";
 
 function LoginModal() {
@@ -14,6 +14,7 @@ function LoginModal() {
     state.isLoginModalOpen,
     state.setIsLoginModalOpen,
   ]);
+
   return (
     <>
       <Modal
@@ -27,9 +28,7 @@ function LoginModal() {
           <ModalHeader textAlign="center">Please Login first</ModalHeader>
           <ModalCloseButton />
           <ModalBody textAlign="center">
-            <Button colorScheme="blue" mr={3} onClick={setIsLoginModalOpen}>
-              Close
-            </Button>
+            <LoginButton />
           </ModalBody>
         </ModalContent>
       </Modal>
