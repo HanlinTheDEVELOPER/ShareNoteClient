@@ -4,9 +4,11 @@ import { Outlet } from "react-router-dom";
 import Nav from "../components/common/Nav";
 import LoginModal from "../pages/auth/LoginModal";
 import { useUserStore } from "../store/userStore";
+import { useAuthStore } from "../store/authStore";
 
 const MainLayout = () => {
   const clearUser = useUserStore((state) => state.clearUser);
+  const clearAuth = useAuthStore((state) => state.clearAuth);
 
   useEffect(() => {
     let isFirst = true;
@@ -20,6 +22,7 @@ const MainLayout = () => {
       const status = await res.json();
       if (status.statusCode === 403 || status.statusCode === 401) {
         clearUser();
+        clearAuth();
       }
     };
     isFirst && fetchFn();

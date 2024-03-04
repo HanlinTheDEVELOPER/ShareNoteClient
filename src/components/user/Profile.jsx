@@ -7,7 +7,7 @@ const ProfileSection = () => {
 
   return (
     <Flex
-      bgColor="back.600"
+      bgColor={{ default: "red.600", dark: "red.800" }}
       bgImage={{
         base: "linear-gradient(90deg, rgba(70,150,42,1) 0%, rgba(70,150,42,0.896796218487395) 45%, rgba(70,150,42,0.896796218487395) 100%)",
         sm: "linear-gradient(90deg, rgba(233,235,238,1) 0%, rgba(70,150,42,0.7791491596638656) 30%, rgba(70,150,42,0.896796218487395) 45%, rgba(70,150,42,1) 100%)",
