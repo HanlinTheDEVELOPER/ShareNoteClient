@@ -32,7 +32,7 @@ const MainLayout = () => {
       }
     };
     isFirst && fetchFn();
-    // return () => (isFirst = false);
+    return () => (isFirst = false);
   }, []);
 
   return (

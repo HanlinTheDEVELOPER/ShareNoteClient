@@ -4,14 +4,14 @@ import { useUserStore } from "../store/userStore";
 const useLogout = () => {
   const [logOut, clearAuth] = useAuthStore((state) => [
     state.logOut,
-    clearAuth,
+    state.clearAuth,
   ]);
   const clearUser = useUserStore((state) => state.clearUser);
 
   const logout = async () => {
+    clearUser();
     clearAuth();
     logOut();
-    await clearUser();
   };
 
   return [logout];
