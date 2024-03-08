@@ -15,20 +15,18 @@ import Profile from "./pages/user/Profile";
 import SetupAcc from "./pages/auth/SetupAcc";
 import Test from "./pages/Test";
 import ProtectedRoute from "./components/common/ProtectedRoute";
-import axiosInstance from "./lib/axiosInstance";
+
+import useSetUser from "./hooks/useSetUser";
 
 const App = () => {
-  const setUser = useUserStore((state) => state.setUser);
   const auth = useAuthStore((state) => state.auth);
+  const [setUserfn] = useSetUser();
   useEffect(() => {
     queryClient.prefetchQuery({
       queryKey: ["user"],
-      queryFn: async () => {
-        const res = await axiosInstance.get("/api/v1/users/me");
-        auth && setUser(res?.data?.data);
-      },
+      queryFn: setUserfn,
     });
-  }, [auth, setUser]);
+  }, [auth]);
 
   const router = createBrowserRouter([
     {

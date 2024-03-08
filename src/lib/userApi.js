@@ -14,3 +14,8 @@ export const setupAccount = async (data) => {
   const user = fetchRes.data;
   return user;
 };
+
+export const fetchUser = async () => {
+  const res = await axiosInstance.get("/api/v1/users/me");
+  return res?.data?.data;
+};

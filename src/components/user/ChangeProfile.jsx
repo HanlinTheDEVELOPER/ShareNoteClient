@@ -1,18 +1,17 @@
+import { Box, Flex, IconButton, useToast } from "@chakra-ui/react";
 import { IconCheck, IconPhotoUp, IconX } from "@tabler/icons-react";
-import { IconButton, Box, Flex } from "@chakra-ui/react";
-import { useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { useRef, useState } from "react";
+import useLogout from "../../hooks/useLogout";
+import useSetUser from "../../hooks/useSetUser";
 import { changeProfileImage } from "../../lib/userApi";
 import { queryClient } from "../../main";
-import { useUserStore } from "../../store/userStore";
-import { useToast } from "@chakra-ui/react";
-import useLogout from "../../hooks/useLogout";
 
 const ChangeProfile = () => {
   const inputRef = useRef(null);
   const [inputFile, setInputFile] = useState(null);
   const [file, setFile] = useState(null);
-  const setUser = useUserStore((state) => state.setUser);
+  const setUserFn = useSetUser();
   const toast = useToast();
   const [logout] = useLogout();
 
@@ -44,7 +43,7 @@ const ChangeProfile = () => {
       setInputFile(null);
       queryClient.prefetchQuery({
         queryKey: ["user"],
-        queryFn: setUser,
+        queryFn: setUserFn,
       });
       toast({
         description: "Update Profile Picture Success!",
