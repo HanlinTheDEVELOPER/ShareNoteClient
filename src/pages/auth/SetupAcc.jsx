@@ -5,8 +5,12 @@ import { setupAccount } from "../../lib/userApi";
 import { useToast } from "@chakra-ui/react";
 import { queryClient } from "../../main";
 import { useUserStore } from "../../store/userStore";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 const SetupAcc = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const redirectTo = searchParams.get("state");
+  const navigate = useNavigate();
   const [body, setBody] = useState({
     name: "",
     tags: ["AI", "Anime", "Art"],
@@ -32,6 +36,7 @@ const SetupAcc = () => {
         status: "success",
         isClosable: true,
       });
+      navigate(redirectTo);
     } catch (error) {
       console.log(error);
       toast({

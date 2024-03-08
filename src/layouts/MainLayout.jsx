@@ -8,7 +8,10 @@ import { useAuthStore } from "../store/authStore";
 
 const MainLayout = () => {
   const clearUser = useUserStore((state) => state.clearUser);
-  const clearAuth = useAuthStore((state) => state.clearAuth);
+  const [setAuth, clearAuth] = useAuthStore((state) => [
+    state.setAuth,
+    state.clearAuth,
+  ]);
 
   useEffect(() => {
     let isFirst = true;
@@ -24,9 +27,12 @@ const MainLayout = () => {
         clearUser();
         clearAuth();
       }
+      if (status.statusCode === 200) {
+        setAuth({ id: status?.data?.id });
+      }
     };
     isFirst && fetchFn();
-    return () => (isFirst = false);
+    // return () => (isFirst = false);
   }, []);
 
   return (

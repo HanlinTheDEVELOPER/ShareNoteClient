@@ -25,12 +25,12 @@ const Loggin = () => {
         ? state
           ? navigate(state)
           : navigate("/")
-        : navigate("/setup");
+        : navigate("/setup?state=" + state);
     };
     isFirst && fetchFn();
-    return () => {
-      isFirst = false;
-    };
+    // return () => {
+    //   isFirst = false;
+    // };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
