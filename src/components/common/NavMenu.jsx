@@ -22,7 +22,7 @@ const NavMenu = () => {
         <Avatar size={{ base: "sm", sm: "md" }} src={user?.avatar} />
       </MenuButton>
       <MenuList>
-        <Link to="profile">
+        <Link to={`profile?user=${user?.slug}`}>
           <MenuItem>
             <Text textAlign={"center"} w="100%">
               Profile

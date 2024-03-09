@@ -11,15 +11,14 @@ const ChangeProfile = () => {
   const inputRef = useRef(null);
   const [inputFile, setInputFile] = useState(null);
   const [file, setFile] = useState(null);
-  const setUserFn = useSetUser();
+  const [setUserFn] = useSetUser();
   const toast = useToast();
   const [logout] = useLogout();
 
-  const { mutateAsync, isError, isPending, isSuccess } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationKey: ["user"],
     mutationFn: (data) => changeProfileImage(data),
   });
-  console.log(isError, isPending, isSuccess);
 
   const onImageChange = () => {
     if (inputRef?.current?.files && inputRef?.current?.files[0]) {
@@ -82,11 +81,13 @@ const ChangeProfile = () => {
               icon={<IconCheck />}
               isLoading={isPending}
               onClick={onSaveImage}
+              color="brand.900"
               type="submit"
             />
             <IconButton
               type="button"
               onClick={onCancelChange}
+              color="brand.900"
               icon={<IconX />}
               isDisabled={isPending}
             />
@@ -98,6 +99,7 @@ const ChangeProfile = () => {
             borderBlock="solid"
             borderWidth="1px"
             borderColor="brand.900"
+            color="brand.900"
             icon={<IconPhotoUp />}
           />
           <input

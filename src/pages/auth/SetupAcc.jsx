@@ -8,14 +8,18 @@ import { useUserStore } from "../../store/userStore";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
 const SetupAcc = () => {
+  const user = useUserStore((state) => state.user);
+  const navigate = useNavigate();
+
+  if (user?.tags.length === 3) navigate(-1);
+  // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
   const redirectTo = searchParams.get("state");
-  const navigate = useNavigate();
   const [body, setBody] = useState({
     name: "",
     tags: ["AI", "Anime", "Art"],
   });
-  const { mutateAsync, isError, isPending, isSuccess } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationKey: ["user"],
     mutationFn: (data) => setupAccount(data),
   });
@@ -49,7 +53,7 @@ const SetupAcc = () => {
 
   return (
     <form onSubmit={handleSubmit} method="POST">
-      <StepperComponent body={body} setBody={setBody} />
+      <StepperComponent isPending={isPending} body={body} setBody={setBody} />
     </form>
   );
 };

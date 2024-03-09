@@ -5,7 +5,7 @@ import { Step, Steps, useSteps } from "chakra-ui-steps";
 import UserInterestInput from "./UserInterestInput";
 import UsernameInput from "./UsernameInput";
 
-const Stepper = ({ body, setBody }) => {
+const Stepper = ({ isPending, body, setBody }) => {
   const steps = [
     {
       label: "Choose a username to display!",
@@ -72,6 +72,7 @@ const Stepper = ({ body, setBody }) => {
                 size="sm"
                 type="submit"
                 bg="brand.900"
+                isLoading={isPending}
               >
                 Save
               </Button>

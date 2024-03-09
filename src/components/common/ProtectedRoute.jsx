@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }) => {
   );
   if (!auth)
     return (
-      <div className="w-full  bg-blue-400  h-screen top-0 flex justify-center items-center">
+      <div className="w-full   h-screen top-0 flex justify-center items-center">
         <ProtectedButton fn={setIsLoginModalOpen}>Log In</ProtectedButton>
       </div>
     );

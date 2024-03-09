@@ -2,19 +2,18 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout";
 
-import Index from "./pages/notes/Index";
-import Create from "./pages/notes/Create";
-import Edit from "./pages/notes/Edit";
-import Details from "./pages/notes/Details";
-import Loggin from "./pages/auth/Loggin";
-import { useUserStore } from "./store/userStore";
-import { queryClient } from "./main";
 import { useEffect } from "react";
-import { useAuthStore } from "./store/authStore";
-import Profile from "./pages/user/Profile";
-import SetupAcc from "./pages/auth/SetupAcc";
-import Test from "./pages/Test";
 import ProtectedRoute from "./components/common/ProtectedRoute";
+import { queryClient } from "./main";
+import Loggin from "./pages/auth/Loggin";
+import SetupAcc from "./pages/auth/SetupAcc";
+import Create from "./pages/notes/Create";
+import Details from "./pages/notes/Details";
+import Edit from "./pages/notes/Edit";
+import Index from "./pages/notes/Index";
+import Test from "./pages/Test";
+import Profile from "./pages/user/Profile";
+import { useAuthStore } from "./store/authStore";
 
 import useSetUser from "./hooks/useSetUser";
 

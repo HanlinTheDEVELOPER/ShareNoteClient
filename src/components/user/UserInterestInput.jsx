@@ -3,7 +3,7 @@ import { useTagStore } from "../../store/tagStore";
 import ChipCheckbox from "../common/ChipCheckbox";
 import { Text } from "@chakra-ui/react";
 
-const UserInterestInput = ({ tags, setBody }) => {
+const UserInterestInput = ({ tags, setBody, isFromModal, setTags }) => {
   const tagsList = useTagStore((state) => state.tagsList);
   return (
     <div>
@@ -12,7 +12,14 @@ const UserInterestInput = ({ tags, setBody }) => {
       </Text>
       <div className="flex gap-2 flex-wrap justify-center">
         {tagsList.map((tag) => (
-          <ChipCheckbox key={tag} tags={tags} setBody={setBody} tag={tag} />
+          <ChipCheckbox
+            key={tag}
+            tags={tags}
+            setBody={setBody}
+            tag={tag}
+            isFromModal={isFromModal}
+            setTags={setTags}
+          />
         ))}
       </div>
     </div>

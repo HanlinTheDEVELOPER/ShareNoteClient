@@ -16,6 +16,26 @@ export const setupAccount = async (data) => {
 };
 
 export const fetchUser = async () => {
-  const res = await axiosInstance.get("/api/v1/users/me");
-  return res?.data?.data;
+  const fetchRes = await axiosInstance.get("/api/v1/users/me");
+  return fetchRes?.data?.data;
+};
+
+export const fetchProfile = async (slug) => {
+  const fetchRes = await axiosInstance.get(
+    `/api/v1/users/profile?slug=${slug}`
+  );
+  return fetchRes?.data?.data;
+};
+
+export const updateUsername = async (data) => {
+  const fetchRes = await axiosInstance.post(
+    "/api/v1/users/changeUsername",
+    data
+  );
+  return fetchRes?.data?.data;
+};
+
+export const updateTags = async (data) => {
+  const fetchRes = await axiosInstance.post("/api/v1/users/updateTags", data);
+  return fetchRes?.data?.data;
 };

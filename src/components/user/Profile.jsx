@@ -1,10 +1,11 @@
-import { Flex, Image, Box, Text } from "@chakra-ui/react";
-import { useUserStore } from "../../store/userStore";
+/* eslint-disable react/prop-types */
 
-import ChangeProfile from "./ChangeProfile";
-const ProfileSection = () => {
-  const user = useUserStore((state) => state.user);
+import { Flex, Box } from "@chakra-ui/react";
 
+import ProfileImage from "./ProfileImage";
+import Username from "./Username";
+import Tags from "./Tags";
+const ProfileSection = ({ user, isMyProfile }) => {
   return (
     <Flex
       bgColor="rgb(70,150,42)"
@@ -20,36 +21,10 @@ const ProfileSection = () => {
       userSelect="none"
       p={{ base: 8, sm: 4 }}
     >
-      <Box
-        display={"flex"}
-        w={{ base: "100%", sm: "20%" }}
-        justifyContent={"center"}
-        alignItems="center"
-      >
-        <Box
-          className="profile_image_container"
-          w={{ base: "50%", sm: "100%" }}
-          position="relative"
-        >
-          <Image
-            w="100%"
-            aspectRatio={"1/1"}
-            src={user?.avatar}
-            rounded="12"
-            shadow=" 0px 0px 10px 0px #46962A "
-            // mb={{ base: "-100%", sm: 0 }}
-          />
-          <ChangeProfile />
-        </Box>
-      </Box>
+      <ProfileImage avatar={user?.avatar} isMyProfile={isMyProfile} />
       <Box w={{ base: "100%", sm: "80%" }}>
-        <Text
-          fontWeight={600}
-          textAlign={{ base: "center", sm: "start" }}
-          fontSize="3xl"
-        >
-          {user?.name}
-        </Text>
+        <Username isMyProfile={isMyProfile} name={user?.name} />
+        <Tags isMyProfile={isMyProfile} tags={user?.tags} />
       </Box>
     </Flex>
   );
