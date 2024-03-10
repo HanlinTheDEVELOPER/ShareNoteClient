@@ -8,6 +8,7 @@ const useSetUser = () => {
   const setUserFn = async () => {
     const data = await fetchUser();
     auth && setUser(data);
+    return null;
   };
   return [setUserFn];
 };
