@@ -4,7 +4,7 @@ import FetchNotes from "../../components/notes/FetchNotes";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState();
-  //TODO to fetch notes via activeTab
+
   return (
     <div>
       <TabMenu setActiveTab={setActiveTab} />
