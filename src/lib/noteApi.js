@@ -1,7 +1,9 @@
 import axiosInstance from "./axiosInstance";
 
-export const getNotes = async ({ pageParam = 1 }) => {
-  const fetchRes = await axiosInstance.get("/api/v1/notes?page=" + pageParam);
+export const getNotes = async (pageParam, activeTab) => {
+  const fetchRes = await axiosInstance.get(
+    `/api/v1/notes?page=${pageParam}&tag=${activeTab}`
+  );
   const notes = fetchRes.data;
   return notes;
 };

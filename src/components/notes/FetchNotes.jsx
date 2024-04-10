@@ -7,9 +7,11 @@ import { SimpleGrid } from "@chakra-ui/react";
 import Note from "./Note";
 import loading from "../../assets/Bean Eater-1s-200px.gif";
 import { getNotes } from "../../lib/noteApi";
+import { useSearchParams } from "react-router-dom";
 
-const FetchNotes = ({ activeTab }) => {
-  console.log(activeTab);
+const FetchNotes = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tag = searchParams.get("tag");
   const { ref, inView } = useInView();
   const isFetching = useIsFetching({ queryKey: ["notes"] });
 
@@ -21,8 +23,8 @@ const FetchNotes = ({ activeTab }) => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["notes"],
-    queryFn: getNotes,
+    queryKey: ["notes", tag],
+    queryFn: ({ pageParam = 1 }) => getNotes(pageParam, tag),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       const nextPage =

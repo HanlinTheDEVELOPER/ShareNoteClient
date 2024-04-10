@@ -1,25 +1,42 @@
 /* eslint-disable react/prop-types */
-import { Flex, GridItem } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useUserStore } from "../../store/userStore";
+import { useSearchParams } from "react-router-dom";
+
+import { Flex, GridItem } from "@chakra-ui/react";
 import TagsCustomizeModel from "../user/TagsCustomizeModel";
 import Tab from "./Tab";
 
-const TabMenu = ({ setActiveTab }) => {
+const TabMenu = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get("tag");
+  console.log(activeTab);
   const user = useUserStore((state) => state.user);
   const [tabs, setTabs] = useState(null);
   useEffect(() => {
     user &&
       setTabs([
-        { title: "Recommends", active: true },
-        { title: "Following", active: false },
-        ...user.tags.map((tag) => ({ title: tag, active: false })),
+        {
+          title: "Recommends",
+          active: activeTab === "Recommends" ? true : false,
+        },
+        {
+          title: "Following",
+          active: activeTab === "Following" ? true : false,
+        },
+        ...user.tags.map((tag) => ({
+          title: tag,
+          active: activeTab === tag ? true : false,
+        })),
       ]);
-    user?.tags ? setActiveTab("Recommends") : setActiveTab("all");
+    user?.tags
+      ? setSearchParams({ tag: activeTab ? activeTab : "Recommends" })
+      : setSearchParams({ tag: "All" });
   }, [user]);
 
   const handleClick = (tab) => {
-    setActiveTab(tab);
+    setSearchParams({ tag: tab });
+
     setTabs((prev) =>
       prev.map((prev) =>
         prev.title === tab
@@ -45,7 +62,7 @@ const TabMenu = ({ setActiveTab }) => {
           </GridItem>
         </Flex>
       ) : (
-        <div>login</div>
+        <div>Please Login To Customize Feed</div>
       )}
     </Flex>
   );
