@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 
-import { Flex, Box } from "@chakra-ui/react";
+import { Flex, Stack } from "@chakra-ui/react";
 
 import ProfileImage from "./ProfileImage";
 import Username from "./Username";
 import Tags from "./Tags";
+import FollowButton from "./FollowButton";
 const ProfileSection = ({ user, isMyProfile }) => {
   return (
     <Flex
@@ -22,10 +23,11 @@ const ProfileSection = ({ user, isMyProfile }) => {
       p={{ base: 8, sm: 4 }}
     >
       <ProfileImage avatar={user?.avatar} isMyProfile={isMyProfile} />
-      <Box w={{ base: "100%", sm: "80%" }}>
+      <Stack w={{ base: "100%", sm: "80%" }} gap={3}>
         <Username isMyProfile={isMyProfile} name={user?.name} />
         <Tags isMyProfile={isMyProfile} tags={user?.tags} />
-      </Box>
+        {!isMyProfile && <FollowButton profileSlug={user?.slug} />}
+      </Stack>
     </Flex>
   );
 };

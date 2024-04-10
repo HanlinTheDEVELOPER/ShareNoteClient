@@ -1,7 +1,7 @@
 import { useState } from "react";
 import StepperComponent from "../../components/user/Stepper";
 import { useMutation } from "@tanstack/react-query";
-import { setupAccount } from "../../lib/userApi";
+import { setupAccount } from "../../lib/Api/userApi";
 import { useToast } from "@chakra-ui/react";
 import { queryClient } from "../../main";
 import { useUserStore } from "../../store/userStore";

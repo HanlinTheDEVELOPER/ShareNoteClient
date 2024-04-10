@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import { SimpleGrid } from "@chakra-ui/react";
 import Note from "./Note";
 import loading from "../../assets/Bean Eater-1s-200px.gif";
-import { getNotes } from "../../lib/noteApi";
+import { getNotes } from "../../lib/Api/noteApi";
 import { useSearchParams } from "react-router-dom";
 
 const FetchNotes = () => {

@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import useLogout from "../../hooks/useLogout";
 import useSetUser from "../../hooks/useSetUser";
-import { changeProfileImage } from "../../lib/userApi";
+import { changeProfileImage } from "../../lib/Api/userApi";
 import { queryClient } from "../../main";
 
 const ChangeProfile = () => {

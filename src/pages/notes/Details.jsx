@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getNoteById } from "../../lib/noteApi";
+import { getNoteById } from "../../lib/Api/noteApi";
 const Details = () => {
   const { id } = useParams();
   const { data, error, isLoading } = useQuery({

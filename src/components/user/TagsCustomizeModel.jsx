@@ -22,7 +22,7 @@ import { useState } from "react";
 import { useUserStore } from "../../store/userStore";
 import UserInterestInput from "./UserInterestInput";
 import { useMutation } from "@tanstack/react-query";
-import { updateTags } from "../../lib/userApi";
+import { updateTags } from "../../lib/Api/userApi";
 import useSetUser from "../../hooks/useSetUser";
 
 const TagsCustomizeModel = () => {

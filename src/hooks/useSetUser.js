@@ -1,4 +1,4 @@
-import { fetchUser } from "../lib/userApi";
+import { fetchUser } from "../lib/Api/userApi";
 import { useAuthStore } from "../store/authStore";
 import { useUserStore } from "../store/userStore";
 

@@ -1,5 +1,4 @@
 import {
-  Button,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -39,9 +38,7 @@ function LoginModal() {
             <ModalHeader textAlign="center">Please Login first</ModalHeader>
             <ModalCloseButton />
             <ModalBody textAlign="center">
-              <Button>
-                <LoginButton />
-              </Button>
+              <LoginButton />
             </ModalBody>
           </ModalContent>
         </Modal>
@@ -57,9 +54,7 @@ function LoginModal() {
             <DrawerHeader textAlign="center">Please Login first</DrawerHeader>
 
             <DrawerBody textAlign="center" mb={16}>
-              <Button>
-                <LoginButton />
-              </Button>
+              <LoginButton />
             </DrawerBody>
           </DrawerContent>
         </Drawer>

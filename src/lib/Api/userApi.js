@@ -1,4 +1,4 @@
-import axiosInstance from "./axiosInstance";
+import axiosInstance from "../axiosInstance";
 
 export const changeProfileImage = async (data) => {
   const fetchRes = await axiosInstance.post(

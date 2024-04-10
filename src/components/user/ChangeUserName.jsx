@@ -3,7 +3,7 @@ import { Box, Input, IconButton } from "@chakra-ui/react";
 import { IconCheck, IconX } from "@tabler/icons-react";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { updateUsername } from "../../lib/userApi";
+import { updateUsername } from "../../lib/Api/userApi";
 import { useToast } from "@chakra-ui/react";
 import useSetUser from "../../hooks/useSetUser";
 
