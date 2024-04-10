@@ -31,7 +31,7 @@ const TabMenu = () => {
       ]);
     user?.tags
       ? setSearchParams({ tag: activeTab ? activeTab : "Recommends" })
-      : setSearchParams({ tag: "All" });
+      : setSearchParams({ });
   }, [user]);
 
   const handleClick = (tab) => {
