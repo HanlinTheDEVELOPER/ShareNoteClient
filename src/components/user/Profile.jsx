@@ -28,6 +28,7 @@ const ProfileSection = ({ user, isMyProfile }) => {
         <Tags isMyProfile={isMyProfile} tags={user?.tags} />
         {!isMyProfile && (
           <FollowButton
+            profileId={user?._id}
             profileSlug={user?.slug}
             isFollowing={user?.isFollowing}
           />
