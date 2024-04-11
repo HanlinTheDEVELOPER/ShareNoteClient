@@ -31,6 +31,13 @@ const NavMenu = () => {
             </Text>
           </MenuItem>
         </Link>
+        <Link to="/create/">
+          <MenuItem>
+            <Text textAlign={"center"} w="100%">
+              Create
+            </Text>
+          </MenuItem>
+        </Link>
         <MenuItem onClick={toggleColorMode}>
           <Text textAlign={"center"} w="100%">
             {colorMode === "dark" ? "Light Theme" : "Dark Theme"}

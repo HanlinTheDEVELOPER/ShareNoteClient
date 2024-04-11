@@ -10,7 +10,7 @@ import Tab from "./Tab";
 const TabMenu = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tag");
-  console.log(activeTab);
+
   const user = useUserStore((state) => state.user);
   const [tabs, setTabs] = useState(null);
   useEffect(() => {
@@ -31,7 +31,7 @@ const TabMenu = () => {
       ]);
     user?.tags
       ? setSearchParams({ tag: activeTab ? activeTab : "Recommends" })
-      : setSearchParams({ });
+      : setSearchParams({});
   }, [user]);
 
   const handleClick = (tab) => {

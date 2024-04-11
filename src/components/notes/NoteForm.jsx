@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
+
 import StyledErrorMessage from "../common/StyledErrorMessage";
+import Lexical from "../lexical/Editor.jsx";
 
 const NoteForm = ({ isCreate }) => {
   const initialValues = {
@@ -59,19 +61,11 @@ const NoteForm = ({ isCreate }) => {
             <label htmlFor="description" className=" font-medium block">
               Note description
             </label>
-            <Field
-              as="textarea"
-              rows={4}
-              type="text"
-              name="content"
-              id="description"
-              className=" text-lg border-2 border-teal-600 py-1 w-full rounded-lg"
-            />
-            <StyledErrorMessage name="content" />
+            <Lexical />
           </div>
           <button
             type="submit"
-            className=" text-white bg-teal-600 py-3 font-medium w-full text-center"
+            className=" text-white bg-teal-600 py-3 font-medium w-full text-center rounded-lg"
           >
             Save
           </button>
