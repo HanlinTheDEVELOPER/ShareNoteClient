@@ -20,9 +20,14 @@ export const fetchUser = async () => {
   return fetchRes?.data?.data;
 };
 
-export const fetchProfile = async (slug) => {
+export const fetchProfile = async (userId, slug) => {
   const fetchRes = await axiosInstance.get(
-    `/api/v1/users/profile?slug=${slug}`
+    `/api/v1/users/profile?slug=${slug}`,
+    {
+      headers: {
+        userId,
+      },
+    }
   );
   return fetchRes?.data?.data;
 };

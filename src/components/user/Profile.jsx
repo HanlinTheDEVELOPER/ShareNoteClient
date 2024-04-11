@@ -26,7 +26,12 @@ const ProfileSection = ({ user, isMyProfile }) => {
       <Stack w={{ base: "100%", sm: "80%" }} gap={3}>
         <Username isMyProfile={isMyProfile} name={user?.name} />
         <Tags isMyProfile={isMyProfile} tags={user?.tags} />
-        {!isMyProfile && <FollowButton profileSlug={user?.slug} />}
+        {!isMyProfile && (
+          <FollowButton
+            profileSlug={user?.slug}
+            isFollowing={user?.isFollowing}
+          />
+        )}
       </Stack>
     </Flex>
   );
