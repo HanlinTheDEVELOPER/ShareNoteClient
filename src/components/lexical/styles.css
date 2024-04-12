@@ -47,7 +47,7 @@ h1 {
 }
 
 .editor-input {
-  min-height: 150px;
+  min-height: 400px;
   resize: none;
   font-size: 15px;
   caret-color: rgb(5, 5, 5);
@@ -92,14 +92,14 @@ h1 {
 }
 
 .editor-text-code {
-  background-color: rgb(240, 242, 245);
-  padding: 1px 0.25rem;
+  background-color: rgb(45, 47, 49);
+  padding: 2px 0.5rem;
   font-family: Menlo, Consolas, Monaco, monospace;
   font-size: 94%;
 }
 
 .editor-link {
-  color: rgb(33, 111, 219);
+  color: #46962a;
   text-decoration: none;
 }
 
@@ -509,9 +509,9 @@ i.chevron-down {
   z-index: 5;
   display: flex;
   flex-direction: column;
-
   gap: 4px;
   position: absolute;
+  background-color: rgb(52, 52, 52);
   box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1),
     inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   border-radius: 8px;
@@ -530,7 +530,9 @@ i.chevron-down {
   align-content: center;
   flex-direction: row;
   flex-shrink: 0;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px;
   background-color: #fff;
   border-radius: 8px;
   border: 0;
@@ -553,7 +555,8 @@ i.chevron-down {
 }
 
 .dropdown .item:hover {
-  background-color: #eee;
+  background-color: #46962a;
+  color: white;
 }
 
 .dropdown .item .text {
@@ -582,20 +585,22 @@ i.chevron-down {
   max-width: 300px;
   width: 100%;
   opacity: 0;
-  background-color: #fff;
+  background-color: rgb(52, 52, 52);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
   transition: opacity 0.5s;
 }
 
 .link-editor .link-input {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: calc(100% - 24px);
   box-sizing: border-box;
   margin: 8px 12px;
   padding: 8px 12px;
   border-radius: 15px;
-  background-color: #eee;
+  background-color: rgb(52, 52, 52);
   font-size: 15px;
   color: rgb(5, 5, 5);
   border: 0;
@@ -604,8 +609,7 @@ i.chevron-down {
   font-family: inherit;
 }
 
-.link-editor div.link-edit {
-  /* background-image: url(images/icons/pencil-fill.svg); */
+/* .link-editor div.link-edit {
   background-size: 16px;
   background-position: center;
   background-repeat: no-repeat;
@@ -616,7 +620,7 @@ i.chevron-down {
   top: 0;
   bottom: 0;
   cursor: pointer;
-}
+} */
 
 .link-editor .link-input a {
   color: rgb(33, 111, 219);
@@ -640,13 +644,6 @@ i.chevron-down {
   border-radius: 8px;
   cursor: pointer;
   margin: 0 2px;
-}
-
-.link-editor .button.hovered {
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  background-color: #eee;
 }
 
 .link-editor .button i,

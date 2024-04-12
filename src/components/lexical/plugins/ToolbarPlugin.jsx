@@ -56,9 +56,18 @@ import {
   IconAlignCenter,
   IconAlignJustified,
   IconCaretDown,
+  IconEdit,
+  IconTxt,
+  IconChecks,
+  IconH1,
+  IconH6,
+  IconList,
+  IconListNumbers,
+  IconBrandVscode,
 } from "@tabler/icons-react";
 
 import MyIconButton from "../../common/IconButton";
+import { IconBlockquote } from "@tabler/icons-react";
 
 const LowPriority = 1;
 
@@ -227,7 +236,7 @@ function FloatingLinkEditor({ editor }) {
             <a href={linkUrl} target="_blank" rel="noopener noreferrer">
               {linkUrl}
             </a>
-            <div
+            <MyIconButton
               className="link-edit"
               role="button"
               tabIndex={0}
@@ -235,7 +244,9 @@ function FloatingLinkEditor({ editor }) {
               onClick={() => {
                 setEditMode(true);
               }}
-            />
+            >
+              <IconEdit />
+            </MyIconButton>
           </div>
         </>
       )}
@@ -397,39 +408,39 @@ function BlockOptionsDropdownList({
   return (
     <div className="dropdown" ref={dropDownRef}>
       <button className="item" onClick={formatParagraph}>
-        <span className="icon paragraph" />
+        <IconTxt opacity={0.9} stroke={1.5} />
         <span className="text">Normal</span>
-        {blockType === "paragraph" && <span className="active" />}
+        {blockType === "paragraph" && <IconChecks className="active" />}
       </button>
       <button className="item" onClick={formatLargeHeading}>
-        <span className="icon large-heading" />
+        <IconH1 opacity={0.9} stroke={1.5} />
         <span className="text">Large Heading</span>
-        {blockType === "h1" && <span className="active" />}
+        {blockType === "h1" && <IconChecks className="active" />}
       </button>
       <button className="item" onClick={formatSmallHeading}>
-        <span className="icon small-heading" />
+        <IconH6 opacity={0.9} stroke={1.5} />
         <span className="text">Small Heading</span>
-        {blockType === "h2" && <span className="active" />}
+        {blockType === "h2" && <IconChecks className="active" />}
       </button>
       <button className="item" onClick={formatBulletList}>
-        <span className="icon bullet-list" />
+        <IconList opacity={0.9} stroke={1.5} />
         <span className="text">Bullet List</span>
-        {blockType === "ul" && <span className="active" />}
+        {blockType === "ul" && <IconChecks className="active" />}
       </button>
       <button className="item" onClick={formatNumberedList}>
-        <span className="icon numbered-list" />
+        <IconListNumbers opacity={0.9} stroke={1.5} />
         <span className="text">Numbered List</span>
-        {blockType === "ol" && <span className="active" />}
+        {blockType === "ol" && <IconChecks className="active" />}
       </button>
       <button className="item" onClick={formatQuote}>
-        <span className="icon quote" />
+        <IconBlockquote opacity={0.9} stroke={1.5} />
         <span className="text">Quote</span>
-        {blockType === "quote" && <span className="active" />}
+        {blockType === "quote" && <IconChecks className="active" />}
       </button>
       <button className="item" onClick={formatCode}>
-        <span className="icon code" />
+        <IconBrandVscode opacity={0.9} stroke={1.5} />
         <span className="text">Code Block</span>
-        {blockType === "code" && <span className="active" />}
+        {blockType === "code" && <IconChecks className="active" />}
       </button>
     </div>
   );
