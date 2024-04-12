@@ -32,7 +32,7 @@ const NoteForm = ({ isCreate }) => {
   return (
     <section>
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold mb-5">
+        <h1 className="text-2xl font-bold mb-5 text-white">
           {isCreate ? "Create a new note." : "Edit your note."}
         </h1>
         <Link to={"/"}>

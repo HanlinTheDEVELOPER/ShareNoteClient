@@ -64,10 +64,11 @@ import {
   IconList,
   IconListNumbers,
   IconBrandVscode,
+  IconBlockquote,
 } from "@tabler/icons-react";
 
 import MyIconButton from "../../common/IconButton";
-import { IconBlockquote } from "@tabler/icons-react";
+import { Select as ChakraSelect } from "@chakra-ui/react";
 
 const LowPriority = 1;
 
@@ -256,14 +257,23 @@ function FloatingLinkEditor({ editor }) {
 
 function Select({ onChange, className, options, value }) {
   return (
-    <select className={className} onChange={onChange} value={value}>
+    <ChakraSelect
+      className="chakra-select-12"
+      _hover={{ bg: "brand.800" }}
+      w="fit-content"
+      _focus={{ border: "none" }}
+      icon={<IconCaretDown />}
+      variant="filled"
+      onChange={onChange}
+      value={value}
+    >
       <option hidden={true} value="" />
       {options.map((option) => (
         <option key={option} value={option}>
           {option}
         </option>
       ))}
-    </select>
+    </ChakraSelect>
   );
 }
 
@@ -296,9 +306,10 @@ function BlockOptionsDropdownList({
     const dropDown = dropDownRef.current;
 
     if (toolbar !== null && dropDown !== null) {
-      const { top, left } = toolbar.getBoundingClientRect();
-      dropDown.style.top = `${top + 40}px`;
-      dropDown.style.left = `${left}px`;
+      const s = toolbar.getBoundingClientRect();
+      console.log(s);
+      dropDown.style.top = `${s.y + 48}px`;
+      dropDown.style.left = `${s.x}px`;
     }
   }, [dropDownRef, toolbarRef]);
 
@@ -406,7 +417,7 @@ function BlockOptionsDropdownList({
   };
 
   return (
-    <div className="dropdown" ref={dropDownRef}>
+    <div className="dropdown " ref={dropDownRef}>
       <button className="item" onClick={formatParagraph}>
         <IconTxt opacity={0.9} stroke={1.5} />
         <span className="text">Normal</span>
@@ -592,16 +603,17 @@ export default function ToolbarPlugin() {
       {supportedBlockTypes.has(blockType) && (
         <>
           <MyIconButton
-            // className="toolbar-item block-controls"
+            _hover={{ bg: "brand.800" }}
+            bg="hsl(0, 0%, 24%)"
+            fontWeight={400}
             px={2}
             onClick={() =>
               setShowBlockOptionsDropDown(!showBlockOptionsDropDown)
             }
             aria-label="Formatting Options"
           >
-            <span className={"icon block-type " + blockType} />
             <span className="text">{blockTypeToBlockName[blockType]}</span>
-            <IconCaretDown />
+            <IconCaretDown size="20" />
           </MyIconButton>
           {showBlockOptionsDropDown &&
             createPortal(
@@ -619,7 +631,6 @@ export default function ToolbarPlugin() {
       {blockType === "code" ? (
         <>
           <Select
-            className="toolbar-item code-language"
             onChange={onCodeLanguageSelect}
             options={codeLanguges}
             value={codeLanguage}
