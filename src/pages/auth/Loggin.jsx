@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import axiosInstance from "../../lib/axiosInstance";
 import { useAuthStore } from "../../store/authStore";
+import { queryClient } from "../../main";
 
 const Loggin = () => {
   // eslint-disable-next-line no-unused-vars

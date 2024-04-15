@@ -22,8 +22,9 @@ const App = () => {
   const [setUserfn] = useSetUser();
   useEffect(() => {
     queryClient.prefetchQuery({
-      queryKey: ["user", "profile"],
+      queryKey: ["user"],
       queryFn: setUserfn,
+      onSuccess: () => queryClient.invalidateQueries("profile"),
     });
   }, [auth]);
 

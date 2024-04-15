@@ -4,17 +4,19 @@ import { useSearchParams } from "react-router-dom";
 import { useUserStore } from "../../store/userStore";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProfile } from "../../lib/Api/userApi";
+import { useAuthStore } from "../../store/authStore";
 
 const Profile = () => {
   // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
   const userSlug = searchParams.get("user");
   const user = useUserStore((state) => state.user);
+  const auth = useAuthStore((state) => state.auth);
   const isMyProfile = userSlug === user?.slug;
 
   const { data: profile } = useQuery({
     queryKey: ["profile"],
-    queryFn: () => fetchProfile(user?._id, userSlug),
+    queryFn: () => fetchProfile(auth?.id, userSlug),
     enabled: !isMyProfile,
   });
 
