@@ -90,7 +90,7 @@
   cursor: pointer;
 }
 .PlaygroundEditorTheme__code {
-  background-color: rgb(240, 242, 245);
+  background-color: #282c34;
   font-family: Menlo, Consolas, Monaco, monospace;
   display: block;
   padding: 8px 8px 8px 52px;
@@ -100,14 +100,15 @@
   margin-top: 8px;
   margin-bottom: 8px;
   tab-size: 2;
-  /* white-space: pre; */
+  font-weight: 600;
   overflow-x: auto;
   position: relative;
+  border-radius: 2px;
 }
 .PlaygroundEditorTheme__code:before {
   content: attr(data-gutter);
   position: absolute;
-  background-color: #eee;
+  background-color: #21252b;
   left: 0;
   top: 0;
   border-right: 1px solid #ccc;
@@ -196,7 +197,7 @@
   background-position: center;
   background-repeat: no-repeat;
   display: block;
-  content: ' ';
+  content: " ";
   position: absolute;
   top: 0;
   left: 0;
@@ -224,7 +225,7 @@
   background-position: center;
   background-repeat: no-repeat;
   display: block;
-  content: ' ';
+  content: " ";
   position: absolute;
   top: 0;
   left: 0;
@@ -329,7 +330,7 @@
 }
 .PlaygroundEditorTheme__listItemUnchecked:before,
 .PlaygroundEditorTheme__listItemChecked:before {
-  content: '';
+  content: "";
   width: 16px;
   height: 16px;
   top: 2px;
@@ -339,8 +340,8 @@
   background-size: cover;
   position: absolute;
 }
-.PlaygroundEditorTheme__listItemUnchecked[dir='rtl']:before,
-.PlaygroundEditorTheme__listItemChecked[dir='rtl']:before {
+.PlaygroundEditorTheme__listItemUnchecked[dir="rtl"]:before,
+.PlaygroundEditorTheme__listItemChecked[dir="rtl"]:before {
   left: auto;
   right: 0;
 }
@@ -360,7 +361,7 @@
   background-repeat: no-repeat;
 }
 .PlaygroundEditorTheme__listItemChecked:after {
-  content: '';
+  content: "";
   cursor: pointer;
   border-color: #fff;
   border-style: solid;
@@ -385,7 +386,7 @@
   color: slategray;
 }
 .PlaygroundEditorTheme__tokenPunctuation {
-  color: #999;
+  color: yellowgreen;
 }
 .PlaygroundEditorTheme__tokenProperty {
   color: #905;
@@ -394,10 +395,12 @@
   color: #690;
 }
 .PlaygroundEditorTheme__tokenOperator {
-  color: #9a6e3a;
+  color: red;
 }
 .PlaygroundEditorTheme__tokenAttr {
-  color: #07a;
+  color: rgb(116, 0, 170);
+  font-style: italic;
+  font-weight: 700;
 }
 .PlaygroundEditorTheme__tokenVariable {
   color: #e90;

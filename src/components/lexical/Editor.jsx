@@ -93,7 +93,7 @@ export default function Editor() {
       <div className="editor-shell">
         <ToolbarPlugin />
         <div className="editor-container tree-view">
-          <ClearEditorPlugin />
+          {/* <ClearEditorPlugin /> */}
           <LexicalAutoLinkPlugin />
           <InlineImagePlugin />
           <CheckListPlugin />
@@ -121,8 +121,8 @@ export default function Editor() {
             <FloatingLinkEditorPlugin anchorElem={floatingAnchorElem} />
           )}
           <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
-          <Actions />
-          <TreeViewPlugin />
+          {/* <Actions /> */}
+          {/* <TreeViewPlugin /> */}
         </div>
       </div>
     </LexicalComposer>
