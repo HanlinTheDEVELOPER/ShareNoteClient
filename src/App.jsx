@@ -49,7 +49,11 @@ const App = () => {
         { path: "/profile", element: <Profile /> },
         {
           path: "/create",
-          element: <Create />,
+          element: (
+            <ProtectedRoute>
+              <Create />,
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/edit/:id",

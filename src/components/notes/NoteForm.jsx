@@ -53,7 +53,7 @@ const NoteForm = ({ isCreate }) => {
               type="text"
               name="title"
               id="title"
-              className=" text-lg border-2 border-teal-600 py-1 w-full rounded-lg"
+              className=" text-lg border-2 border-teal-600 py-1 w-full rounded-lg bg-[#262626]"
             />
             <StyledErrorMessage name="title" />
           </div>
