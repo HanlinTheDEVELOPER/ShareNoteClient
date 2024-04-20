@@ -40,7 +40,7 @@ header img {
 
 header h1 {
   text-align: left;
-  color: #333;
+  color: #fff;
   display: inline-block;
   margin: 20px 0 0 0;
 }
@@ -93,6 +93,7 @@ header h1 {
   flex: auto;
   position: relative;
   resize: vertical;
+  overflow-y: scroll;
   z-index: -1;
 }
 
@@ -1053,6 +1054,8 @@ i.prettier-error {
 
 .editor-shell .editor-image .image-caption-container .tree-view-output {
   margin: 0;
+  width: 100%;
+  text-align: center;
   border-radius: 0;
 }
 
@@ -1093,9 +1096,11 @@ i.prettier-error {
 }
 
 .editor-shell .editor-image .image-caption-container {
-  display: block;
+  display: flex;
+  justify-content: center;
   /* position: absolute; */
-  background-color: #f4f4f4;
+  background-color: #88888810;
+  align-content: center;
   min-width: 100%;
   color: #000;
   overflow: hidden;
@@ -1458,8 +1463,13 @@ button.action-button:disabled {
   text-align: right;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .toolbar {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 1px;
   background: transparent;
   justify-content: center;

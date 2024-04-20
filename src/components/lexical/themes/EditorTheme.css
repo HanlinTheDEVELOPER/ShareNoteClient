@@ -29,21 +29,24 @@
 }
 .PlaygroundEditorTheme__h1 {
   font-size: 24px;
-  color: rgb(5, 5, 5);
-  font-weight: 400;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
   margin: 0;
 }
 .PlaygroundEditorTheme__h2 {
-  font-size: 15px;
-  color: rgb(101, 103, 107);
-  font-weight: 700;
+  font-size: 18px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
   margin: 0;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 .PlaygroundEditorTheme__h3 {
-  font-size: 12px;
+  font-size: 15px;
   margin: 0;
-  text-transform: uppercase;
+  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .PlaygroundEditorTheme__indent {
   --lexical-indent-base-value: 40px;
@@ -72,10 +75,19 @@
   vertical-align: super;
 }
 .PlaygroundEditorTheme__textCode {
-  background-color: rgb(240, 242, 245);
-  padding: 1px 0.25rem;
+  background-color: rgba(103, 111, 122, 0.486);
+  padding: 0.8rem;
+  display: block;
+  text-wrap: nowrap;
+  width: 100%;
+  /* overflow-y: scroll; */
+  border-radius: 2px;
+  backdrop-filter: blur(1px);
   font-family: Menlo, Consolas, Monaco, monospace;
   font-size: 94%;
+}
+.PlaygroundEditorTheme__textCode::-webkit-scrollbar {
+  display: block;
 }
 .PlaygroundEditorTheme__hashtag {
   background-color: rgba(88, 144, 255, 0.15);
@@ -395,7 +407,8 @@
   color: #690;
 }
 .PlaygroundEditorTheme__tokenOperator {
-  color: red;
+  color: blue;
+  font-weight: 600;
 }
 .PlaygroundEditorTheme__tokenAttr {
   color: rgb(116, 0, 170);
