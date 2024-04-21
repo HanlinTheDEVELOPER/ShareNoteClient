@@ -17,7 +17,7 @@ const SetupAcc = () => {
   const redirectTo = searchParams.get("state");
   const [body, setBody] = useState({
     name: "",
-    tags: ["AI", "Anime", "Art"],
+    tags: ["", ""],
   });
   const { mutateAsync, isPending } = useMutation({
     mutationKey: ["user"],

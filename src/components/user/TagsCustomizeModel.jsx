@@ -1,36 +1,17 @@
-import {
-  Box,
-  Button,
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerOverlay,
-  IconButton,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
-  Tooltip,
-  useDisclosure,
-  useMediaQuery,
-  useToast,
-} from "@chakra-ui/react";
+import { IconButton, useDisclosure, useToast } from "@chakra-ui/react";
 import { IconSettingsCog } from "@tabler/icons-react";
-import { useState } from "react";
-import { useUserStore } from "../../store/userStore";
-import UserInterestInput from "./UserInterestInput";
 import { useMutation } from "@tanstack/react-query";
-import { updateTags } from "../../lib/Api/userApi";
+import { useState } from "react";
 import useSetUser from "../../hooks/useSetUser";
+import { updateTags } from "../../lib/Api/userApi";
+import { useUserStore } from "../../store/userStore";
+import TagsModel from "../common/Model";
+import UserInterestInput from "./UserInterestInput";
 
 const TagsCustomizeModel = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const user = useUserStore((state) => state.user);
-  const [isLargeScreen] = useMediaQuery("(min-width: 480px)");
-  const [tags, setTags] = useState(user?.tags);
   const toast = useToast();
+  const user = useUserStore((state) => state.user);
+  const [tags, setTags] = useState(user?.tags);
   const [setUserFn] = useSetUser();
 
   const { mutateAsync, isPending } = useMutation({
@@ -49,6 +30,7 @@ const TagsCustomizeModel = () => {
       });
       setUserFn();
     } catch (error) {
+      console.log(error);
       toast({
         description: "Update Fail",
         status: "error",
@@ -58,70 +40,19 @@ const TagsCustomizeModel = () => {
   };
 
   return (
-    <>
-      <Tooltip label="Customize">
-        <IconButton onClick={onOpen}>
+    <TagsModel
+      label="Customize"
+      onClick={onSubmit}
+      isDisabled={tags.length !== 3}
+      isLoading={isPending}
+      toggleElement={
+        <IconButton>
           <IconSettingsCog />
         </IconButton>
-      </Tooltip>
-      {isLargeScreen ? (
-        <Modal
-          isOpen={isOpen}
-          onClose={onClose}
-          isCentered
-          motionPreset="slideInBottom"
-          size="xl"
-        >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalCloseButton />
-            <ModalBody>
-              <UserInterestInput
-                tags={tags}
-                setTags={setTags}
-                isFromModal={true}
-              />
-              <Box textAlign="center" mt={4}>
-                <Button
-                  onClick={onSubmit}
-                  isDisabled={tags.length !== 3}
-                  isLoading={isPending}
-                  bg="brand.900"
-                  color="white"
-                >
-                  Save
-                </Button>
-              </Box>
-            </ModalBody>
-          </ModalContent>
-        </Modal>
-      ) : (
-        <Drawer isOpen={isOpen} placement="bottom" onClose={onClose}>
-          <DrawerOverlay />
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerBody>
-              <UserInterestInput
-                tags={tags}
-                setTags={setTags}
-                isFromModal={true}
-              />
-              <Box textAlign="center" mt={4}>
-                <Button
-                  onClick={onSubmit}
-                  isDisabled={tags.length !== 3}
-                  isLoading={isPending}
-                  bg="brand.900"
-                  color="white"
-                >
-                  Save
-                </Button>
-              </Box>
-            </DrawerBody>
-          </DrawerContent>
-        </Drawer>
-      )}
-    </>
+      }
+    >
+      <UserInterestInput tags={tags} setTags={setTags} isFromModal={true} />
+    </TagsModel>
   );
 };
 

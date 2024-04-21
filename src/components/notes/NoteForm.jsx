@@ -8,19 +8,21 @@ import PropTypes from "prop-types";
 import StyledErrorMessage from "../common/StyledErrorMessage";
 import Lexical from "../lexical/Editor.jsx";
 import { useState } from "react";
+import UserInterestInput from "../user/UserInterestInput.jsx";
+import TagsModel from "../common/Model.jsx";
 
 const NoteForm = ({ isCreate }) => {
-  const initialValues = {
+  const [body, setBody] = useState({
     title: "",
     content: "",
-  };
+    tags: [],
+  });
 
-  const [content, setContent] = useState(null);
   const NoteFormSchema = Yup.object({
-    title: Yup.string()
-      .required("Title is required")
-      .min(5, "Title must be at least 5 characters")
-      .max(25, "Title must be less than 25 characters"),
+    // title: Yup.string()
+    //   .required("Title is required")
+    //   .min(5, "Title must be at least 5 characters")
+    //   .max(25, "Title must be less than 25 characters"),
     // content: Yup.string()
     //   .required("Content is required")
     //   .min(10, "Content must be at least 10 characters")
@@ -28,7 +30,7 @@ const NoteForm = ({ isCreate }) => {
   });
 
   const handleSubmit = (values) => {
-    console.log({ title: values.title, content: content });
+    console.log(body);
   };
 
   return (
@@ -42,23 +44,36 @@ const NoteForm = ({ isCreate }) => {
         </Link>
       </div>
       <Formik
-        initialValues={initialValues}
+        initialValues={body}
         validationSchema={NoteFormSchema}
         onSubmit={handleSubmit}
       >
         <Form>
           <div className="mb-3">
-            <Field
+            <input
               type="text"
               placeholder="Title"
               name="title"
               id="title"
+              value={body.title}
+              onChange={(e) =>
+                setBody((prev) => ({ ...prev, title: e.target.value }))
+              }
               className=" text-lg border-2 border-teal-600 py-1 w-full indent-6 rounded-lg bg-[#262626]"
             />
             <StyledErrorMessage name="title" />
           </div>
+          <div>
+            <TagsModel toggleElement={<div>Select Tags</div>} type="button">
+              <UserInterestInput
+                tags={body.tags}
+                setBody={setBody}
+                isFromModal={false}
+              />
+            </TagsModel>
+          </div>
           <div className="">
-            <Lexical setContent={setContent} />
+            <Lexical setContent={setBody} />
           </div>
           <button
             type="submit"

@@ -13,7 +13,13 @@ const Stepper = ({ isPending, body, setBody }) => {
     },
     {
       label: "Which fields are you interest in?",
-      content: <UserInterestInput tags={body.tags} setBody={setBody} />,
+      content: (
+        <UserInterestInput
+          tags={body.tags}
+          setBody={setBody}
+          title={"  Choose Three Fields"}
+        />
+      ),
     },
   ];
 

@@ -82,7 +82,10 @@ export default function Editor({ setContent }) {
 
   function handleOnChange(editorState) {
     editorStateRef.current = editorState;
-    setContent(editorState);
+    setContent((prev) => ({
+      ...prev,
+      content: editorState,
+    }));
   }
 
   const onRef = (_floatingAnchorElem) => {
