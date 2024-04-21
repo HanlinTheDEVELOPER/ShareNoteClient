@@ -56,7 +56,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-
         <App />
         <ReactQueryDevtools />
       </QueryClientProvider>

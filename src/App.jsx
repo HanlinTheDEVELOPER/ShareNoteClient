@@ -51,7 +51,7 @@ const App = () => {
           path: "/create",
           element: (
             <ProtectedRoute>
-              <Create />,
+              <Create />
             </ProtectedRoute>
           ),
         },

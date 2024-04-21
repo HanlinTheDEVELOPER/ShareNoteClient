@@ -63,12 +63,14 @@ function onError(error) {
   console.error(error);
 }
 
-export default function Editor() {
+export default function Editor({ setContent }) {
   const isSmallWidthViewPort = useMediaQuery("(max-width: 1025px)");
   const [floatingAnchorElem, setFloatingAnchorElem] = useState(null);
-  const placeholder = <Placeholder>Enter some rich text...</Placeholder>;
-  const initialEditorState = loadContent();
+  const placeholder = (
+    <Placeholder>What You See Is What You Get...</Placeholder>
+  );
   const editorStateRef = useRef();
+  const initialEditorState = loadContent();
   const initialConfig = {
     namespace: "MyEditor",
     editorState: initialEditorState,
@@ -80,6 +82,7 @@ export default function Editor() {
 
   function handleOnChange(editorState) {
     editorStateRef.current = editorState;
+    setContent(editorState);
   }
 
   const onRef = (_floatingAnchorElem) => {
