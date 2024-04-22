@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { IconArrowRightFromArc } from "@tabler/icons-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
@@ -23,6 +23,7 @@ const NoteForm = ({ isCreate }) => {
   });
 
   const toast = useToast();
+  const navigate = useNavigate();
 
   const [body, setBody] = useState({
     title: "",
@@ -53,12 +54,15 @@ const NoteForm = ({ isCreate }) => {
       toast({
         title: "Note Created",
         status: "success",
+        duration: 1000,
       });
+      navigate("/");
     } catch (error) {
       console.log(error);
       toast({
         title: "Upload Failed",
         status: "error",
+        duration: 1000,
       });
     }
   };
