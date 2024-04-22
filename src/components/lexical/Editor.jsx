@@ -84,7 +84,7 @@ export default function Editor({ setContent }) {
     editorStateRef.current = editorState;
     setContent((prev) => ({
       ...prev,
-      content: editorState,
+      content: JSON.stringify(editorState),
     }));
   }
 

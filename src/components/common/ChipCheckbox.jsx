@@ -2,7 +2,14 @@
 import { IconCheck, IconPlus } from "@tabler/icons-react";
 import { Flex } from "@chakra-ui/react";
 
-const ChipCheckbox = ({ tag, tags, setBody, setTags, isFromModal }) => {
+const ChipCheckbox = ({
+  tag,
+  tags,
+  setBody,
+  setTags,
+  isFromModal,
+  isLimitedTagsLength,
+}) => {
   const isCheck = tags?.includes(tag);
 
   const onClick = () => {
@@ -11,8 +18,10 @@ const ChipCheckbox = ({ tag, tags, setBody, setTags, isFromModal }) => {
           ...prev,
           tags: isCheck
             ? tags.filter((t) => t !== tag)
-            : tags.length === 3 || tags.length > 3
-            ? [...tags.slice(1), tag]
+            : isLimitedTagsLength
+            ? tags.length === 3 || tags.length > 3
+              ? [...tags.slice(1), tag]
+              : [...tags, tag]
             : [...tags, tag],
         }))
       : setTags(
@@ -27,6 +36,7 @@ const ChipCheckbox = ({ tag, tags, setBody, setTags, isFromModal }) => {
     <Flex>
       <Flex
         bg={isCheck ? "brand.900" : "transparent"}
+        cursor={"pointer"}
         px={{ base: 2, sm: 4 }}
         py={2}
         borderRadius={25}

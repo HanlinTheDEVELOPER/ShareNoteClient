@@ -11,13 +11,14 @@ import {
 
 import { useUserStore } from "../../store/userStore";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useLogout from "../../hooks/useLogout";
 
 const NavMenu = () => {
   const [user] = useUserStore((state) => [state.user, state.setUser]);
   const [logout] = useLogout();
   const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Menu>
       <MenuButton>
@@ -38,11 +39,11 @@ const NavMenu = () => {
             </Text>
           </MenuItem>
         </Link>
-        <MenuItem onClick={toggleColorMode}>
+        {/* <MenuItem onClick={toggleColorMode}>
           <Text textAlign={"center"} w="100%">
             {colorMode === "dark" ? "Light Theme" : "Dark Theme"}
           </Text>
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem onClick={logout}>
           <Text textAlign={"center"} w="100%">
             Logout

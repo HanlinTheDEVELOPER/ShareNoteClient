@@ -3,7 +3,14 @@ import { useTagStore } from "../../store/tagStore";
 import ChipCheckbox from "../common/ChipCheckbox";
 import { Text } from "@chakra-ui/react";
 
-const UserInterestInput = ({ tags, setBody, isFromModal, setTags, title }) => {
+const UserInterestInput = ({
+  tags,
+  setBody,
+  isFromModal,
+  setTags,
+  title,
+  isLimitedTagsLength = true,
+}) => {
   const tagsList = useTagStore((state) => state.tagsList);
   return (
     <div>
@@ -15,6 +22,7 @@ const UserInterestInput = ({ tags, setBody, isFromModal, setTags, title }) => {
           <ChipCheckbox
             key={tag}
             tags={tags}
+            isLimitedTagsLength={isLimitedTagsLength}
             setBody={setBody}
             tag={tag}
             isFromModal={isFromModal}

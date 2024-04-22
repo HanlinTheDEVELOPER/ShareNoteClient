@@ -20,13 +20,14 @@ import MyIconButton from "./IconButton";
 const TagsModel = ({
   children,
   onClick,
+  isSubmitModel = true,
   isDisabled = false,
   toggleElement,
   isLoading,
   type = "submit",
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  let onModelClose = onClose;
+
   const [isLargeScreen] = useMediaQuery("(min-width: 480px)");
   return (
     <>
@@ -50,7 +51,7 @@ const TagsModel = ({
               <Box textAlign="center" mt={4}>
                 <Button
                   type={type}
-                  onClick={onClick}
+                  onClick={isSubmitModel ? onClick : onClose}
                   isDisabled={isDisabled}
                   isLoading={isLoading}
                   bg="brand.900"
@@ -72,7 +73,7 @@ const TagsModel = ({
               <Box textAlign="center" mt={4}>
                 <Button
                   type={type}
-                  onClick={onClick}
+                  onClick={isSubmitModel ? onClick : onClose}
                   isDisabled={isDisabled}
                   isLoading={isLoading}
                   bg="brand.900"

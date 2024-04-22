@@ -10,13 +10,31 @@ import Lexical from "../lexical/Editor.jsx";
 import { useState } from "react";
 import UserInterestInput from "../user/UserInterestInput.jsx";
 import TagsModel from "../common/Model.jsx";
+import { Button, useToast } from "@chakra-ui/react";
+import { useMutation } from "@tanstack/react-query";
+import { createNote } from "../../lib/Api/noteApi.js";
+import { useUserStore } from "../../store/userStore.js";
 
 const NoteForm = ({ isCreate }) => {
+  const user = useUserStore((state) => state.user);
+  const { mutateAsync, isPending } = useMutation({
+    mutationKey: ["note"],
+    mutationFn: (data) => createNote(data),
+  });
+
+  const toast = useToast();
+
   const [body, setBody] = useState({
     title: "",
     content: "",
     tags: [],
   });
+
+  const { title, content, tags } = body;
+  const isDisabled =
+    title.length === 0 && content.length === 0 && tags.length === 0
+      ? true
+      : false;
 
   const NoteFormSchema = Yup.object({
     // title: Yup.string()
@@ -29,8 +47,20 @@ const NoteForm = ({ isCreate }) => {
     //   .max(1000, "Content must be less than 1000 characters"),
   });
 
-  const handleSubmit = (values) => {
-    console.log(body);
+  const handleCreateSubmit = async (values) => {
+    try {
+      await mutateAsync({ ...body, user: user._id });
+      toast({
+        title: "Note Created",
+        status: "success",
+      });
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Upload Failed",
+        status: "error",
+      });
+    }
   };
 
   return (
@@ -46,7 +76,7 @@ const NoteForm = ({ isCreate }) => {
       <Formik
         initialValues={body}
         validationSchema={NoteFormSchema}
-        onSubmit={handleSubmit}
+        onSubmit={handleCreateSubmit}
       >
         <Form>
           <div className="mb-3">
@@ -64,8 +94,18 @@ const NoteForm = ({ isCreate }) => {
             <StyledErrorMessage name="title" />
           </div>
           <div>
-            <TagsModel toggleElement={<div>Select Tags</div>} type="button">
+            <div>
+              {tags?.map((tag) => (
+                <span>{tag} |</span>
+              ))}
+            </div>
+            <TagsModel
+              toggleElement={<div>Select Tags</div>}
+              type="button"
+              isSubmitModel={false}
+            >
               <UserInterestInput
+                isLimitedTagsLength={false}
                 tags={body.tags}
                 setBody={setBody}
                 isFromModal={false}
@@ -75,12 +115,15 @@ const NoteForm = ({ isCreate }) => {
           <div className="">
             <Lexical setContent={setBody} />
           </div>
-          <button
+          <Button
             type="submit"
+            isDisabled={isDisabled}
+            bg="brand.900"
+            _hover={{ bg: "brand.900" }}
             className=" text-white bg-teal-600 py-3 font-medium w-full text-center rounded-lg"
           >
             Save
-          </button>
+          </Button>
         </Form>
       </Formik>
     </section>

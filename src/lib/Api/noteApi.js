@@ -13,3 +13,9 @@ export const getNoteById = async (id) => {
   const note = fetchRes.data;
   return note;
 };
+
+export const createNote = async (data) => {
+  const upload = await axiosInstance.post("/api/v1/notes", data);
+  const note = upload.data;
+  return note;
+};
