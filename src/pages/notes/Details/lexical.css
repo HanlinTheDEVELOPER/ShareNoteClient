@@ -1,0 +1,10 @@
+.editor.readOnly {
+  height: fit-content !important;
+  background-color: #343434 !important;
+  border: none !important;
+  max-height: fit-content !important;
+}
+
+#readOnly .image-edit-button {
+  display: none !important;
+}

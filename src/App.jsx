@@ -8,7 +8,7 @@ import { queryClient } from "./main";
 import Loggin from "./pages/auth/Loggin";
 import SetupAcc from "./pages/auth/SetupAcc";
 import Create from "./pages/notes/Create";
-import Details from "./pages/notes/Details";
+import Details from "./pages/notes/Details/index";
 import Edit from "./pages/notes/Edit";
 import Index from "./pages/notes/Index";
 import Test from "./pages/Test";

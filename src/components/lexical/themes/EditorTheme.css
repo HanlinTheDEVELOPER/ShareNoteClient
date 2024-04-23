@@ -80,14 +80,19 @@
   display: block;
   text-wrap: nowrap;
   width: 100%;
-  /* overflow-y: scroll; */
+  overflow-x: scroll;
   border-radius: 2px;
   backdrop-filter: blur(1px);
   font-family: Menlo, Consolas, Monaco, monospace;
   font-size: 94%;
+  position: relative;
 }
 .PlaygroundEditorTheme__textCode::-webkit-scrollbar {
   display: block;
+  height: 1px;
+}
+.PlaygroundEditorTheme__textCode::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.562);
 }
 .PlaygroundEditorTheme__hashtag {
   background-color: rgba(88, 144, 255, 0.15);
