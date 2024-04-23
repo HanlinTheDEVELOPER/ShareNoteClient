@@ -10,7 +10,7 @@ import React from "react";
 
 const config = {
   initialColorMode: "dark", // 'dark' | 'light'
-  useSystemColorMode: true,
+  useSystemColorMode: false,
   semanticTokens: {
     colors: {
       brand: {
@@ -54,8 +54,9 @@ export const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
+      {localStorage.setItem("chakra-ui-color-mode", "dark")}
       <QueryClientProvider client={queryClient}>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+        <ColorModeScript initialColorMode="dark" />
         <App />
         <ReactQueryDevtools />
       </QueryClientProvider>
