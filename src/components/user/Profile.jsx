@@ -5,7 +5,7 @@ import { Flex, Stack } from "@chakra-ui/react";
 import ProfileImage from "./ProfileImage";
 import Username from "./Username";
 import Tags from "./Tags";
-import FollowButton from "./FollowButton";
+import FollowButton from "../common/FollowButton";
 const ProfileSection = ({ user, isMyProfile }) => {
   return (
     <Flex
@@ -31,6 +31,8 @@ const ProfileSection = ({ user, isMyProfile }) => {
             profileId={user?._id}
             profileSlug={user?.slug}
             isFollowing={user?.isFollowing}
+            fromProfile={true}
+            invalidateTag={"profile"}
           />
         )}
       </Stack>

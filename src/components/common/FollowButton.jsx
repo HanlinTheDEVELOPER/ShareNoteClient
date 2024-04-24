@@ -1,18 +1,25 @@
 /* eslint-disable react/prop-types */
 import { useMutation } from "@tanstack/react-query";
-import ProtectedButton from "../common/ProtectedButton";
-import { IconUserPlus } from "@tabler/icons-react";
+import ProtectedButton from "./ProtectedButton";
+import { IconUserCheck, IconUserPlus } from "@tabler/icons-react";
 import { follow, unfollow } from "../../lib/Api/userFollowApi";
 import { queryClient } from "../../main";
 import { useToast } from "@chakra-ui/react";
 
-const FollowButton = ({ profileSlug, isFollowing, profileId }) => {
+const FollowButton = ({
+  profileSlug,
+  isFollowing,
+  profileId,
+  fromProfile = false,
+  invalidateTag,
+  ...props
+}) => {
   const toast = useToast();
   const { mutateAsync: followMutateAsync, isPending: isFollowPending } =
     useMutation({
-      mutationKey: ["profile"],
+      mutationKey: [invalidateTag],
       mutationFn: (data) => follow(data),
-      onSuccess: () => queryClient.invalidateQueries("profile"),
+      onSuccess: () => queryClient.invalidateQueries([invalidateTag]),
     });
 
   const { mutateAsync: unfollowMutateAsync, isPending: isUnfollowPending } =
@@ -49,16 +56,20 @@ const FollowButton = ({ profileSlug, isFollowing, profileId }) => {
   };
   return (
     <ProtectedButton
+      {...props}
       width={{ sm: "fit-content" }}
       fn={isFollowing ? onUnfollowClick : onFollowClick}
       isLoading={isFollowPending || isUnfollowPending}
     >
       {isFollowing ? (
-        "Followed"
+        <>
+          {fromProfile && "Followed"}
+          <IconUserCheck />
+        </>
       ) : (
         <>
-          {" "}
-          Follow <IconUserPlus size="20" />{" "}
+          {fromProfile && "Follow"}
+          <IconUserPlus />
         </>
       )}
     </ProtectedButton>

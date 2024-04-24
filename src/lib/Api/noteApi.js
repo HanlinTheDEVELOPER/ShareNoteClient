@@ -9,8 +9,12 @@ export const getNotes = async (pageParam, activeTab) => {
   return notes;
 };
 
-export const getNoteById = async (id) => {
-  const fetchRes = await axiosInstance.get("/api/v1/notes/" + id);
+export const getNoteBySlug = async (userId, slug) => {
+  const fetchRes = await axiosInstance.get("/api/v1/notes/" + slug, {
+    headers: {
+      userId,
+    },
+  });
   const note = fetchRes.data;
   return note;
 };
@@ -19,4 +23,10 @@ export const createNote = async (data) => {
   const upload = await axiosInstance.post("/api/v1/notes", data);
   const note = upload.data;
   return note;
+};
+
+export const addSupport = async (slug) => {
+  const add = await axiosInstance.post("/api/v1/notes/" + slug);
+  const res = add.data;
+  return res;
 };

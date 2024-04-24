@@ -49,7 +49,7 @@ function LoginModal() {
           onClose={setIsLoginModalOpen}
         >
           <DrawerOverlay />
-          <DrawerContent>
+          <DrawerContent className="bg-red-400">
             <DrawerCloseButton />
             <DrawerHeader textAlign="center">Please Login first</DrawerHeader>
 

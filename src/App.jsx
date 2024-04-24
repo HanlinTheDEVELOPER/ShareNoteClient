@@ -60,7 +60,7 @@ const App = () => {
           element: <Edit />,
         },
         {
-          path: "/notes/:id",
+          path: "/notes/:slug",
           element: <Details />,
         },
       ],

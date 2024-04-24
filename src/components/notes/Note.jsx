@@ -1,31 +1,31 @@
 /* eslint-disable react/prop-types */
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useUserStore } from "../../store/userStore";
-import { Flex, Stack, Text } from "@chakra-ui/react";
+import { Avatar, Flex, Stack, Text } from "@chakra-ui/react";
 import { formatDate } from "../../lib/formatDateString";
 import { IconHearts } from "@tabler/icons-react";
 import NoteMenu from "./NoteMenu";
 
 const Note = ({ note, lastElRef }) => {
   const user = useUserStore((state) => state.user);
+  const location = useLocation();
 
+  const from = location.pathname + location.search;
   return (
     <div className=" w-full border-t-4 border-t-teal-600 shadow-lg p-3">
       <div className="relative flex items-start justify-between gap-4">
-        <Link to={`/notes/${note._id}`} ref={lastElRef}>
-          <h3 className="text-xl font-medium font-wrap">{note.slug}</h3>
+        <Link to={`/notes/${note.slug}`} state={{ from }} ref={lastElRef}>
+          <h3 className="text-xl font-medium font-wrap">
+            {note.title.substr(0, 50)}
+          </h3>
         </Link>
         <div className="absolute right-0">
           {note.user._id === user?._id && <NoteMenu />}
         </div>
       </div>
       <Flex mt={4} gap={4} w={"100%"} alignItems="center">
-        <img
-          src={note.user.avatar}
-          alt="avatar"
-          className="w-10 h-10 rounded-full"
-        />
+        <Avatar src={note.user.avatar} alt="avatar" name={note.user.name} />
         <Stack fontSize="small" spacing={0}>
           <Text size="sm">{note.user.name}</Text>
           <Text as="i">{formatDate(note.createdAt)}</Text>
