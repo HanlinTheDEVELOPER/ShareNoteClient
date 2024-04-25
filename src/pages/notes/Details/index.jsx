@@ -29,7 +29,6 @@ const Details = () => {
           {" "}
           <CTA
             supports={data?.data.supports}
-            borderPositon={"b"}
             authorId={data?.data.user._id}
             isFollowing={data?.data.isFollowing}
             profileSlug={data?.data.user.slug}

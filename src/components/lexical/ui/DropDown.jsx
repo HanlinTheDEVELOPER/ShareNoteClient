@@ -165,6 +165,7 @@ export default function DropDown({
   return (
     <>
       <button
+        type="button"
         disabled={disabled}
         aria-label={buttonAriaLabel || buttonLabel}
         className={buttonClassName}

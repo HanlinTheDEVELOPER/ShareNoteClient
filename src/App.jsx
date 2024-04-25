@@ -56,7 +56,7 @@ const App = () => {
           ),
         },
         {
-          path: "/edit/:id",
+          path: "/edit/:slug",
           element: <Edit />,
         },
         {

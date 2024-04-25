@@ -19,6 +19,12 @@ export const getNoteBySlug = async (userId, slug) => {
   return note;
 };
 
+export const getNoteForUpdate = async (slug) => {
+  const fetchRes = await axiosInstance.get("/api/v1/notes/update/" + slug);
+  const note = fetchRes.data;
+  return note;
+};
+
 export const createNote = async (data) => {
   const upload = await axiosInstance.post("/api/v1/notes", data);
   const note = upload.data;
@@ -28,5 +34,12 @@ export const createNote = async (data) => {
 export const addSupport = async (slug) => {
   const add = await axiosInstance.post("/api/v1/notes/" + slug);
   const res = add.data;
+  return res;
+};
+
+export const updateNote = async ({ slug, data }) => {
+  console.log(slug, data);
+  const update = await axiosInstance.post("/api/v1/notes/update/" + slug, data);
+  const res = update.data;
   return res;
 };

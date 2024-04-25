@@ -13,13 +13,13 @@
   padding-left: 15px;
   padding-right: 15px;
   border: 0px;
-  background-color: #eee;
+  border: 2px solid #46962a;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
 }
 .Button__root:hover {
-  background-color: #ddd;
+  background-color: #46962a;
 }
 .Button__small {
   padding-top: 5px;

@@ -1,39 +1,50 @@
 /* eslint-disable no-unused-vars */
 import { IconArrowRightFromArc } from "@tabler/icons-react";
-import { Link, useNavigate } from "react-router-dom";
-import { Formik, Field, Form } from "formik";
-import * as Yup from "yup";
+import { Form, Formik } from "formik";
 import PropTypes from "prop-types";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import * as Yup from "yup";
 
+import { Button } from "@chakra-ui/react";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
+import { useBackToPrev } from "../../hooks/useBackToPrev.js";
+import { useCustomToast } from "../../hooks/useCustomToast.js";
+import { createNote, updateNote } from "../../lib/Api/noteApi.js";
+import { useUserStore } from "../../store/userStore.js";
+import TagsModel from "../common/Model.jsx";
 import StyledErrorMessage from "../common/StyledErrorMessage";
 import Lexical from "../lexical/Editor.jsx";
-import { useState } from "react";
 import UserInterestInput from "../user/UserInterestInput.jsx";
-import TagsModel from "../common/Model.jsx";
-import { Button, useToast } from "@chakra-ui/react";
-import { useMutation } from "@tanstack/react-query";
-import { createNote } from "../../lib/Api/noteApi.js";
-import { useUserStore } from "../../store/userStore.js";
 
-const NoteForm = ({ isCreate }) => {
+const NoteForm = ({ isCreate, title = "", content = "", tags = [], slug }) => {
   const user = useUserStore((state) => state.user);
   const { mutateAsync, isPending } = useMutation({
     mutationKey: ["note"],
     mutationFn: (data) => createNote(data),
   });
 
-  const toast = useToast();
+  const { mutateAsync: updateMutateAsync, isPending: isUpdatePending } =
+    useMutation({
+      mutationKey: ["note"],
+      mutationFn: (data) => updateNote(data),
+    });
+
+  const { fromUrl, fromUrlState } = useBackToPrev();
+  const { successToast, errorToast } = useCustomToast();
+
   const navigate = useNavigate();
 
   const [body, setBody] = useState({
-    title: "",
-    content: "",
-    tags: [],
+    title: title,
+    content: content,
+    tags: tags,
   });
 
-  const { title, content, tags } = body;
   const isDisabled =
-    title.length === 0 && content.length === 0 && tags.length === 0
+    body.title.length === 0 &&
+    body.content.length === 0 &&
+    body.tags.length === 0
       ? true
       : false;
 
@@ -50,20 +61,31 @@ const NoteForm = ({ isCreate }) => {
 
   const handleCreateSubmit = async (values) => {
     try {
-      await mutateAsync({ ...body, user: user._id });
-      toast({
-        title: "Note Created",
-        status: "success",
-        duration: 1000,
+      await mutateAsync({
+        ...body,
+        content: JSON.stringify(body.content),
+        user: user._id,
       });
+      successToast("Note Created");
       navigate("/");
     } catch (error) {
       console.log(error);
-      toast({
-        title: "Upload Failed",
-        status: "error",
-        duration: 1000,
+      errorToast("Upload Failed");
+    }
+  };
+
+  const handleUpdateSubmit = async () => {
+    try {
+      console.log(body);
+      await updateMutateAsync({
+        slug,
+        data: { ...body, content: JSON.stringify(body.content) },
       });
+      successToast("Update Success");
+      navigate(fromUrl ?? "..");
+    } catch (error) {
+      console.log(error);
+      errorToast("Update Failed");
     }
   };
 
@@ -73,14 +95,14 @@ const NoteForm = ({ isCreate }) => {
         <h1 className="text-2xl font-bold mb-5 text-white">
           {isCreate ? "Create a new note." : "Edit your note."}
         </h1>
-        <Link to={"/"}>
+        <Link to={fromUrl ?? ".."}>
           <IconArrowRightFromArc />
         </Link>
       </div>
       <Formik
         initialValues={body}
         validationSchema={NoteFormSchema}
-        onSubmit={handleCreateSubmit}
+        onSubmit={isCreate ? handleCreateSubmit : handleUpdateSubmit}
       >
         <Form>
           <div className="mb-3">
@@ -99,7 +121,7 @@ const NoteForm = ({ isCreate }) => {
           </div>
           <div>
             <div>
-              {tags?.map((tag) => (
+              {body.tags?.map((tag) => (
                 <span>{tag} |</span>
               ))}
             </div>
@@ -117,11 +139,15 @@ const NoteForm = ({ isCreate }) => {
             </TagsModel>
           </div>
           <div className="">
-            <Lexical setContent={setBody} />
+            <Lexical
+              setContent={setBody}
+              content={isCreate ? null : body.content}
+            />
           </div>
           <Button
             type="submit"
             isDisabled={isDisabled}
+            isLoading={isPending || isUpdatePending}
             bg="brand.900"
             _hover={{ bg: "brand.900" }}
             className=" text-white bg-teal-600 py-3 font-medium w-full text-center rounded-lg"

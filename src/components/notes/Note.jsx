@@ -6,16 +6,19 @@ import { Avatar, Flex, Stack, Text } from "@chakra-ui/react";
 import { formatDate } from "../../lib/formatDateString";
 import { IconHearts } from "@tabler/icons-react";
 import NoteMenu from "./NoteMenu";
+import { useBackToPrev } from "../../hooks/useBackToPrev";
 
 const Note = ({ note, lastElRef }) => {
   const user = useUserStore((state) => state.user);
-  const location = useLocation();
-
-  const from = location.pathname + location.search;
+  const { fromUrl, fromUrlState } = useBackToPrev();
   return (
     <div className=" w-full border-t-4 border-t-teal-600 shadow-lg p-3">
       <div className="relative flex items-start justify-between gap-4">
-        <Link to={`/notes/${note.slug}`} state={{ from }} ref={lastElRef}>
+        <Link
+          to={`/notes/${note.slug}`}
+          state={{ fromUrl: fromUrlState }}
+          ref={lastElRef}
+        >
           <h3 className="text-xl font-medium font-wrap">
             {note.title.substr(0, 50)}
           </h3>

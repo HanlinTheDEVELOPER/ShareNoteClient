@@ -38,6 +38,7 @@ import FileInput from "../../ui/FileInput";
 import TextInput from "../../ui/TextInput";
 import Select from "../../ui/Select";
 import "../../ui/Checkbox.css";
+import { background } from "@chakra-ui/react";
 
 const getDOMSelection = (targetWindow) =>
   CAN_USE_DOM ? (targetWindow || window).getSelection() : null;
@@ -115,7 +116,11 @@ export function InsertInlineImageDialog({ activeEditor, onClose }) {
       </div>
 
       <Select
-        style={{ marginBottom: "1em", width: "290px" }}
+        style={{
+          marginBottom: "1em",
+          width: "290px",
+          background: "hsl(0 0 15%)",
+        }}
         label="Position"
         name="position"
         id="position-select"
@@ -138,6 +143,7 @@ export function InsertInlineImageDialog({ activeEditor, onClose }) {
 
       <DialogActions>
         <Button
+          type="button"
           data-test-id="image-modal-file-upload-btn"
           disabled={isDisabled}
           onClick={() => handleOnClick()}

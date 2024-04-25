@@ -1783,6 +1783,10 @@ hr.selected {
   user-select: none;
 }
 
+#position.select {
+  background: black;
+}
+
 .TableNode__contentEditable {
   min-height: 20px;
   border: 0px;

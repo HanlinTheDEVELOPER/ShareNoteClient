@@ -63,14 +63,14 @@ function onError(error) {
   console.error(error);
 }
 
-export default function Editor({ setContent }) {
+export default function Editor({ setContent, content }) {
   const isSmallWidthViewPort = useMediaQuery("(max-width: 1025px)");
   const [floatingAnchorElem, setFloatingAnchorElem] = useState(null);
   const placeholder = (
     <Placeholder>What You See Is What You Get...</Placeholder>
   );
   const editorStateRef = useRef();
-  const initialEditorState = loadContent();
+  const initialEditorState = content ? content : loadContent();
   const initialConfig = {
     namespace: "MyEditor",
     editorState: initialEditorState,
@@ -84,7 +84,7 @@ export default function Editor({ setContent }) {
     editorStateRef.current = editorState;
     setContent((prev) => ({
       ...prev,
-      content: JSON.stringify(editorState),
+      content: editorState,
     }));
   }
 

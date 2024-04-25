@@ -148,6 +148,7 @@ export function UpdateInlineImageDialog({ activeEditor, nodeKey, onClose }) {
 
       <DialogActions>
         <Button
+          type="button"
           data-test-id="image-modal-file-upload-btn"
           onClick={() => handleOnConfirm()}
         >
@@ -325,6 +326,7 @@ export default function InlineImageComponent({
       <>
         <div draggable={draggable}>
           <button
+            type="button"
             className="image-edit-button"
             ref={buttonRef}
             onClick={() => {

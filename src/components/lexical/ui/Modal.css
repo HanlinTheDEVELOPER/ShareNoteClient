@@ -28,14 +28,14 @@
   min-width: 300px;
   display: flex;
   flex-grow: 0px;
-  background-color: #fff;
+  background-color: hsl(0 0 15%);
   flex-direction: column;
   position: relative;
   box-shadow: 0 0 20px 0 #444;
   border-radius: 10px;
 }
 .Modal__title {
-  color: #444;
+  color: #fff;
   margin: 0px;
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
@@ -52,10 +52,12 @@
   height: 30px;
   text-align: center;
   cursor: pointer;
-  background-color: #eee;
+
+  border: 2px solid #46962a;
 }
 .Modal__closeButton:hover {
-  background-color: #ddd;
+  background-color: #46962a;
+  color: #fff;
 }
 .Modal__content {
   padding-top: 20px;
