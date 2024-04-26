@@ -3,13 +3,22 @@ import { useEffect, useState } from "react";
 import { useUserStore } from "../../store/userStore";
 import { useSearchParams } from "react-router-dom";
 
-import { Flex, GridItem } from "@chakra-ui/react";
+import {
+  Flex,
+  GridItem,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import TagsCustomizeModel from "../user/TagsCustomizeModel";
 import Tab from "./Tab";
 
 const TabMenu = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tag");
+  const [isLargeScreen] = useMediaQuery("(min-width: 768px)");
 
   const user = useUserStore((state) => state.user);
   const [tabs, setTabs] = useState(null);
@@ -18,7 +27,8 @@ const TabMenu = () => {
       setTabs([
         {
           title: "Recommends",
-          active: activeTab === "Recommends" ? true : false,
+          active:
+            activeTab === "Recommends" || activeTab === null ? true : false,
         },
         {
           title: "Following",
@@ -46,25 +56,65 @@ const TabMenu = () => {
     );
   };
   return (
-    <Flex justify="center" mt={2}>
-      {user?.tags?.length === 3 ? (
-        <Flex justify="center" gap={6} w="fit">
-          {tabs?.map((tab) => (
-            <Tab
-              key={tab.title}
-              title={tab.title}
-              active={tab.active}
-              handleClick={() => handleClick(tab.title)}
-            />
-          ))}
-          <GridItem w="fit">
-            <TagsCustomizeModel />
-          </GridItem>
-        </Flex>
-      ) : (
-        <div>Please Login To Customize Feed</div>
-      )}
-    </Flex>
+    <>
+      <Flex justify={{ base: "end", sm: "none", md: "center" }} mt={2}>
+        {user?.tags?.length === 3 ? (
+          isLargeScreen ? (
+            <Flex
+              justify="center"
+              gap={6}
+              w="fit"
+              display={{ base: "none", sm: "none", md: "flex" }}
+            >
+              {tabs?.map((tab) => (
+                <Tab
+                  key={tab.title}
+                  title={tab.title}
+                  active={tab.active}
+                  handleClick={() => handleClick(tab.title)}
+                />
+              ))}
+              <GridItem w="fit">
+                <TagsCustomizeModel />
+              </GridItem>
+            </Flex>
+          ) : (
+            <Menu position="relative" background="red.900">
+              <MenuButton
+                display={{ base: "block", sm: "block", md: "none" }}
+                borderColor="brand.900"
+                borderWidth={1}
+                p={2}
+                borderRadius={12}
+                _active={{
+                  bg: "brand.900",
+                }}
+              >
+                Category
+              </MenuButton>
+              <MenuList>
+                {tabs?.map((tab) => (
+                  <MenuItem key={tab.title}>
+                    <Tab
+                      title={tab.title}
+                      active={tab.active}
+                      handleClick={() => handleClick(tab.title)}
+                    />
+                  </MenuItem>
+                ))}
+                <MenuItem display="flex" justifyContent="center">
+                  <GridItem w="fit" alignSelf={"center"}>
+                    <TagsCustomizeModel />
+                  </GridItem>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          )
+        ) : (
+          <div>Please Login To Customize Feed</div>
+        )}
+      </Flex>
+    </>
   );
 };
 

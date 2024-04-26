@@ -6,6 +6,9 @@ import ProfileImage from "./ProfileImage";
 import Username from "./Username";
 import Tags from "./Tags";
 import FollowButton from "../common/FollowButton";
+import MyIconButton from "../common/IconButton";
+import { IconArrowRightFromArc } from "@tabler/icons-react";
+import { Link } from "react-router-dom";
 const ProfileSection = ({ user, isMyProfile }) => {
   return (
     <Flex
@@ -21,7 +24,13 @@ const ProfileSection = ({ user, isMyProfile }) => {
       gap={{ base: 4, sm: 12 }}
       userSelect="none"
       p={{ base: 8, sm: 4 }}
+      position="relative"
     >
+      <MyIconButton position="absolute" top={4} left={3}>
+        <Link to={-1}>
+          <IconArrowRightFromArc />
+        </Link>
+      </MyIconButton>
       <ProfileImage avatar={user?.avatar} isMyProfile={isMyProfile} />
       <Stack w={{ base: "100%", sm: "80%" }} gap={3}>
         <Username isMyProfile={isMyProfile} name={user?.name} />

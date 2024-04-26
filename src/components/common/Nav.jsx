@@ -5,6 +5,7 @@ import LoginButton from "./LoginButton";
 import NavMenu from "./NavMenu";
 import useDetectScroll from "@smakss/react-scroll-direction";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 // import Google from "../assets/google-logo-9824.png";
 
 const Nav = () => {
@@ -31,16 +32,19 @@ const Nav = () => {
       px={{ base: 4, sm: 0 }}
       py="16px"
     >
-      <Flex alignItems={"center"} spacing={16}>
-        <Image src={logo} alt="logo" w={{ base: 0, sm: 8, md: 10 }} />
-        <Text
-          color="brand.900"
-          fontSize={{ base: "2xl", sm: "2xl", md: "4xl" }}
-          fontWeight="700"
-        >
-          Share Notes
-        </Text>
-      </Flex>
+      <Link to="/?tag=Recommends">
+        {" "}
+        <Flex alignItems={"center"} spacing={16}>
+          <Image src={logo} alt="logo" w={{ base: 0, sm: 8, md: 10 }} />
+          <Text
+            color="brand.900"
+            fontSize={{ base: "2xl", sm: "2xl", md: "4xl" }}
+            fontWeight="700"
+          >
+            Share Notes
+          </Text>
+        </Flex>
+      </Link>
 
       {auth ? (
         <>

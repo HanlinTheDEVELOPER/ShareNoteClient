@@ -11,7 +11,7 @@ import Create from "./pages/notes/Create";
 import Details from "./pages/notes/Details/index";
 import Edit from "./pages/notes/Edit";
 import Index from "./pages/notes/Index";
-import Test from "./pages/Test";
+import NotFound from "./pages/NotFound/NotFound";
 import Profile from "./pages/user/Profile";
 import { useAuthStore } from "./store/authStore";
 
@@ -32,10 +32,12 @@ const App = () => {
     {
       path: "/",
       element: <MainLayout />,
+
       children: [
         {
           index: true,
           element: <Index />,
+          errorElement: <NotFound />,
         },
         {
           path: "/setup",
@@ -44,9 +46,10 @@ const App = () => {
               <SetupAcc />
             </ProtectedRoute>
           ),
+          errorElement: <NotFound />,
         },
-        { path: "test", element: <Test /> },
-        { path: "/profile", element: <Profile /> },
+        { path: "/not_found", element: <NotFound /> },
+        { path: "/profile", element: <Profile />, errorElement: <NotFound /> },
         {
           path: "/create",
           element: (
@@ -54,18 +57,21 @@ const App = () => {
               <Create />
             </ProtectedRoute>
           ),
+          errorElement: <NotFound />,
         },
         {
           path: "/edit/:slug",
           element: <Edit />,
+          errorElement: <NotFound />,
         },
         {
           path: "/notes/:slug",
           element: <Details />,
+          errorElement: <NotFound />,
         },
       ],
     },
-    { path: "/login", element: <Loggin /> },
+    { path: "/login", element: <Loggin />, errorElement: <NotFound /> },
   ]);
   return <RouterProvider router={router} />;
 };

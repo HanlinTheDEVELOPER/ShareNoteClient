@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 import { getNoteBySlug } from "../../../lib/Api/noteApi";
@@ -18,12 +18,17 @@ import { useDeleteNoteHook } from "../../../hooks/useDeleteNoteHook";
 const Details = () => {
   const { slug: detailSlug } = useParams();
   const user = useUserStore((state) => state.user);
-  const { data, error, isLoading } = useQuery({
+  const navigate = useNavigate();
+  const { data, error, isLoading, isError } = useQuery({
     queryKey: ["note", detailSlug],
     queryFn: () => getNoteBySlug(user?._id, detailSlug),
   });
-  const [handleDelete, isPending] = useDeleteNoteHook(detailSlug);
 
+  // if (error?.message === "Request failed with status code 404" || isError) {
+  //   navigate("/not_found");
+  // }
+
+  const [handleDelete, isPending] = useDeleteNoteHook(detailSlug);
   return (
     <section className=" mt-0">
       {!isLoading && (

@@ -21,6 +21,7 @@ const ProfileImage = ({ avatar, isMyProfile }) => {
           src={avatar}
           rounded="12"
           shadow=" 0px 0px 10px 0px #46962A "
+          objectFit={"cover"}
         />
         {isMyProfile && <ChangeProfileImage />}
       </Box>

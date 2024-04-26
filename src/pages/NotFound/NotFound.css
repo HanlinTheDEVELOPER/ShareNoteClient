@@ -1,0 +1,13 @@
+.not_found_logo {
+  animation: not_found 3s ease-in-out 1.2s infinite alternate;
+}
+
+@keyframes not_found {
+  0% {
+    transform: rotate(15deg);
+  }
+
+  100% {
+    transform: rotate(-15deg);
+  }
+}

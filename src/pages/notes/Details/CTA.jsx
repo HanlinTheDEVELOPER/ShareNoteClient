@@ -47,25 +47,6 @@ const CTA = ({
       py={2}
       {...border}
     >
-      {user?._id !== authorId && (
-        <Flex justifyContent="end" gap={2}>
-          <AddSupportButton>
-            <IconHeartPlus className="mr-2" /> {supports}
-          </AddSupportButton>
-
-          <FollowButton
-            profileSlug={profileSlug}
-            isFollowing={isFollowing}
-            profileId={authorId}
-            _hover={{ bg: "brand.800" }}
-            bg="transparent"
-            borderColor="brand.900"
-            borderWidth="1px"
-            invalidateTag={"note"}
-            px={1}
-          />
-        </Flex>
-      )}
       <Flex justifyContent="end" gap={2}>
         {user?._id === authorId && (
           <>
@@ -94,6 +75,25 @@ const CTA = ({
           </MyIconButton>
         </Link>
       </Flex>
+      {user?._id !== authorId && (
+        <Flex justifyContent="end" gap={2}>
+          <AddSupportButton>
+            <IconHeartPlus className="mr-2" /> {supports}
+          </AddSupportButton>
+
+          <FollowButton
+            profileSlug={profileSlug}
+            isFollowing={isFollowing}
+            profileId={authorId}
+            _hover={{ bg: "brand.800" }}
+            bg="transparent"
+            borderColor="brand.900"
+            borderWidth="1px"
+            invalidateTag={"note"}
+            px={1}
+          />
+        </Flex>
+      )}
     </Flex>
   );
 };

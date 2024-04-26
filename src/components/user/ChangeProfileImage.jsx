@@ -6,14 +6,17 @@ import useLogout from "../../hooks/useLogout";
 import useSetUser from "../../hooks/useSetUser";
 import { changeProfileImage } from "../../lib/Api/userApi";
 import { queryClient } from "../../main";
+import { useCustomToast } from "../../hooks/useCustomToast";
 
 const ChangeProfile = () => {
   const inputRef = useRef(null);
   const [inputFile, setInputFile] = useState(null);
   const [file, setFile] = useState(null);
   const [setUserFn] = useSetUser();
-  const toast = useToast();
+
   const [logout] = useLogout();
+
+  const { successToast, errorToast } = useCustomToast();
 
   const { mutateAsync, isPending } = useMutation({
     mutationKey: ["user"],
@@ -44,11 +47,7 @@ const ChangeProfile = () => {
         queryKey: ["user"],
         queryFn: setUserFn,
       });
-      toast({
-        description: "Update Profile Picture Success!",
-        status: "success",
-        isClosable: true,
-      });
+      successToast("Update Profile Picture Success!");
     } catch (error) {
       console.log(error.response.data.statusCode);
       if (
@@ -57,11 +56,7 @@ const ChangeProfile = () => {
       ) {
         logout();
       }
-      toast({
-        description: "Update Profile Picture Failed!",
-        status: "error",
-        isClosable: true,
-      });
+      errorToast("Update Profile Picture Failed!");
       setFile(null);
       setInputFile(null);
     }
@@ -83,6 +78,8 @@ const ChangeProfile = () => {
               onClick={onSaveImage}
               color="brand.900"
               type="submit"
+              borderWidth="1px"
+              borderColor="brand.900"
             />
             <IconButton
               type="button"
@@ -90,6 +87,8 @@ const ChangeProfile = () => {
               color="brand.900"
               icon={<IconX />}
               isDisabled={isPending}
+              borderWidth="1px"
+              borderColor="brand.900"
             />
           </Flex>
         </Box>
@@ -98,6 +97,7 @@ const ChangeProfile = () => {
           <IconButton
             borderBlock="solid"
             borderWidth="1px"
+            background="Background"
             borderColor="brand.900"
             color="brand.900"
             icon={<IconPhotoUp />}
