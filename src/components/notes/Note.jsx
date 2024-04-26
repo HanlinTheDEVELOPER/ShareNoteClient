@@ -24,7 +24,7 @@ const Note = ({ note, lastElRef }) => {
           </h3>
         </Link>
         <div className="absolute right-0">
-          {note.user._id === user?._id && <NoteMenu />}
+          {note.user._id === user?._id && <NoteMenu slug={note.slug} />}
         </div>
       </div>
       <Flex mt={4} gap={4} w={"100%"} alignItems="center">

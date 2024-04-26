@@ -1,20 +1,22 @@
-import React from "react";
-import MyIconButton from "../../../components/common/IconButton";
+import { Flex } from "@chakra-ui/react";
 import {
   IconArrowRightFromArc,
   IconEdit,
   IconHeartPlus,
   IconShare,
-  IconUserPlus,
+  IconTrash,
 } from "@tabler/icons-react";
-import { Link, useLocation, useParams } from "react-router-dom";
-import { useUserStore } from "../../../store/userStore";
-import { Flex } from "@chakra-ui/react";
-import ProtectedButton from "../../../components/common/ProtectedButton";
-import { IconUserCheck } from "@tabler/icons-react";
-import FollowButton from "../../../components/common/FollowButton";
+import React from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import AddSupportButton from "../../../components/common/AddSupportButton";
+import FollowButton from "../../../components/common/FollowButton";
+import MyIconButton from "../../../components/common/IconButton";
 import { useBackToPrev } from "../../../hooks/useBackToPrev";
+import { useUserStore } from "../../../store/userStore";
+import { useMutation } from "@tanstack/react-query";
+import { deleteNote } from "../../../lib/Api/noteApi";
+import { useCustomToast } from "../../../hooks/useCustomToast";
+import { useDeleteNoteHook } from "../../../hooks/useDeleteNoteHook";
 
 const CTA = ({
   borderPositon = "b",
@@ -28,6 +30,7 @@ const CTA = ({
   const { slug } = useParams();
 
   const { fromUrl, fromUrlState } = useBackToPrev();
+
   const border =
     borderPositon === "t"
       ? {
@@ -36,6 +39,7 @@ const CTA = ({
         }
       : { borderBottomWidth: 2, borderBottomColor: "brand.900" };
 
+  const [handleDelete, isPending] = useDeleteNoteHook(slug);
   return (
     <Flex
       justifyContent={user?._id === authorId ? "end" : "space-between"}
@@ -67,11 +71,20 @@ const CTA = ({
       )}
       <Flex justifyContent="end" gap={2}>
         {user?._id === authorId && (
-          <Link to={"/edit/" + slug} state={{ fromUrl: fromUrlState }}>
-            <MyIconButton className="border border-teal-600 ">
-              <IconEdit />
+          <>
+            <MyIconButton
+              isDisabled={isPending}
+              isLoading={isPending}
+              className="border border-teal-600"
+            >
+              <IconTrash onClick={handleDelete} />
             </MyIconButton>
-          </Link>
+            <Link to={"/edit/" + slug} state={{ fromUrl: fromUrlState }}>
+              <MyIconButton className="border border-teal-600 ">
+                <IconEdit />
+              </MyIconButton>
+            </Link>
+          </>
         )}
         <MyIconButton className="border border-teal-600 ">
           <IconShare />

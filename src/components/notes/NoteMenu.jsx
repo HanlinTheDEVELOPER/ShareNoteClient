@@ -1,7 +1,16 @@
-import { Menu, MenuButton, MenuList, MenuItem, Text } from "@chakra-ui/react";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Text,
+  Spinner,
+} from "@chakra-ui/react";
 import { IconDotsVertical } from "@tabler/icons-react";
+import { useDeleteNoteHook } from "../../hooks/useDeleteNoteHook";
 
-const NoteMenu = () => {
+const NoteMenu = ({ slug }) => {
+  const [handleDelete, isPending] = useDeleteNoteHook(slug);
   return (
     <Menu>
       <MenuButton
@@ -15,10 +24,10 @@ const NoteMenu = () => {
       </MenuButton>
       <MenuList minW="0" w={"100px"}>
         <MenuItem>
-          <Text>Profile</Text>
+          <Text>Edit</Text>
         </MenuItem>
-        <MenuItem>
-          <Text>Logout</Text>
+        <MenuItem onClick={handleDelete}>
+          {isPending ? <Spinner /> : <Text>Delete</Text>}
         </MenuItem>
       </MenuList>
     </Menu>

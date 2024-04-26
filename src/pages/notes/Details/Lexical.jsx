@@ -63,11 +63,7 @@ function onError(error) {
 export default function Editor({ content }) {
   const isSmallWidthViewPort = useMediaQuery("(max-width: 1025px)");
   const [floatingAnchorElem, setFloatingAnchorElem] = useState(null);
-  const placeholder = (
-    <Placeholder>What You See Is What You Get...</Placeholder>
-  );
-  const editorStateRef = useRef();
-  const initialEditorState = loadContent();
+
   const initialConfig = {
     namespace: "MyEditor",
     editorState: content,

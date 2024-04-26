@@ -61,13 +61,12 @@ const NoteForm = ({ isCreate, title = "", content = "", tags = [], slug }) => {
 
   const handleCreateSubmit = async (values) => {
     try {
-      await mutateAsync({
+      const createNote = await mutateAsync({
         ...body,
-        content: JSON.stringify(body.content),
         user: user._id,
       });
       successToast("Note Created");
-      navigate("/");
+      navigate("/notes/" + createNote?.data.slug);
     } catch (error) {
       console.log(error);
       errorToast("Upload Failed");
@@ -76,13 +75,13 @@ const NoteForm = ({ isCreate, title = "", content = "", tags = [], slug }) => {
 
   const handleUpdateSubmit = async () => {
     try {
-      console.log(body);
-      await updateMutateAsync({
+      const updateData = await updateMutateAsync({
         slug,
-        data: { ...body, content: JSON.stringify(body.content) },
+        data: { ...body },
       });
+      console.log(updateData);
       successToast("Update Success");
-      navigate(fromUrl ?? "..");
+      navigate("/notes/" + updateData?.data.slug);
     } catch (error) {
       console.log(error);
       errorToast("Update Failed");

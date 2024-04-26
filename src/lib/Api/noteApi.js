@@ -38,8 +38,13 @@ export const addSupport = async (slug) => {
 };
 
 export const updateNote = async ({ slug, data }) => {
-  console.log(slug, data);
   const update = await axiosInstance.post("/api/v1/notes/update/" + slug, data);
   const res = update.data;
   return res;
+};
+
+export const deleteNote = async (slug) => {
+  const res = await axiosInstance.post("/api/v1/notes/delete/" + slug);
+  const deleteNote = res.data;
+  return deleteNote;
 };
