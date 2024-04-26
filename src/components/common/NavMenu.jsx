@@ -22,7 +22,11 @@ const NavMenu = () => {
   return (
     <Menu zIndex={1000} position="relative">
       <MenuButton>
-        <Avatar size={{ base: "sm", sm: "md" }} src={user?.avatar} />
+        <Avatar
+          name={user?.name}
+          size={{ base: "sm", sm: "md" }}
+          src={user?.avatar}
+        />
       </MenuButton>
       <MenuList>
         <Link to={`profile?user=${user?.slug}`}>

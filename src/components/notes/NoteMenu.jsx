@@ -16,9 +16,8 @@ const NoteMenu = ({ slug }) => {
       <MenuButton
         border="1px solid"
         borderColor="brand.900"
-        bg="transparent"
+        bg="rgb(52, 52, 52)"
         borderRadius="23"
-        opacity={0.7}
       >
         <IconDotsVertical />
       </MenuButton>

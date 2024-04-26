@@ -7,16 +7,12 @@ import {
   IconTrash,
 } from "@tabler/icons-react";
 import React from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AddSupportButton from "../../../components/common/AddSupportButton";
 import FollowButton from "../../../components/common/FollowButton";
 import MyIconButton from "../../../components/common/IconButton";
 import { useBackToPrev } from "../../../hooks/useBackToPrev";
 import { useUserStore } from "../../../store/userStore";
-import { useMutation } from "@tanstack/react-query";
-import { deleteNote } from "../../../lib/Api/noteApi";
-import { useCustomToast } from "../../../hooks/useCustomToast";
-import { useDeleteNoteHook } from "../../../hooks/useDeleteNoteHook";
 
 const CTA = ({
   borderPositon = "b",
@@ -24,6 +20,8 @@ const CTA = ({
   isFollowing,
   supports,
   profileSlug,
+  handleDelete,
+  isPending,
 }) => {
   const user = useUserStore((state) => state.user);
 
@@ -39,7 +37,6 @@ const CTA = ({
         }
       : { borderBottomWidth: 2, borderBottomColor: "brand.900" };
 
-  const [handleDelete, isPending] = useDeleteNoteHook(slug);
   return (
     <Flex
       justifyContent={user?._id === authorId ? "end" : "space-between"}
@@ -73,11 +70,13 @@ const CTA = ({
         {user?._id === authorId && (
           <>
             <MyIconButton
+              type="submit"
               isDisabled={isPending}
               isLoading={isPending}
               className="border border-teal-600"
+              onClick={handleDelete}
             >
-              <IconTrash onClick={handleDelete} />
+              <IconTrash />
             </MyIconButton>
             <Link to={"/edit/" + slug} state={{ fromUrl: fromUrlState }}>
               <MyIconButton className="border border-teal-600 ">

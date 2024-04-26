@@ -12,21 +12,23 @@ const Note = ({ note, lastElRef }) => {
   const user = useUserStore((state) => state.user);
   const { fromUrl, fromUrlState } = useBackToPrev();
   return (
-    <div className=" w-full border-t-4 border-t-teal-600 shadow-lg p-3">
-      <div className="relative flex items-start justify-between gap-4">
-        <Link
-          to={`/notes/${note.slug}`}
-          state={{ fromUrl: fromUrlState }}
-          ref={lastElRef}
-        >
-          <h3 className="text-xl font-medium font-wrap">
-            {note.title.substr(0, 50)}
-          </h3>
-        </Link>
-        <div className="absolute right-0">
-          {note.user._id === user?._id && <NoteMenu slug={note.slug} />}
+    <div className="relative w-full border-t-4 border-t-teal-600 shadow-lg p-3 h-44">
+      <div className=" flex items-start justify-between gap-4 h-1/2 min-h-1/2 max-h-1/2 overflow-hidden">
+        <div className="text-xl font-medium  ">
+          <Link
+            className="w-full h-full"
+            to={`/notes/${note.slug}`}
+            state={{ fromUrl: fromUrlState }}
+            ref={lastElRef}
+          >
+            {note.title.substr(0, 50)}...
+          </Link>
         </div>
       </div>
+      <div className="absolute right-0 top-2">
+        {note.user._id === user?._id && <NoteMenu slug={note.slug} />}
+      </div>
+      <hr className="opacity-30" />
       <Flex mt={4} gap={4} w={"100%"} alignItems="center">
         <Avatar src={note.user.avatar} alt="avatar" name={note.user.name} />
         <Stack fontSize="small" spacing={0}>

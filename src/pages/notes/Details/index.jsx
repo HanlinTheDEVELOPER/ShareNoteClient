@@ -13,14 +13,16 @@ import { Suspense } from "react";
 import AuthorAndDate from "./AuthorAndDate";
 import CTA from "./CTA";
 import { useUserStore } from "../../../store/userStore";
+import { useDeleteNoteHook } from "../../../hooks/useDeleteNoteHook";
 
 const Details = () => {
-  const { slug } = useParams();
+  const { slug: detailSlug } = useParams();
   const user = useUserStore((state) => state.user);
   const { data, error, isLoading } = useQuery({
-    queryKey: ["note", slug],
-    queryFn: () => getNoteBySlug(user?._id, slug),
+    queryKey: ["note", detailSlug],
+    queryFn: () => getNoteBySlug(user?._id, detailSlug),
   });
+  const [handleDelete, isPending] = useDeleteNoteHook(detailSlug);
 
   return (
     <section className=" mt-0">
@@ -32,6 +34,8 @@ const Details = () => {
             authorId={data?.data.user._id}
             isFollowing={data?.data.isFollowing}
             profileSlug={data?.data.user.slug}
+            handleDelete={handleDelete}
+            isPending={isPending}
           />
           <div className=" shadow-lg p-3 mt-1">
             <h3 className="text-3xl font-medium">{data?.data.title}</h3>
@@ -43,13 +47,15 @@ const Details = () => {
             />
             <Lexical content={data?.data.content} />
           </div>
-          <CTA
+          {/* <CTA
             supports={data?.data.supports}
             borderPositon={"t"}
             authorId={data?.data.user._id}
             isFollowing={data?.data.isFollowing}
             profileSlug={data?.data.user.slug}
-          />
+            handleDelete={handleDelete}
+            isPending={isPending}
+          /> */}
         </>
       )}
     </section>
