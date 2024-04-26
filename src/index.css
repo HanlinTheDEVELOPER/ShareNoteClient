@@ -11,3 +11,15 @@
 .cui-steps__step-icon-container {
   background-color: #46962a90 !important;
 }
+
+.chakra-menu__menu-list {
+  background-color: hsl(0 0 18%) !important;
+}
+
+.chakra-menu__menuitem {
+  background-color: hsl(0 0 18%) !important;
+}
+
+.chakra-menu__menuitem:hover {
+  background-color: #47962a90 !important;
+}

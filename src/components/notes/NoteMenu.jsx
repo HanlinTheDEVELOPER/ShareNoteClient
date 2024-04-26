@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { IconDotsVertical } from "@tabler/icons-react";
 import { useDeleteNoteHook } from "../../hooks/useDeleteNoteHook";
+import { Link } from "react-router-dom";
 
 const NoteMenu = ({ slug }) => {
   const [handleDelete, isPending] = useDeleteNoteHook(slug);
@@ -22,9 +23,11 @@ const NoteMenu = ({ slug }) => {
         <IconDotsVertical />
       </MenuButton>
       <MenuList minW="0" w={"100px"}>
-        <MenuItem>
-          <Text>Edit</Text>
-        </MenuItem>
+        <Link to={"/edit/" + slug}>
+          <MenuItem>
+            <Text>Edit</Text>
+          </MenuItem>
+        </Link>
         <MenuItem onClick={handleDelete}>
           {isPending ? <Spinner /> : <Text>Delete</Text>}
         </MenuItem>

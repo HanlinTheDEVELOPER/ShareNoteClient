@@ -87,11 +87,19 @@
   font-size: 94%;
   position: relative;
 }
-.PlaygroundEditorTheme__textCode::-webkit-scrollbar {
+.PlaygroundEditorTheme__textCode::-webkit-scrollbar,
+.PlaygroundEditorTheme__code::-webkit-scrollbar {
   display: block;
   height: 1px;
 }
-.PlaygroundEditorTheme__textCode::-webkit-scrollbar-thumb {
+.PlaygroundEditorTheme__code::-webkit-scrollbar {
+  height: 5px;
+}
+.PlaygroundEditorTheme__code::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+}
+.PlaygroundEditorTheme__textCode::-webkit-scrollbar-thumb,
+.PlaygroundEditorTheme__code::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.562);
 }
 .PlaygroundEditorTheme__hashtag {
@@ -111,6 +119,7 @@
   font-family: Menlo, Consolas, Monaco, monospace;
   display: block;
   padding: 8px 8px 8px 52px;
+  text-wrap: nowrap;
   line-height: 1.53;
   font-size: 13px;
   margin: 0;
@@ -118,7 +127,7 @@
   margin-bottom: 8px;
   tab-size: 2;
   font-weight: 600;
-  overflow-x: auto;
+  overflow-x: scroll;
   position: relative;
   border-radius: 2px;
 }

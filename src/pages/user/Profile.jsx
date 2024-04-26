@@ -15,7 +15,7 @@ const Profile = () => {
   const isMyProfile = userSlug === user?.slug;
 
   const { data: profile } = useQuery({
-    queryKey: ["profile"],
+    queryKey: ["profile", userSlug],
     queryFn: () => fetchProfile(auth?.id, userSlug),
     enabled: !isMyProfile,
   });

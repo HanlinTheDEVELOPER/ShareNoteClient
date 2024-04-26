@@ -14,32 +14,36 @@ const Note = ({ note, lastElRef }) => {
   return (
     <div className="relative w-full border-t-4 border-t-teal-600 shadow-lg p-3 h-44">
       <div className=" flex items-start justify-between gap-4 h-1/2 min-h-1/2 max-h-1/2 overflow-hidden">
-        <div className="text-xl font-medium  ">
-          <Link
-            className="w-full h-full"
-            to={`/notes/${note.slug}`}
-            state={{ fromUrl: fromUrlState }}
-            ref={lastElRef}
-          >
+        <Link
+          className="w-full h-full"
+          to={`/notes/${note.slug}`}
+          state={{ fromUrl: fromUrlState }}
+          ref={lastElRef}
+        >
+          <div className="text-xl font-medium  ">
             {note.title.substr(0, 50)}...
-          </Link>
-        </div>
+          </div>
+        </Link>
       </div>
       <div className="absolute right-0 top-2">
         {note.user._id === user?._id && <NoteMenu slug={note.slug} />}
       </div>
       <hr className="opacity-30" />
       <Flex mt={4} gap={4} w={"100%"} alignItems="center">
-        <Avatar src={note.user.avatar} alt="avatar" name={note.user.name} />
-        <Stack fontSize="small" spacing={0}>
-          <Text size="sm">{note.user.name}</Text>
-          <Text as="i">{formatDate(note.createdAt)}</Text>
-        </Stack>
+        <Link to={"/profile?user=" + note.user.slug}>
+          <Avatar src={note.user.avatar} alt="avatar" name={note.user.name} />
+        </Link>
+        <Link to={"/profile?user=" + note.user.slug}>
+          <Stack fontSize="small" spacing={0}>
+            <Text size="sm">{note.user.name}</Text>
+            <Text as="i">{formatDate(note.createdAt)}</Text>
+          </Stack>
+        </Link>
         <Flex gap={2} alignItems="center" ml="auto">
           <IconHearts />
           {note.supports}
         </Flex>
-      </Flex>
+      </Flex>{" "}
       <div className="mt-2 flex items-center justify-end gap-4"></div>
     </div>
   );

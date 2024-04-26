@@ -16,9 +16,11 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import MyIconButton from "./IconButton";
+import { useEffect } from "react";
 
 const TagsModel = ({
   children,
+  setOnClose = () => {},
   onClick,
   isSubmitModel = true,
   isDisabled = false,
@@ -27,6 +29,12 @@ const TagsModel = ({
   type = "submit",
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  useEffect(() => {
+    setOnClose({
+      fn: onClose,
+    });
+  }, []);
 
   const [isLargeScreen] = useMediaQuery("(min-width: 480px)");
   return (

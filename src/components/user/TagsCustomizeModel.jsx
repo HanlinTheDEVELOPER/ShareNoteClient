@@ -19,10 +19,12 @@ const TagsCustomizeModel = () => {
     mutationFn: (data) => updateTags(data),
   });
 
+  const [onClose, setOnClose] = useState(null);
+
   const onSubmit = async () => {
     try {
       await mutateAsync({ tags });
-      onClose();
+      onClose.fn();
       toast({
         description: "Update Success",
         status: "success",
@@ -43,6 +45,7 @@ const TagsCustomizeModel = () => {
     <TagsModel
       label="Customize"
       onClick={onSubmit}
+      setOnClose={setOnClose}
       isDisabled={tags.length !== 3}
       isLoading={isPending}
       toggleElement={
