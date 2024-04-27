@@ -41,6 +41,8 @@ const NoteForm = ({ isCreate, title = "", content = "", tags = [], slug }) => {
     tags: tags,
   });
 
+  // const [onClose, setOnClose] = useState();
+
   const isDisabled =
     body.title.length === 0 &&
     body.content.length === 0 &&

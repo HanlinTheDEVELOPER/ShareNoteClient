@@ -8,12 +8,14 @@ import Note from "./Note";
 import loading from "../../assets/Bean Eater-1s-200px.gif";
 import { getNotes } from "../../lib/Api/noteApi";
 import { useSearchParams } from "react-router-dom";
+import { useUserStore } from "../../store/userStore";
 
 const FetchNotes = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const tag = searchParams.get("tag");
   const { ref, inView } = useInView();
   const isFetching = useIsFetching({ queryKey: ["notes"] });
+  const user = useUserStore((state) => state.user);
 
   const {
     data: fecthNotes,
@@ -24,7 +26,7 @@ const FetchNotes = () => {
     status,
   } = useInfiniteQuery({
     queryKey: ["notes", tag],
-    queryFn: ({ pageParam = 1 }) => getNotes(pageParam, tag),
+    queryFn: ({ pageParam = 1 }) => getNotes(pageParam, tag, user._id),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       const nextPage =
