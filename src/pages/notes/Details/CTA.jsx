@@ -1,6 +1,8 @@
 import { Flex } from "@chakra-ui/react";
 import {
   IconArrowRightFromArc,
+  IconBookmark,
+  IconBookmarkFilled,
   IconEdit,
   IconHeartPlus,
   IconShare,
@@ -11,6 +13,7 @@ import { Link, useParams } from "react-router-dom";
 import AddSupportButton from "../../../components/common/AddSupportButton";
 import FollowButton from "../../../components/common/FollowButton";
 import MyIconButton from "../../../components/common/IconButton";
+import SaveNoteButton from "../../../components/common/SaveNoteButton";
 import { useBackToPrev } from "../../../hooks/useBackToPrev";
 import { useUserStore } from "../../../store/userStore";
 
@@ -92,6 +95,10 @@ const CTA = ({
             invalidateTag={"note"}
             px={1}
           />
+          <SaveNoteButton>
+            <IconBookmark />
+            <IconBookmarkFilled />
+          </SaveNoteButton>
         </Flex>
       )}
     </Flex>

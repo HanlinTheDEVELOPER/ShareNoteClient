@@ -26,7 +26,7 @@ const FetchNotes = () => {
     status,
   } = useInfiniteQuery({
     queryKey: ["notes", tag],
-    queryFn: ({ pageParam = 1 }) => getNotes(pageParam, tag, user._id),
+    queryFn: ({ pageParam = 1 }) => getNotes(pageParam, tag, user?._id),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       const nextPage =
