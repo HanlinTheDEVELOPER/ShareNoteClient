@@ -30,7 +30,6 @@ import {
   COPY_COMMAND,
   createEditor,
   CUT_COMMAND,
-  EditorThemeClasses,
   FORMAT_TEXT_COMMAND,
   KEY_ARROW_DOWN_COMMAND,
   KEY_ARROW_LEFT_COMMAND,
@@ -41,8 +40,6 @@ import {
   KEY_ENTER_COMMAND,
   KEY_ESCAPE_COMMAND,
   KEY_TAB_COMMAND,
-  LexicalEditor,
-  NodeKey,
   PASTE_COMMAND,
 } from "lexical";
 import {
@@ -65,7 +62,6 @@ import {
   createUID,
   exportTableCellsToHTML,
   extractRowsFromHTML,
-  TableNode,
 } from "./TableNode";
 
 const NO_CELLS = [];

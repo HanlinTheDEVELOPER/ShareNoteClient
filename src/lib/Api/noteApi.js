@@ -48,6 +48,12 @@ export const saveNote = async (slug) => {
   return save;
 };
 
+export const unSaveNote = async (slug) => {
+  const res = await axiosInstance.post("/api/v1/notes/unsave/" + slug);
+  const unsave = res.data;
+  return unsave;
+};
+
 export const updateNote = async ({ slug, data }) => {
   const update = await axiosInstance.post("/api/v1/notes/update/" + slug, data);
   const res = update.data;

@@ -25,6 +25,7 @@ const CTA = ({
   profileSlug,
   handleDelete,
   isPending,
+  isSaved,
 }) => {
   const user = useUserStore((state) => state.user);
 
@@ -95,9 +96,8 @@ const CTA = ({
             invalidateTag={"note"}
             px={1}
           />
-          <SaveNoteButton>
-            <IconBookmark />
-            <IconBookmarkFilled />
+          <SaveNoteButton isSaved={isSaved}>
+            {isSaved ? <IconBookmarkFilled /> : <IconBookmark />}
           </SaveNoteButton>
         </Flex>
       )}

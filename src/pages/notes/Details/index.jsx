@@ -41,6 +41,7 @@ const Details = () => {
             profileSlug={data?.data.user.slug}
             handleDelete={handleDelete}
             isPending={isPending}
+            isSaved={data?.data.isSaved}
           />
           <div className=" shadow-lg p-3 mt-1">
             <h3 className="text-3xl font-medium">{data?.data.title}</h3>
@@ -60,6 +61,8 @@ const Details = () => {
             profileSlug={data?.data.user.slug}
             handleDelete={handleDelete}
             isPending={isPending}
+            isSaved={data?.data.isSaved}
+
           /> */}
         </>
       )}
