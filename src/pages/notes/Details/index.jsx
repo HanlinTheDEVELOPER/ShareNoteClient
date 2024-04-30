@@ -30,7 +30,7 @@ const Details = () => {
 
   const [handleDelete, isPending] = useDeleteNoteHook(detailSlug);
   return (
-    <section className=" mt-0">
+    <section className=" mt-0 px-4 sm:px-0">
       {!isLoading && (
         <>
           {" "}

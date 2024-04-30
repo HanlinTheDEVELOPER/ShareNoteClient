@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import TagsCustomizeModel from "../user/TagsCustomizeModel";
 import Tab from "./Tab";
+import { IconCaretDown } from "@tabler/icons-react";
 
 const TabMenu = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -85,13 +86,14 @@ const TabMenu = () => {
                 borderColor="brand.900"
                 borderWidth={1}
                 p={2}
-                pr="16px"
-                borderRadius={12}
+                borderRadius={6}
                 _active={{
                   bg: "brand.900",
                 }}
               >
-                Category
+                <Flex>
+                  {activeTab ?? "Filter"} <IconCaretDown />
+                </Flex>
               </MenuButton>
               <MenuList>
                 {tabs?.map((tab) => (
