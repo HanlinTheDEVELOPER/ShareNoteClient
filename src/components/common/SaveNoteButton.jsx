@@ -48,6 +48,7 @@ const SaveNoteButton = ({ children, isSaved }) => {
       borderColor="brand.900"
       borderWidth="1px"
       fn={isSaved ? handleOnUnsave : handleOnSave}
+      p={0}
     >
       {children}
     </ProtectedButton>

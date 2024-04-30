@@ -57,7 +57,7 @@ const TabMenu = () => {
   };
   return (
     <>
-      <Flex justify={{ base: "end", sm: "none", md: "center" }} mt={2}>
+      <Flex justify={{ base: "end", sm: "none", md: "center" }} mt={2} p={"4"}>
         {user?.tags?.length === 3 ? (
           isLargeScreen ? (
             <Flex
@@ -79,12 +79,13 @@ const TabMenu = () => {
               </GridItem>
             </Flex>
           ) : (
-            <Menu position="relative" background="red.900">
+            <Menu position="relative">
               <MenuButton
                 display={{ base: "block", sm: "block", md: "none" }}
                 borderColor="brand.900"
                 borderWidth={1}
                 p={2}
+                pr="16px"
                 borderRadius={12}
                 _active={{
                   bg: "brand.900",

@@ -81,9 +81,7 @@ const CTA = ({
       </Flex>
       {user?._id !== authorId && (
         <Flex justifyContent="end" gap={2}>
-          <AddSupportButton>
-            <IconHeartPlus className="mr-2" /> {supports}
-          </AddSupportButton>
+          <AddSupportButton>{supports}</AddSupportButton>
 
           <FollowButton
             profileSlug={profileSlug}

@@ -37,8 +37,14 @@ export const createNote = async (data) => {
 };
 
 export const addSupport = async (slug) => {
-  const add = await axiosInstance.post("/api/v1/notes/" + slug);
+  const add = await axiosInstance.post("/api/v1/notes/support/" + slug);
   const res = add.data;
+  return res;
+};
+
+export const getSupporter = async (slug) => {
+  const get = await axiosInstance.get("/api/v1/notes/support/" + slug);
+  const res = get.data;
   return res;
 };
 

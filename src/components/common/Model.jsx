@@ -53,7 +53,7 @@ const TagsModel = ({
           <ModalOverlay />
           <ModalContent>
             <ModalCloseButton />
-            <ModalBody>
+            <ModalBody bg="back" borderRadius={8}>
               {children}
 
               <Box textAlign="center" mt={4}>
@@ -72,11 +72,16 @@ const TagsModel = ({
           </ModalContent>
         </Modal>
       ) : (
-        <Drawer isOpen={isOpen} placement="bottom" onClose={onClose}>
+        <Drawer
+          isOpen={isOpen}
+          placement="bottom"
+          onClose={onClose}
+          size={"xl"}
+        >
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerBody>
+            <DrawerBody bg="back">
               {children}
               <Box textAlign="center" mt={4}>
                 <Button

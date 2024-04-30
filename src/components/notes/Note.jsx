@@ -7,6 +7,7 @@ import { formatDate } from "../../lib/formatDateString";
 import { IconHearts } from "@tabler/icons-react";
 import NoteMenu from "./NoteMenu";
 import { useBackToPrev } from "../../hooks/useBackToPrev";
+import SupportModel from "./SupporterModel/SupporterModel";
 
 const Note = ({ note, lastElRef }) => {
   const user = useUserStore((state) => state.user);
@@ -40,8 +41,21 @@ const Note = ({ note, lastElRef }) => {
           </Stack>
         </Link>
         <Flex gap={2} alignItems="center" ml="auto">
-          <IconHearts />
-          {note.supports}
+          <SupportModel
+            variant="link"
+            p={0}
+            slug={note.slug}
+            _hover={{
+              bg: "transparent",
+              borderBottomColor: "brand.900",
+              borderBottomWidth: 2,
+              borderRadius: 0,
+              pb: 2,
+            }}
+          >
+            <IconHearts className="mr-2" />
+            {note.supports}
+          </SupportModel>
         </Flex>
       </Flex>{" "}
       <div className="mt-2 flex items-center justify-end gap-4"></div>
