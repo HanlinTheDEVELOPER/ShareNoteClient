@@ -1,4 +1,11 @@
-import { Flex, Image, Text } from "@chakra-ui/react";
+import {
+  Flex,
+  Image,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Text,
+} from "@chakra-ui/react";
 import logo from "../../assets/logo.svg";
 import { useAuthStore } from "../../store/authStore";
 import LoginButton from "./LoginButton";
@@ -6,7 +13,7 @@ import NavMenu from "./NavMenu";
 import useDetectScroll from "@smakss/react-scroll-direction";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import Google from "../assets/google-logo-9824.png";
+import { IconSearch } from "@tabler/icons-react";
 
 const Nav = () => {
   const [auth] = useAuthStore((state) => [state.auth]);
@@ -46,13 +53,27 @@ const Nav = () => {
         </Flex>
       </Link>
 
-      {auth ? (
-        <>
-          <NavMenu />
-        </>
-      ) : (
-        <LoginButton />
-      )}
+      <Flex justifyContent={"center"} alignItems={"center"} gap={4}>
+        <InputGroup>
+          <InputLeftElement h="100%" mx={2} pointerEvents="none">
+            <IconSearch />
+          </InputLeftElement>
+          <Input
+            placeholder="Search"
+            size={{ base: "sm", sm: "lg" }}
+            rounded="full"
+            variant="filled"
+          />
+        </InputGroup>
+
+        {auth ? (
+          <>
+            <NavMenu />
+          </>
+        ) : (
+          <LoginButton />
+        )}
+      </Flex>
     </Flex>
   );
 };

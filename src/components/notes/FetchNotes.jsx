@@ -10,9 +10,9 @@ import { getNotes } from "../../lib/Api/noteApi";
 import { useSearchParams } from "react-router-dom";
 import { useUserStore } from "../../store/userStore";
 
-const FetchNotes = () => {
+const FetchNotes = ({ urlParams = "tag" }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const tag = searchParams.get("tag");
+  const tag = searchParams.get(urlParams);
   const { ref, inView } = useInView();
   const isFetching = useIsFetching({ queryKey: ["notes"] });
   const user = useUserStore((state) => state.user);
