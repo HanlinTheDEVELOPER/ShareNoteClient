@@ -13,7 +13,7 @@ const Note = ({ note, lastElRef }) => {
   const user = useUserStore((state) => state.user);
   const { fromUrl, fromUrlState } = useBackToPrev();
   return (
-    <div className="relative w-full border-t-4 border-t-teal-600 shadow-lg p-3 h-44">
+    <div className="relative  border-t-4 border-t-teal-600 shadow-lg p-3 h-44">
       <div className=" flex items-start justify-between gap-4 h-1/2 min-h-1/2 max-h-1/2 overflow-hidden">
         <Link
           className="w-full h-full"
@@ -58,7 +58,6 @@ const Note = ({ note, lastElRef }) => {
           </SupportModel>
         </Flex>
       </Flex>{" "}
-      <div className="mt-2 flex items-center justify-end gap-4"></div>
     </div>
   );
 };

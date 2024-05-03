@@ -16,6 +16,7 @@ import TagsModel from "../common/Model.jsx";
 import StyledErrorMessage from "../common/StyledErrorMessage";
 import Lexical from "../lexical/Editor.jsx";
 import UserInterestInput from "../user/UserInterestInput.jsx";
+import { queryClient } from "../../main.jsx";
 
 const NoteForm = ({ isCreate, title = "", content = "", tags = [], slug }) => {
   const user = useUserStore((state) => state.user);
@@ -28,6 +29,7 @@ const NoteForm = ({ isCreate, title = "", content = "", tags = [], slug }) => {
     useMutation({
       mutationKey: ["note"],
       mutationFn: (data) => updateNote(data),
+      onSuccess: () => queryClient.invalidateQueries("note"),
     });
 
   const { fromUrl, fromUrlState } = useBackToPrev();

@@ -5,6 +5,7 @@ import {
   InputGroup,
   InputLeftElement,
   Text,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import logo from "../../assets/logo.svg";
 import { useAuthStore } from "../../store/authStore";
@@ -14,8 +15,10 @@ import useDetectScroll from "@smakss/react-scroll-direction";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IconSearch } from "@tabler/icons-react";
+import SearchPopOver from "./SearchPopOver";
 
 const Nav = () => {
+  const [isLargeScreen] = useMediaQuery("(min-width: 768px)");
   const [auth] = useAuthStore((state) => [state.auth]);
   const [topValue, setTopValue] = useState(0);
   const { scrollDir } = useDetectScroll();
@@ -54,18 +57,21 @@ const Nav = () => {
       </Link>
 
       <Flex justifyContent={"center"} alignItems={"center"} gap={4}>
-        <InputGroup>
-          <InputLeftElement h="100%" mx={2} pointerEvents="none">
-            <IconSearch />
-          </InputLeftElement>
-          <Input
-            placeholder="Search"
-            size={{ base: "sm", sm: "lg" }}
-            rounded="full"
-            variant="filled"
-          />
-        </InputGroup>
-
+        {isLargeScreen ? (
+          <InputGroup>
+            <InputLeftElement h="100%" mx={2} pointerEvents="none">
+              <IconSearch />
+            </InputLeftElement>
+            <Input
+              placeholder="Search"
+              size={{ base: "sm", sm: "lg" }}
+              rounded="full"
+              variant="filled"
+            />
+          </InputGroup>
+        ) : (
+          <SearchPopOver />
+        )}
         {auth ? (
           <>
             <NavMenu />

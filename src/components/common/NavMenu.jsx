@@ -24,7 +24,7 @@ const NavMenu = () => {
       <MenuButton>
         <Avatar
           name={user?.name}
-          size={{ base: "sm", sm: "md" }}
+          size={{ base: "md", sm: "md" }}
           src={user?.avatar}
         />
       </MenuButton>

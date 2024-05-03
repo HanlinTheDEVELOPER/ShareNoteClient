@@ -47,7 +47,8 @@ const FetchNotes = ({ urlParams = "tag" }) => {
     <>
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 3 }}
-        spacing={{ base: 4, sm: 6, md: 8 }}
+        spacingY={{ base: 4, sm: 6, md: 8 }}
+        // spacingX={{ base: 0, sm: 0, md: 0 }}
         pt={{ base: 4, md: "16" }}
         p={{ base: 4 }}
       >
@@ -62,13 +63,13 @@ const FetchNotes = ({ urlParams = "tag" }) => {
         )}
       </SimpleGrid>
 
-      {isFetching ? (
+      {/* {isFetching ? (
         <div className=" w-full text-xl opacity-80 flex justify-center font-bold mt-4 ">
           <img alt="loading" src={loading} width={"50"} height={"50"} />
         </div>
       ) : (
         ""
-      )}
+      )} */}
     </>
   );
 };

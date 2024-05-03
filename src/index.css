@@ -6,6 +6,7 @@
 
 * {
   font-family: "Montserrat Alternates", sans-serif;
+  box-sizing: border-box;
 }
 body {
   padding: 0;
