@@ -15,10 +15,12 @@ import {
 } from "@chakra-ui/react";
 import MyIconButton from "../../common/IconButton";
 import { useGetSupporters } from "../../../hooks/useGetSupporters";
+import SupportList from "./SupportList";
 
 const SupportModel = ({ children, slug, ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { data, isLoading, isError, isPending } = useGetSupporters(slug);
+  const { data, isLoading, isError, isPending, isSuccess } =
+    useGetSupporters(slug);
 
   const [isLargeScreen] = useMediaQuery("(min-width: 480px)");
   return (
@@ -40,7 +42,7 @@ const SupportModel = ({ children, slug, ...props }) => {
           <ModalContent>
             <ModalCloseButton />
             <ModalBody bg="back" borderRadius={10}>
-              {JSON.stringify(data)}
+              {isSuccess && <SupportList data={data?.data} />}
             </ModalBody>
           </ModalContent>
         </Modal>
