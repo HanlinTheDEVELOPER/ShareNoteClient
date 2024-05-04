@@ -8,7 +8,6 @@ const SupportList = ({ data }) => {
       <h1>
         {supports} supports by {totalSupporters} users.
       </h1>
-      {JSON.stringify(supporters)}
     </div>
   );
 };
