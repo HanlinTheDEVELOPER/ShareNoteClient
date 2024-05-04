@@ -56,7 +56,10 @@ const SupportModel = ({ children, slug, ...props }) => {
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerBody bg="back">{JSON.stringify(data)}</DrawerBody>
+            <DrawerBody bg="back">
+              {" "}
+              {isSuccess && <SupportList data={data?.data} />}
+            </DrawerBody>
           </DrawerContent>
         </Drawer>
       )}

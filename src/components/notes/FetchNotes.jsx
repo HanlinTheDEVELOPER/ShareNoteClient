@@ -48,7 +48,7 @@ const FetchNotes = ({ urlParams = "tag" }) => {
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 3 }}
         spacingY={{ base: 4, sm: 6, md: 8 }}
-        // spacingX={{ base: 0, sm: 0, md: 0 }}
+        spacingX={{ base: 0, sm: 3, md: 6 }}
         pt={{ base: 4, md: "16" }}
         p={{ base: 4 }}
       >
