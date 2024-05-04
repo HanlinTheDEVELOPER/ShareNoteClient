@@ -5,9 +5,7 @@ const SupportList = ({ data }) => {
   const totalSupporters = supporters?.length;
   return (
     <div>
-      <h1>
-        {supports} supports by {totalSupporters} users.
-      </h1>
+      <h1>{/* {supports} supports by {totalSupporters} users. */}</h1>
     </div>
   );
 };
