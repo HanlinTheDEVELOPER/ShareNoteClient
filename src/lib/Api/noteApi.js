@@ -14,6 +14,12 @@ export const getNotes = async (pageParam, activeTab, userId) => {
   return notes;
 };
 
+export const searchNote = async (pageParam, key) => {
+  const fetchRes = await axiosInstance.get(`/api/v1/notes/search?key=${key}`);
+  const notes = fetchRes.data;
+  return notes;
+};
+
 export const getNoteBySlug = async (userId, slug) => {
   const fetchRes = await axiosInstance.get("/api/v1/notes/" + slug, {
     headers: {

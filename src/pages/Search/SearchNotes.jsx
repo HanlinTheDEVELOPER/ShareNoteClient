@@ -1,21 +1,19 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+import { SimpleGrid } from "@chakra-ui/react";
 import { useInfiniteQuery, useIsFetching } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { SimpleGrid } from "@chakra-ui/react";
-import Note from "./Note";
-import loading from "../../assets/Bean Eater-1s-200px.gif";
-import { getNotes } from "../../lib/Api/noteApi";
 import { useSearchParams } from "react-router-dom";
-import { useUserStore } from "../../store/userStore";
+import loading from "../../assets/Bean Eater-1s-200px.gif";
+import Note from "../../components/notes/Note";
+import { searchNote } from "../../lib/Api/noteApi";
 
-const FetchNotes = () => {
+const SearchNotes = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const tag = searchParams.get("tag");
+  const key = searchParams.get("key");
   const { ref, inView } = useInView();
   const isFetching = useIsFetching({ queryKey: ["notes"] });
-  const user = useUserStore((state) => state.user);
 
   const {
     data: fecthNotes,
@@ -25,8 +23,8 @@ const FetchNotes = () => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["notes", tag],
-    queryFn: ({ pageParam = 1 }) => getNotes(pageParam, tag, user?._id),
+    queryKey: ["notes", key],
+    queryFn: ({ pageParam = 1 }) => searchNote(pageParam, key),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       const nextPage =
@@ -74,4 +72,4 @@ const FetchNotes = () => {
   );
 };
 
-export default FetchNotes;
+export default SearchNotes;

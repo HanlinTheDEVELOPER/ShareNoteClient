@@ -16,6 +16,7 @@ import Profile from "./pages/user/Profile";
 import { useAuthStore } from "./store/authStore";
 
 import useSetUser from "./hooks/useSetUser";
+import Search from "./pages/Search/Index";
 
 const App = () => {
   const auth = useAuthStore((state) => state.auth);
@@ -69,6 +70,7 @@ const App = () => {
           element: <Details />,
           errorElement: <NotFound />,
         },
+        { path: "/search", element: <Search />, errorElement: <NotFound /> },
       ],
     },
     { path: "/login", element: <Loggin />, errorElement: <NotFound /> },

@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { IconSearch } from "@tabler/icons-react";
 
-const SearchPopOver = () => {
+const SearchPopOver = ({ value, onChange, onKeyDown }) => {
   return (
     <Popover>
       <PopoverTrigger>
@@ -27,6 +27,9 @@ const SearchPopOver = () => {
             width="full"
             rounded="full"
             variant="filled"
+            value={value}
+            onChange={onChange}
+            onKeyDown={onKeyDown}
           />
         </PopoverBody>
       </PopoverContent>

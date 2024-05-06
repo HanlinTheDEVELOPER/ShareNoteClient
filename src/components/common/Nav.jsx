@@ -13,7 +13,7 @@ import LoginButton from "./LoginButton";
 import NavMenu from "./NavMenu";
 import useDetectScroll from "@smakss/react-scroll-direction";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IconSearch } from "@tabler/icons-react";
 import SearchPopOver from "./SearchPopOver";
 
@@ -22,6 +22,15 @@ const Nav = () => {
   const [auth] = useAuthStore((state) => [state.auth]);
   const [topValue, setTopValue] = useState(0);
   const { scrollDir } = useDetectScroll();
+  const [searchKey, setSearchKey] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (event) => {
+    if (event.key === "Enter") {
+      navigate(`/search?key=${searchKey}`);
+    }
+  };
+
   useEffect(() => {
     if (scrollDir === "down") {
       setTopValue(-80);
@@ -67,10 +76,17 @@ const Nav = () => {
               size={{ base: "sm", sm: "lg" }}
               rounded="full"
               variant="filled"
+              value={searchKey}
+              onChange={(e) => setSearchKey(e.target.value)}
+              onKeyDown={handleSearch}
             />
           </InputGroup>
         ) : (
-          <SearchPopOver />
+          <SearchPopOver
+            value={searchKey}
+            onChange={(e) => setSearchKey(e.target.value)}
+            onKeyDown={handleSearch}
+          />
         )}
         {auth ? (
           <>
