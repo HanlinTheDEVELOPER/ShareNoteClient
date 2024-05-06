@@ -1,14 +1,19 @@
 /* eslint-disable react/prop-types */
 
-import { Flex, Stack } from "@chakra-ui/react";
+import { Flex, Stack, Text } from "@chakra-ui/react";
 
 import ProfileImage from "./ProfileImage";
 import Username from "./Username";
 import Tags from "./Tags";
 import FollowButton from "../common/FollowButton";
 import MyIconButton from "../common/IconButton";
-import { IconArrowRightFromArc } from "@tabler/icons-react";
+import {
+  IconArrowRightFromArc,
+  IconUser,
+  IconUserFilled,
+} from "@tabler/icons-react";
 import { Link } from "react-router-dom";
+
 const ProfileSection = ({ user, isMyProfile }) => {
   return (
     <Flex
@@ -34,6 +39,17 @@ const ProfileSection = ({ user, isMyProfile }) => {
       <ProfileImage avatar={user?.avatar} ismyProfile={isMyProfile} />
       <Stack w={{ base: "100%", md: "80%" }} gap={3}>
         <Username isMyProfile={isMyProfile} name={user?.name} />
+        <Flex
+          fontWeight={600}
+          alignItems="center"
+          gap={2}
+          h={3}
+          justifyContent={{ base: "center", sm: "start" }}
+        >
+          <IconUserFilled className="-mt-2" />
+          {user?.followers}
+          <Text pb={0}>Followers</Text>
+        </Flex>
         <Tags isMyProfile={isMyProfile} tags={user?.tags} />
         {!isMyProfile && (
           <FollowButton

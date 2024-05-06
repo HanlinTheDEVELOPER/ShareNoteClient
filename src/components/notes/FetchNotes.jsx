@@ -43,7 +43,7 @@ const FetchNotes = () => {
       fetchNextPage();
     }
   }, [inView, fetchNextPage, hasNextPage]);
-  console.log(status);
+
   return (
     <>
       <SimpleGrid

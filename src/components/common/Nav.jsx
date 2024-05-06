@@ -53,7 +53,7 @@ const Nav = () => {
     >
       <Link to="/?tag=Recommends">
         {" "}
-        <Flex alignItems={"center"} spacing={16}>
+        <Flex alignItems={"center"} gap={{ base: 0, sm: 4 }}>
           <Image src={logo} alt="logo" w={{ base: 0, sm: 8, md: 10 }} />
           <Text
             color="brand.900"

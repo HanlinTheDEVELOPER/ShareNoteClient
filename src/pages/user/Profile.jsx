@@ -5,6 +5,7 @@ import { useUserStore } from "../../store/userStore";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProfile } from "../../lib/Api/userApi";
 import { useAuthStore } from "../../store/authStore";
+import NoteTabs from "./Notes";
 
 const Profile = () => {
   // eslint-disable-next-line no-unused-vars
@@ -24,8 +25,9 @@ const Profile = () => {
 
   const userData = isMyProfile ? user : profile;
   return (
-    <Stack>
+    <Stack spacing={0}>
       <ProfileSection user={userData} isMyProfile={isMyProfile} />
+      <NoteTabs />
     </Stack>
   );
 };
