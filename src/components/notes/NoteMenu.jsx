@@ -11,7 +11,7 @@ import { useDeleteNoteHook } from "../../hooks/useDeleteNoteHook";
 import { Link } from "react-router-dom";
 
 const NoteMenu = ({ slug }) => {
-  const [handleDelete, isPending] = useDeleteNoteHook(slug);
+  const [handleDelete, isPending] = useDeleteNoteHook(slug, ".");
   return (
     <Menu>
       <MenuButton

@@ -26,7 +26,7 @@ const Nav = () => {
   const navigate = useNavigate();
 
   const handleSearch = (event) => {
-    if (event.key === "Enter") {
+    if (event.target.value !== "" && event.key === "Enter") {
       navigate(`/search?key=${searchKey}`);
     }
   };

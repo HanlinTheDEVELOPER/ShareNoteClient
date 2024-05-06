@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { SimpleGrid } from "@chakra-ui/react";
+import { GridItem, Img, SimpleGrid } from "@chakra-ui/react";
 import { useInfiniteQuery, useIsFetching } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
@@ -8,6 +8,7 @@ import { useSearchParams } from "react-router-dom";
 import loading from "../../assets/Bean Eater-1s-200px.gif";
 import Note from "../../components/notes/Note";
 import { searchNote } from "../../lib/Api/noteApi";
+import ZeroNotes from "../../assets/Zero.svg";
 
 const SearchNotes = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -51,11 +52,26 @@ const SearchNotes = () => {
         p={{ base: 4 }}
       >
         {fecthNotes?.pages?.map((page) =>
-          page.data?.notes.map((note, i) =>
-            page.data?.notes.length === i + 1 ? (
-              <Note key={note._id + i} lastElRef={ref} note={note} />
-            ) : (
-              <Note key={note._id + i} note={note} />
+          page.data?.notes.length === 0 ? (
+            <GridItem
+              colStart={2}
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              height="400px"
+              gap={4}
+            >
+              <Img src={ZeroNotes} w={"50%"} />
+              {/* <Text color="brand.900">Zero Text Found</Text> */}
+            </GridItem>
+          ) : (
+            page.data?.notes.map((note, i) =>
+              page.data?.notes.length === i + 1 ? (
+                <Note key={note._id + i} lastElRef={ref} note={note} />
+              ) : (
+                <Note key={note._id + i} note={note} />
+              )
             )
           )
         )}

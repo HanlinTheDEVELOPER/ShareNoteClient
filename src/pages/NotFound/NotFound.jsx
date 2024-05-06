@@ -1,9 +1,11 @@
 import React from "react";
 import NotFoundSvg from "../../assets/Not Found.svg";
-import { Image, Stack, Text } from "@chakra-ui/react";
+import { Flex, Image, Stack, Text } from "@chakra-ui/react";
 import "./NotFound.css";
+import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
+  const navigate = useNavigate();
   return (
     <Stack
       position="absolute"
@@ -23,6 +25,25 @@ const NotFound = () => {
       <Text fontSize={{ base: "2xl", sm: "3xl" }} mt={6} align="center">
         Somethings went wrong!!!
       </Text>
+      <Flex gap={2}>
+        <Text
+          onClick={() => navigate(-1)}
+          color="brand.900"
+          cursor="pointer"
+          _hover={{ textDecoration: "underline" }}
+        >
+          Go back
+        </Text>
+        or
+        <Text
+          onClick={() => navigate(0)}
+          color="brand.900"
+          cursor="pointer"
+          _hover={{ textDecoration: "underline" }}
+        >
+          Refresh!
+        </Text>
+      </Flex>
     </Stack>
   );
 };

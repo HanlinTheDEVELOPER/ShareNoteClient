@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 
-import { Button } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useBackToPrev } from "../../hooks/useBackToPrev.js";
@@ -122,16 +122,32 @@ const NoteForm = ({ isCreate, title = "", content = "", tags = [], slug }) => {
             />
             <StyledErrorMessage name="title" />
           </div>
-          <div>
-            <div>
-              {body.tags?.map((tag) => (
-                <span>{tag} |</span>
-              ))}
-            </div>
+          <Flex
+            my={8}
+            gap={4}
+            justifyContent={body.tags.length == 0 ? "start" : "center"}
+          >
+            {body.tags?.map((tag) => (
+              <Box
+                borderRadius="full"
+                borderColor="brand.900"
+                borderWidth="2px"
+                paddingInline="16px"
+                display="flex"
+                alignItems="center"
+              >
+                {tag}
+              </Box>
+            ))}
+
             <TagsModel
-              toggleElement={<div>Select Tags</div>}
+              toggleElement={<div className="px-4">Select Tags</div>}
               type="button"
               isSubmitModel={false}
+              borderRadius="full"
+              borderColor="brand.900"
+              borderWidth="2px"
+              bg="#262626"
             >
               <UserInterestInput
                 isLimitedTagsLength={false}
@@ -140,7 +156,7 @@ const NoteForm = ({ isCreate, title = "", content = "", tags = [], slug }) => {
                 isFromModal={false}
               />
             </TagsModel>
-          </div>
+          </Flex>
           <div className="">
             <Lexical
               setContent={setBody}
@@ -153,7 +169,7 @@ const NoteForm = ({ isCreate, title = "", content = "", tags = [], slug }) => {
             isLoading={isPending || isUpdatePending}
             bg="brand.900"
             _hover={{ bg: "brand.900" }}
-            className=" text-white bg-teal-600 py-3 font-medium w-full text-center rounded-lg"
+            className=" text-white bg-teal-600 py-3 mb-3 font-medium w-full text-center rounded-lg"
           >
             Save
           </Button>

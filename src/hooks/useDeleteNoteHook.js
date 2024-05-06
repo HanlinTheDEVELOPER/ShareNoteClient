@@ -5,22 +5,21 @@ import { useBackToPrev } from "./useBackToPrev";
 import { useCustomToast } from "./useCustomToast";
 import { queryClient } from "../main";
 
-export const useDeleteNoteHook = (slug) => {
+export const useDeleteNoteHook = (slug, backUrl) => {
   const navigate = useNavigate();
   const { mutateAsync, isPending } = useMutation({
     mutationKey: ["notes"],
     mutationFn: (slug) => deleteNote(slug),
-    onSuccess: () => queryClient.invalidateQueries(["notes"]),
+    onSuccess: () => queryClient.invalidateQueries("notes"),
   });
 
   const { fromUrl, fromUrlState } = useBackToPrev();
   const { errorToast, successToast } = useCustomToast();
-  const redirectUrl = fromUrl ? fromUrl : -1;
 
   const handleDelete = async () => {
     try {
       await mutateAsync(slug);
-      navigate(redirectUrl);
+      navigate(backUrl);
       successToast("Successfully Deleted");
     } catch (error) {
       console.log(error);

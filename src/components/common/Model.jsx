@@ -27,6 +27,7 @@ const TagsModel = ({
   toggleElement,
   isLoading,
   type = "submit",
+  ...props
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -40,7 +41,9 @@ const TagsModel = ({
   return (
     <>
       <Tooltip>
-        <MyIconButton onClick={onOpen}>{toggleElement}</MyIconButton>
+        <MyIconButton {...props} onClick={onOpen}>
+          {toggleElement}
+        </MyIconButton>
       </Tooltip>
       {isLargeScreen ? (
         <Modal

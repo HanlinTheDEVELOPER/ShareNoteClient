@@ -16,6 +16,7 @@ import MyIconButton from "../../../components/common/IconButton";
 import SaveNoteButton from "../../../components/common/SaveNoteButton";
 import { useBackToPrev } from "../../../hooks/useBackToPrev";
 import { useUserStore } from "../../../store/userStore";
+import ShareDialog from "../../../components/notes/Share/ShareDialog";
 
 const CTA = ({
   borderPositon = "b",
@@ -26,6 +27,7 @@ const CTA = ({
   handleDelete,
   isPending,
   isSaved,
+  title,
 }) => {
   const user = useUserStore((state) => state.user);
 
@@ -56,7 +58,6 @@ const CTA = ({
           <>
             <MyIconButton
               type="submit"
-              isDisabled={isPending}
               isLoading={isPending}
               className="border border-teal-600"
               onClick={handleDelete}
@@ -70,9 +71,9 @@ const CTA = ({
             </Link>
           </>
         )}
-        <MyIconButton className="border border-teal-600 ">
+        <ShareDialog className="border border-teal-600 " title={title}>
           <IconShare />
-        </MyIconButton>
+        </ShareDialog>
         <Link to={fromUrl ?? ".."}>
           <MyIconButton className="border border-teal-600 ">
             <IconArrowRightFromArc />

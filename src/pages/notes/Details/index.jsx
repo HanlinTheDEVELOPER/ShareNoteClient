@@ -18,17 +18,14 @@ import { useDeleteNoteHook } from "../../../hooks/useDeleteNoteHook";
 const Details = () => {
   const { slug: detailSlug } = useParams();
   const user = useUserStore((state) => state.user);
-  const navigate = useNavigate();
+
   const { data, error, isLoading, isError } = useQuery({
     queryKey: ["note", detailSlug],
     queryFn: () => getNoteBySlug(user?._id, detailSlug),
+    refetchOnWindowFocus: false,
   });
 
-  // if (error?.message === "Request failed with status code 404" || isError) {
-  //   navigate("/not_found");
-  // }
-
-  const [handleDelete, isPending] = useDeleteNoteHook(detailSlug);
+  const [handleDelete, isPending] = useDeleteNoteHook(detailSlug, -1);
   return (
     <section className=" mt-0 px-4 sm:px-0">
       {!isLoading && (
@@ -38,6 +35,7 @@ const Details = () => {
             supports={data?.data.supports}
             authorId={data?.data.user._id}
             isFollowing={data?.data.isFollowing}
+            title={data?.data.title}
             profileSlug={data?.data.user.slug}
             handleDelete={handleDelete}
             isPending={isPending}
@@ -53,7 +51,7 @@ const Details = () => {
             />
             <Lexical content={data?.data.content} />
           </div>
-          {/* <CTA
+          <CTA
             supports={data?.data.supports}
             borderPositon={"t"}
             authorId={data?.data.user._id}
@@ -62,8 +60,7 @@ const Details = () => {
             handleDelete={handleDelete}
             isPending={isPending}
             isSaved={data?.data.isSaved}
-
-          /> */}
+          />
         </>
       )}
     </section>

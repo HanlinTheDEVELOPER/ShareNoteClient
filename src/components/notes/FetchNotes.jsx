@@ -3,12 +3,13 @@
 import { useInfiniteQuery, useIsFetching } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { SimpleGrid } from "@chakra-ui/react";
+import { Box, Flex, GridItem, Img, SimpleGrid, Text } from "@chakra-ui/react";
 import Note from "./Note";
 import loading from "../../assets/Bean Eater-1s-200px.gif";
 import { getNotes } from "../../lib/Api/noteApi";
 import { useSearchParams } from "react-router-dom";
 import { useUserStore } from "../../store/userStore";
+import ZeroNotes from "../../assets/Zero.svg";
 
 const FetchNotes = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -42,7 +43,7 @@ const FetchNotes = () => {
       fetchNextPage();
     }
   }, [inView, fetchNextPage, hasNextPage]);
-
+  console.log(status);
   return (
     <>
       <SimpleGrid
@@ -53,19 +54,34 @@ const FetchNotes = () => {
         p={{ base: 4 }}
       >
         {fecthNotes?.pages?.map((page) =>
-          page.data?.notes.map((note, i) =>
-            page.data?.notes.length === i + 1 ? (
-              <Note key={note._id + i} lastElRef={ref} note={note} />
-            ) : (
-              <Note key={note._id + i} note={note} />
+          page.data?.notes.length === 0 ? (
+            <GridItem
+              colStart={2}
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              height="200px"
+              gap={4}
+            >
+              <Img src={ZeroNotes} w={"50%"} />
+              {/* <Text color="brand.900">Zero Text Found</Text> */}
+            </GridItem>
+          ) : (
+            page.data?.notes.map((note, i) =>
+              page.data?.notes.length === i + 1 ? (
+                <Note key={note._id + i} lastElRef={ref} note={note} />
+              ) : (
+                <Note key={note._id + i} note={note} />
+              )
             )
           )
         )}
       </SimpleGrid>
 
-      {isFetching ? (
+      {status === "pending" ? (
         <div className=" w-full text-xl opacity-80 flex justify-center font-bold mt-4 ">
-          <img alt="loading" src={loading} width={"50"} height={"50"} />
+          <img alt="loading" src={loading} width={100} />
         </div>
       ) : (
         ""

@@ -10,7 +10,7 @@ const Search = () => {
   return (
     <div>
       <Flex>
-        <MyIconButton onClick={() => navigate(-1)}>
+        <MyIconButton onClick={() => navigate("../")}>
           <IconArrowRightFromArc />
         </MyIconButton>
       </Flex>
