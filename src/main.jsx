@@ -2,6 +2,7 @@ import { ChakraProvider, ColorModeScript, extendTheme } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { StepsTheme as Steps } from "chakra-ui-steps";
+import { Analytics } from "@vercel/analytics/react";
 
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -61,6 +62,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <QueryClientProvider client={queryClient}>
         <ColorModeScript initialColorMode="dark" />
         <App />
+        <Analytics />
         <ReactQueryDevtools />
       </QueryClientProvider>
     </ChakraProvider>
