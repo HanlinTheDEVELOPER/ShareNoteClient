@@ -4,7 +4,6 @@ import {
   IconBookmark,
   IconBookmarkFilled,
   IconEdit,
-  IconHeartPlus,
   IconShare,
   IconTrash,
 } from "@tabler/icons-react";
@@ -14,9 +13,9 @@ import AddSupportButton from "../../../components/common/AddSupportButton";
 import FollowButton from "../../../components/common/FollowButton";
 import MyIconButton from "../../../components/common/IconButton";
 import SaveNoteButton from "../../../components/common/SaveNoteButton";
+import ShareDialog from "../../../components/notes/Share/ShareDialog";
 import { useBackToPrev } from "../../../hooks/useBackToPrev";
 import { useUserStore } from "../../../store/userStore";
-import ShareDialog from "../../../components/notes/Share/ShareDialog";
 
 const CTA = ({
   borderPositon = "b",

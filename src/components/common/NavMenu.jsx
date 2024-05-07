@@ -10,9 +10,9 @@ import {
 
 import { useUserStore } from "../../store/userStore";
 
-import { Link, useLocation } from "react-router-dom";
-import useLogout from "../../hooks/useLogout";
+import { Link } from "react-router-dom";
 import { useBackToPrev } from "../../hooks/useBackToPrev";
+import useLogout from "../../hooks/useLogout";
 
 const NavMenu = () => {
   const [user] = useUserStore((state) => [state.user, state.setUser]);

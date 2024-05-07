@@ -2,7 +2,7 @@
 import { IconArrowRightFromArc } from "@tabler/icons-react";
 import { Form, Formik } from "formik";
 import PropTypes from "prop-types";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 import { Box, Button, Flex } from "@chakra-ui/react";
@@ -11,12 +11,12 @@ import { useState } from "react";
 import { useBackToPrev } from "../../hooks/useBackToPrev.js";
 import { useCustomToast } from "../../hooks/useCustomToast.js";
 import { createNote, updateNote } from "../../lib/Api/noteApi.js";
+import { queryClient } from "../../main.jsx";
 import { useUserStore } from "../../store/userStore.js";
 import TagsModel from "../common/Model.jsx";
 import StyledErrorMessage from "../common/StyledErrorMessage";
 import Lexical from "../lexical/Editor.jsx";
 import UserInterestInput from "../user/UserInterestInput.jsx";
-import { queryClient } from "../../main.jsx";
 
 const NoteForm = ({ isCreate, title = "", content = "", tags = [], slug }) => {
   const user = useUserStore((state) => state.user);
@@ -126,6 +126,7 @@ const NoteForm = ({ isCreate, title = "", content = "", tags = [], slug }) => {
             my={8}
             gap={4}
             justifyContent={body.tags.length == 0 ? "start" : "center"}
+            flexWrap="wrap"
           >
             {body.tags?.map((tag) => (
               <Box

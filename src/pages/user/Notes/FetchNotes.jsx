@@ -1,21 +1,20 @@
 /* eslint-disable react/prop-types */
-
+/* eslint-disable no-unused-vars */
 import { GridItem, Img, SimpleGrid } from "@chakra-ui/react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { useSearchParams } from "react-router-dom";
-import loading from "../../assets/Bean Eater-1s-200px.gif";
-import ZeroNotes from "../../assets/Zero.svg";
-import { getNotes } from "../../lib/Api/noteApi";
-import { useUserStore } from "../../store/userStore";
-import Note from "./Note";
+import loading from "../../../assets/Bean Eater-1s-200px.gif";
+import ZeroNotes from "../../../assets/Zero.svg";
+import Note from "../../../components/notes/Note";
+import { getNotesInProfile } from "../../../lib/Api/noteApi";
+import { useUserStore } from "../../../store/userStore";
 
-const FetchNotes = () => {
+const FetchNotes = ({ activeTab }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const tag = searchParams.get("tag");
+  const userSlug = searchParams.get("user");
   const { ref, inView } = useInView();
-
   const user = useUserStore((state) => state.user);
 
   const {
@@ -26,17 +25,18 @@ const FetchNotes = () => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["notes", tag],
-    queryFn: ({ pageParam = 1 }) => getNotes(pageParam, tag, user?._id),
+    queryKey: ["notes", userSlug, activeTab],
+    queryFn: ({ pageParam = 1 }) =>
+      getNotesInProfile(pageParam, userSlug, activeTab),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       const nextPage =
         lastPage.data?.currentPage < lastPage.data?.totalPages
           ? parseInt(lastPage.data.currentPage) + 1
           : undefined;
+      console.log(lastPage.data?.totalPages);
       return nextPage;
     },
-    refetchOnMount: false,
   });
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -46,6 +46,7 @@ const FetchNotes = () => {
 
   return (
     <>
+      <div className="opacity-0">{activeTab}</div>
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 3 }}
         spacingY={{ base: 4, sm: 6, md: 8 }}
@@ -64,7 +65,7 @@ const FetchNotes = () => {
               height="200px"
               gap={4}
             >
-              <Img src={ZeroNotes} w={"50%"} />
+              <Img src={ZeroNotes} w={{ base: "40%", sm: "20%", md: "50%" }} />
               {/* <Text color="brand.900">Zero Text Found</Text> */}
             </GridItem>
           ) : (

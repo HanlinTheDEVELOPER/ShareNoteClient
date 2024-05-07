@@ -67,7 +67,7 @@ export default function Editor({ setContent, content }) {
   const isSmallWidthViewPort = useMediaQuery("(max-width: 1025px)");
   const [floatingAnchorElem, setFloatingAnchorElem] = useState(null);
   const placeholder = (
-    <Placeholder>What You See Is What You Get...</Placeholder>
+    <Placeholder>Content must at least 5words...</Placeholder>
   );
   const editorStateRef = useRef();
   const initialEditorState = content ? content : loadContent();

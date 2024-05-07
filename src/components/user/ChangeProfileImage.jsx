@@ -1,12 +1,12 @@
-import { Box, Flex, IconButton, useToast } from "@chakra-ui/react";
+import { Box, Flex, IconButton } from "@chakra-ui/react";
 import { IconCheck, IconPhotoUp, IconX } from "@tabler/icons-react";
 import { useMutation } from "@tanstack/react-query";
 import { useRef, useState } from "react";
+import { useCustomToast } from "../../hooks/useCustomToast";
 import useLogout from "../../hooks/useLogout";
 import useSetUser from "../../hooks/useSetUser";
 import { changeProfileImage } from "../../lib/Api/userApi";
 import { queryClient } from "../../main";
-import { useCustomToast } from "../../hooks/useCustomToast";
 
 const ChangeProfile = () => {
   const inputRef = useRef(null);

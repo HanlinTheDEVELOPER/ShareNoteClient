@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import NoteForm from "../../components/notes/NoteForm";
-import { getNoteBySlug, getNoteForUpdate } from "../../lib/Api/noteApi";
 import { useParams } from "react-router-dom";
-import { startTransition, Suspense } from "react";
+import NoteForm from "../../components/notes/NoteForm";
+import { getNoteForUpdate } from "../../lib/Api/noteApi";
 
 const Edit = () => {
   const { slug } = useParams();

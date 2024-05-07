@@ -2,7 +2,7 @@
 import { Box, Image } from "@chakra-ui/react";
 import ChangeProfileImage from "./ChangeProfileImage";
 
-const ProfileImage = ({ avatar, isMyProfile }) => {
+const ProfileImage = ({ avatar, isMyProfile, name }) => {
   return (
     <Box
       display={"flex"}
@@ -19,6 +19,7 @@ const ProfileImage = ({ avatar, isMyProfile }) => {
           w="100%"
           aspectRatio={"1/1"}
           src={avatar}
+          name={name}
           rounded="12"
           shadow=" 0px 0px 10px 0px #46962A "
           objectFit={"cover"}

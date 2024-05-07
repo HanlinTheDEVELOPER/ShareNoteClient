@@ -2,17 +2,13 @@
 
 import { Flex, Stack, Text } from "@chakra-ui/react";
 
-import ProfileImage from "./ProfileImage";
-import Username from "./Username";
-import Tags from "./Tags";
+import { IconArrowRightFromArc, IconUserFilled } from "@tabler/icons-react";
+import { Link } from "react-router-dom";
 import FollowButton from "../common/FollowButton";
 import MyIconButton from "../common/IconButton";
-import {
-  IconArrowRightFromArc,
-  IconUser,
-  IconUserFilled,
-} from "@tabler/icons-react";
-import { Link } from "react-router-dom";
+import ProfileImage from "./ProfileImage";
+import Tags from "./Tags";
+import Username from "./Username";
 
 const ProfileSection = ({ user, isMyProfile }) => {
   return (
@@ -36,7 +32,11 @@ const ProfileSection = ({ user, isMyProfile }) => {
           <IconArrowRightFromArc />
         </Link>
       </MyIconButton>
-      <ProfileImage avatar={user?.avatar} ismyProfile={isMyProfile} />
+      <ProfileImage
+        avatar={user?.avatar}
+        isMyProfile={isMyProfile}
+        name={user?.name}
+      />
       <Stack w={{ base: "100%", md: "80%" }} gap={3}>
         <Username isMyProfile={isMyProfile} name={user?.name} />
         <Flex

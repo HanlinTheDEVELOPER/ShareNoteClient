@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { deleteNote } from "../lib/Api/noteApi";
+import { queryClient } from "../main";
 import { useBackToPrev } from "./useBackToPrev";
 import { useCustomToast } from "./useCustomToast";
-import { queryClient } from "../main";
 
 export const useDeleteNoteHook = (slug, backUrl) => {
   const navigate = useNavigate();

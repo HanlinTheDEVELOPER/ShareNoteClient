@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 
-import { Link, useLocation } from "react-router-dom";
-import { useUserStore } from "../../store/userStore";
 import { Avatar, Flex, Stack, Text } from "@chakra-ui/react";
-import { formatDate } from "../../lib/formatDateString";
 import { IconHearts } from "@tabler/icons-react";
-import NoteMenu from "./NoteMenu";
+import { Link } from "react-router-dom";
 import { useBackToPrev } from "../../hooks/useBackToPrev";
+import { formatDate } from "../../lib/formatDateString";
+import { useUserStore } from "../../store/userStore";
+import NoteMenu from "./NoteMenu";
 import SupportModel from "./SupporterModel/SupporterModel";
 
 const Note = ({ note, lastElRef }) => {
@@ -40,7 +40,7 @@ const Note = ({ note, lastElRef }) => {
             <Text as="i">{formatDate(note.createdAt)}</Text>
           </Stack>
         </Link>
-        <Flex gap={2} alignItems="center" ml="auto">
+        <Flex gap={2} alignItems="center">
           <SupportModel
             variant="link"
             p={0}

@@ -1,4 +1,4 @@
-import { IconButton, useDisclosure, useToast } from "@chakra-ui/react";
+import { IconButton, useToast } from "@chakra-ui/react";
 import { IconSettingsCog } from "@tabler/icons-react";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
@@ -7,9 +7,10 @@ import { updateTags } from "../../lib/Api/userApi";
 import { useUserStore } from "../../store/userStore";
 import TagsModel from "../common/Model";
 import UserInterestInput from "./UserInterestInput";
+import { useCustomToast } from "../../hooks/useCustomToast";
 
 const TagsCustomizeModel = () => {
-  const toast = useToast();
+  const { successToast, errorToast } = useCustomToast();
   const user = useUserStore((state) => state.user);
   const [tags, setTags] = useState(user?.tags);
   const [setUserFn] = useSetUser();
@@ -25,19 +26,11 @@ const TagsCustomizeModel = () => {
     try {
       await mutateAsync({ tags });
       onClose.fn();
-      toast({
-        description: "Update Success",
-        status: "success",
-        isClosable: true,
-      });
+      successToast("Success");
       setUserFn();
     } catch (error) {
       console.log(error);
-      toast({
-        description: "Update Fail",
-        status: "error",
-        isClosable: true,
-      });
+      errorToast("Failed");
     }
   };
 

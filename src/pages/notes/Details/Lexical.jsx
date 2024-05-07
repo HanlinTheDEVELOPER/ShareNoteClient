@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import useMediaQuery from "../../../components/lexical/hooks/useMediaQuery";
 // import "../../../components/lexical/index.css";
 import "./lexical.css";
@@ -8,11 +8,9 @@ import { CheckListPlugin } from "@lexical/react/LexicalCheckListPlugin";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { HorizontalRulePlugin } from "@lexical/react/LexicalHorizontalRulePlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
-import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { TablePlugin } from "@lexical/react/LexicalTablePlugin";
 
@@ -21,13 +19,10 @@ import EditorTheme from "../../../components/lexical/themes/EditorTheme";
 
 import LexicalAutoLinkPlugin from "../../../components/lexical/plugins/AutoLinkPlugin/index";
 import CodeHighlightPlugin from "../../../components/lexical/plugins/CodeHighlightPlugin";
-import DragDropPaste from "../../../components/lexical/plugins/DragDropPastePlugin";
 import FloatingLinkEditorPlugin from "../../../components/lexical/plugins/FloatingLinkEditorPlugin";
 import InlineImagePlugin from "../../../components/lexical/plugins/InlineImagePlugin";
 import LinkPlugin from "../../../components/lexical/plugins/LinkPlugin";
-import ToolbarPlugin from "../../../components/lexical/plugins/ToolbarPlugin";
 import ContentEditable from "../../../components/lexical/ui/ContentEditable";
-import Placeholder from "../../../components/lexical/ui/Placeholder";
 // import CodeActionMenuPlugin from './plugins/CodeActionMenuPlugin'
 
 const loadContent = () => {

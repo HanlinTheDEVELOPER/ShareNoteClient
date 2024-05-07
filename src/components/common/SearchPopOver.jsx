@@ -2,11 +2,8 @@ import {
   Button,
   Input,
   Popover,
-  PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
-  PopoverHeader,
   PopoverTrigger,
 } from "@chakra-ui/react";
 import { IconSearch } from "@tabler/icons-react";

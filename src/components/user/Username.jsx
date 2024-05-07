@@ -2,21 +2,15 @@
 import { Box, IconButton, Text, Tooltip, useClipboard } from "@chakra-ui/react";
 import { IconCopy, IconEdit } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
+import { useCustomToast } from "../../hooks/useCustomToast";
 import ChangeUserName from "./ChangeUserName";
-import { useToast } from "@chakra-ui/react";
 
 const Username = ({ isMyProfile, name }) => {
   const [isEdit, setIsEdit] = useState(false);
   const { onCopy, hasCopied } = useClipboard(window.location.href);
-  const toast = useToast();
+  const { successToast, errorToast } = useCustomToast();
   useEffect(() => {
-    hasCopied &&
-      toast({
-        description: "Profile Url is copied to clipboard",
-        isClosable: true,
-        variant: "subtle",
-        status: "info",
-      });
+    hasCopied && successToast("Copied to clipboard");
   }, [hasCopied]);
   return (
     <Box

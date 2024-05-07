@@ -77,3 +77,11 @@ export const deleteNote = async (slug) => {
   const deleteNote = res.data;
   return deleteNote;
 };
+
+export const getNotesInProfile = async (pageParam, slug, activeTab) => {
+  const url =
+    activeTab === "saved" ? "/notes/saved" : `/notes/uploaded/${slug}`;
+  const res = await axiosInstance.get("/api/v1" + url + `?page=${pageParam}`);
+  const notes = res.data;
+  return notes;
+};

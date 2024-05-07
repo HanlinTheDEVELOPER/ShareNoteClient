@@ -1,19 +1,13 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
 
+import loading from "../../../assets/Bean Eater-1s-200px.gif";
+import { useDeleteNoteHook } from "../../../hooks/useDeleteNoteHook";
 import { getNoteBySlug } from "../../../lib/Api/noteApi";
-import Lexical from "./Lexical";
-import {
-  IconArrowRightFromArc,
-  IconEdit,
-  IconShare,
-} from "@tabler/icons-react";
-import MyIconButton from "../../../components/common/IconButton";
-import { Suspense } from "react";
+import { useUserStore } from "../../../store/userStore";
 import AuthorAndDate from "./AuthorAndDate";
 import CTA from "./CTA";
-import { useUserStore } from "../../../store/userStore";
-import { useDeleteNoteHook } from "../../../hooks/useDeleteNoteHook";
+import Lexical from "./Lexical";
 
 const Details = () => {
   const { slug: detailSlug } = useParams();
@@ -23,12 +17,13 @@ const Details = () => {
     queryKey: ["note", detailSlug],
     queryFn: () => getNoteBySlug(user?._id, detailSlug),
     refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 
   const [handleDelete, isPending] = useDeleteNoteHook(detailSlug, -1);
   return (
     <section className=" mt-0 px-4 sm:px-0">
-      {!isLoading && (
+      {!isLoading ? (
         <>
           {" "}
           <CTA
@@ -62,6 +57,10 @@ const Details = () => {
             isSaved={data?.data.isSaved}
           />
         </>
+      ) : (
+        <div className=" w-full text-xl opacity-80 flex justify-center font-bold mt-4 ">
+          <img alt="loading" src={loading} width={100} />
+        </div>
       )}
     </section>
   );

@@ -1,26 +1,26 @@
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
-import { addSupport, saveNote, unSaveNote } from "../../lib/Api/noteApi";
-import { useToast } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import ProtectedButton from "./ProtectedButton";
-import { queryClient } from "../../main";
 import { useCustomToast } from "../../hooks/useCustomToast";
+import { saveNote, unSaveNote } from "../../lib/Api/noteApi";
+import { queryClient } from "../../main";
+import ProtectedButton from "./ProtectedButton";
 
 const SaveNoteButton = ({ children, isSaved }) => {
   const { slug } = useParams();
   const { successToast, errorToast } = useCustomToast();
-  const { mutateAsync } = useMutation({
-    mutationKey: ["note"],
+  const { mutateAsync, isPending: isSavePending } = useMutation({
+    mutationKey: ["note", "notes"],
     mutationFn: (slug) => saveNote(slug),
-    onSuccess: () => queryClient.invalidateQueries("note"),
+    onSuccess: () => queryClient.invalidateQueries(["note", "notes"]),
   });
 
-  const { mutateAsync: unsaveMutateAsync } = useMutation({
-    mutationKey: ["note"],
-    mutationFn: (slug) => unSaveNote(slug),
-    onSuccess: () => queryClient.invalidateQueries("note"),
-  });
+  const { mutateAsync: unsaveMutateAsync, isPending: isUnsavePending } =
+    useMutation({
+      mutationKey: ["note", "notes"],
+      mutationFn: (slug) => unSaveNote(slug),
+      onSuccess: () => queryClient.invalidateQueries(["note", "notes"]),
+    });
 
   const handleOnSave = async () => {
     try {
@@ -47,6 +47,7 @@ const SaveNoteButton = ({ children, isSaved }) => {
       bg="transparent"
       borderColor="brand.900"
       borderWidth="1px"
+      isLoading={isSavePending || isUnsavePending}
       fn={isSaved ? handleOnUnsave : handleOnSave}
       p={0}
     >
