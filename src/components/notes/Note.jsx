@@ -40,7 +40,7 @@ const Note = ({ note, lastElRef }) => {
             <Text as="i">{formatDate(note.createdAt)}</Text>
           </Stack>
         </Link>
-        <Flex gap={2} alignItems="center">
+        <Flex gap={2} alignItems="center" ml="auto">
           <SupportModel
             variant="link"
             p={0}
