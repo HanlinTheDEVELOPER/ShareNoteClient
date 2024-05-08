@@ -35,7 +35,7 @@ const TabMenu = () => {
           title: "Following",
           active: activeTab === "Following" ? true : false,
         },
-        ...user.tags.map((tag) => ({
+        ...user.tags?.map((tag) => ({
           title: tag,
           active: activeTab === tag ? true : false,
         })),

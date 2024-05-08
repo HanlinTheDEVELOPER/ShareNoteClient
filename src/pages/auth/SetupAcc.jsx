@@ -6,34 +6,43 @@ import { useToast } from "@chakra-ui/react";
 import { queryClient } from "../../main";
 import { useUserStore } from "../../store/userStore";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import useSetUser from "../../hooks/useSetUser";
 
 const SetupAcc = () => {
   const user = useUserStore((state) => state.user);
   const navigate = useNavigate();
 
-  if (user?.tags.length === 3) navigate(-1);
+  if (user?.tags?.length === 3) navigate(-1);
   // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
   const redirectTo = searchParams.get("state");
   const [body, setBody] = useState({
     name: "",
-    tags: ["", ""],
+    tags: [],
   });
   const { mutateAsync, isPending } = useMutation({
     mutationKey: ["user"],
     mutationFn: (data) => setupAccount(data),
   });
 
-  const setUser = useUserStore((state) => state.setUser);
+  const [setUserfn] = useSetUser();
   const toast = useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (body.name === "" || body.tags.length < 3) {
+      toast({
+        description: "Please fill the form correctly",
+        status: "error",
+      });
+      return;
+    }
     try {
       await mutateAsync(body);
       queryClient.prefetchQuery({
         queryKey: ["user"],
-        queryFn: setUser,
+        queryFn: setUserfn,
+        onSuccess: () => queryClient.invalidateQueries("profile"),
       });
       toast({
         description: "Set up account completed!",

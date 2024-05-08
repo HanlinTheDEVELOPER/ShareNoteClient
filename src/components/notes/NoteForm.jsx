@@ -64,6 +64,9 @@ const NoteForm = ({ isCreate, title = "", content = "", tags = [], slug }) => {
   });
 
   const handleCreateSubmit = async (values) => {
+    if (isDisabled) {
+      return;
+    }
     try {
       const createNote = await mutateAsync({
         ...body,

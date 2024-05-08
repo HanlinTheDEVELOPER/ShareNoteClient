@@ -38,7 +38,7 @@ const App = () => {
         {
           index: true,
           element: <Index />,
-          errorElement: <NotFound />,
+          errorElement: <NotFound fromRoot={true} />,
         },
         {
           path: "/setup",
@@ -47,7 +47,6 @@ const App = () => {
               <SetupAcc />
             </ProtectedRoute>
           ),
-          errorElement: <NotFound />,
         },
         { path: "/not_found", element: <NotFound /> },
         { path: "/profile", element: <Profile />, errorElement: <NotFound /> },

@@ -4,8 +4,11 @@ import { Flex, Image, Stack, Text } from "@chakra-ui/react";
 import "./NotFound.css";
 import { useNavigate } from "react-router-dom";
 
-const NotFound = () => {
+const NotFound = ({ fromRoot = false }) => {
   const navigate = useNavigate();
+  if (fromRoot) {
+    navigate(0);
+  }
   return (
     <Stack
       position="absolute"
